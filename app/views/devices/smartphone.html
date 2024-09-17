@@ -1,0 +1,82 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      
+
+      <form class="form" action="/path/of/next/page" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{{ govukRadios({
+  name: "doYouHaveSmartphone",
+  fieldset: {
+    legend: {
+      text: "Do you regularly use a smartphone for work?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+}) }}
+
+
+{{ govukRadios({
+  name: "smartphoneType",
+  fieldset: {
+    legend: {
+      text: "If so, what type of smartphone?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "androidDevice",
+      text: "Android Device"
+    },
+    {
+      value: "iphone",
+      text: "iPhone"
+    },
+    {
+      value: "otherPhone",
+      text: "Other phone"
+    }
+  ]
+}) }}
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
