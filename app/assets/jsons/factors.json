@@ -1,0 +1,51 @@
+{
+    "deviceFactors": {
+      "Desktop": {
+        "embodied": 221,
+        "usagePerYear": 41.415
+      },
+      "Laptop": {
+        "macbook":{
+        "embodied": 266,
+        "usagePerYear": 6.212
+        },
+        "windows":{
+          "embodied": 300,
+          "usagePerYear": 4.212
+        }
+      },
+      "Smartphone": {
+        "embodied": 64.5,
+        "usagePerYear": 1.035
+      },
+      "Monitor": {
+        "embodied": 324,
+        "usagePerYear": 37.066
+      }
+    },
+    "emailFactors": {
+      "email": 0.004,
+      "attachmentEmail": 0.019
+    },
+    "transportFactors": {
+      "Car": 0.285,
+      "Bus": 0.174,
+      "Train": 0.0563,
+      "Bicycle/Foot": 0.0
+    },
+    "teamsFactors": {
+      "messages": 0.000058,
+      "calls": 0.154
+    },
+    "printingFactors": {
+      "perPage": 0
+    },
+    "workingPatternsFactors": {
+      "office": 0,
+      "home": 0
+    },
+    "dataStorageFactors": {
+      "emailClearedMonthly": 0,
+      "oneDriveClearedMonthly": 0
+    }
+}
