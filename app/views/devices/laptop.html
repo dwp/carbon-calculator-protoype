@@ -13,12 +13,13 @@
 
 {% block content %}
 
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       
 
-      <form class="form" action="/uses-laptop" method="post">
+      <form class="form" action="/uses-laptop" method="post" onsubmit="calculateCarbon()">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
@@ -68,6 +69,10 @@
     }
   ]
 }) }}
+
+{{ govukInput({
+  name: 'laptop-type'
+})}}
 
         {{ govukButton({
           text: "Continue"
