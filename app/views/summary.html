@@ -17,8 +17,9 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <h1 class="govuk-heading-xl">
-        Your emissions
+        Your yearly emissions
       </h1>
+      <h2 class="govuk-heading-m">Values given in kilograms of carbon dioxide equivalent</h2>
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
@@ -96,6 +97,21 @@
           </dt>
           <dd class="govuk-summary-list__value">
             <div id="teams-emissions"> </div>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <div>Business travel emissions:</div>
+            <div style="display:none;" id="data-holder-b-travel-frequency">{{data['businessTravelFrequency']}}</div>
+            <div style="display:none;" id="data-holder-b-travel-mode">{{data['businessTravelMode']}}</div>
+            <div style="display:none;" id="data-holder-b-travel-distance">{{data['businessTravelDistance']}}</div>
+          </dt>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <div id="business-travel-emissions"> </div>
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
