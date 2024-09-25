@@ -5,18 +5,24 @@
         "usagePerYear": 41.415
       },
       "Laptop": {
-        "macbook":{
-        "embodied": 266,
-        "usagePerYear": 6.212
+        "Macbook":{
+          "embodied": 266,
+          "usagePerYear": 6.212
         },
-        "windows":{
+        "Windows":{
           "embodied": 300,
           "usagePerYear": 4.212
         }
       },
       "Smartphone": {
-        "embodied": 64.5,
-        "usagePerYear": 1.035
+        "iPhone":{
+          "embodied": 64.5,
+          "usagePerYear": 1.035
+        },
+        "Android":{
+          "embodied": 56.5,
+          "usagePerYear": 1.265
+        }
       },
       "Monitor": {
         "embodied": 324,
