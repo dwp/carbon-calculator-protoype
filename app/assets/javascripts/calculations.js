@@ -39,10 +39,10 @@ async function calculateLaptopCarbon(event){
         var laptopEmbodied = JSON.stringify(laptopStats['embodied']);
         var laptopUsage = JSON.stringify(laptopStats['usagePerYear']);
         //calculate total laptop emissions
-        var laptopTotal = +laptopEmbodied + (+laptopUsage * 5);
+        var laptopTotal = (+laptopEmbodied/5) + +laptopUsage;
 
         //change html element to value for total laptop emissions
-        document.getElementById("laptop-emissions").textContent=laptopTotal.toFixed(3);
+        document.getElementById("laptop-emissions").textContent=laptopTotal.toFixed(3) + " kg CO2e";
     }
     else{
         document.getElementById("laptop-emissions").textContent="No emissions";
@@ -55,8 +55,8 @@ async function calculateLaptopCarbon(event){
         var desktopStats = factors.deviceFactors['Desktop'];
         var desktopEmbodied = JSON.stringify(desktopStats['embodied']);
         var desktopUsage = JSON.stringify(desktopStats['usagePerYear']);
-        var desktopTotal = +desktopEmbodied + (+desktopUsage * 5);
-        document.getElementById("desktop-emissions").textContent=desktopTotal.toFixed(3);
+        var desktopTotal = (+desktopEmbodied/5) + +desktopUsage;
+        document.getElementById("desktop-emissions").textContent=desktopTotal.toFixed(3) + " kg CO2e";
      }
     else{
         document.getElementById("desktop-emissions").textContent="No emissions";
@@ -70,8 +70,8 @@ async function calculateLaptopCarbon(event){
         var monitorStats = factors.deviceFactors['Monitor'];
         var monitorEmbodied = JSON.stringify(monitorStats['embodied']);
         var monitorUsage = JSON.stringify(monitorStats['usagePerYear']);
-        var monitorTotal = (+monitorEmbodied + (+monitorUsage * 5)) * +numberMonitors;
-        document.getElementById("monitor-emissions").textContent=monitorTotal.toFixed(3);
+        var monitorTotal = ((+monitorEmbodied/5) + +monitorUsage) * +numberMonitors;
+        document.getElementById("monitor-emissions").textContent=monitorTotal.toFixed(3) + " kg CO2e";
     }
     else{
         document.getElementById("monitor-emissions").textContent="No emissions";
@@ -84,8 +84,8 @@ async function calculateLaptopCarbon(event){
         var smartphoneStats = factors.deviceFactors.Smartphone[smartphoneType];
         var smartphoneEmbodied = JSON.stringify(smartphoneStats['embodied']);
         var smartphoneUsage = JSON.stringify(smartphoneStats['usagePerYear']);
-        var smartphoneTotal = +smartphoneEmbodied + (+smartphoneUsage * 5);
-        document.getElementById("smartphone-emissions").textContent=smartphoneTotal.toFixed(3);
+        var smartphoneTotal = (+smartphoneEmbodied/5) + +smartphoneUsage;
+        document.getElementById("smartphone-emissions").textContent=smartphoneTotal.toFixed(3) + " kg CO2e";
     }
     else{
         document.getElementById("smartphone-emissions").textContent="No emissions";
@@ -101,7 +101,7 @@ async function calculateLaptopCarbon(event){
 
     var totalEmailEmissionsWeekly = (+numEmails * +emailEmission) + (+numAttachments * +attachmentEmission);
     var totalEmailEmissionsYearly = +totalEmailEmissionsWeekly * 52;
-    document.getElementById("email-emissions").textContent=totalEmailEmissionsYearly.toFixed(3);
+    document.getElementById("email-emissions").textContent=totalEmailEmissionsYearly.toFixed(3) + " kg CO2e";
 
 
     //teams
@@ -113,7 +113,18 @@ async function calculateLaptopCarbon(event){
 
     var totalTeamsEmissionsWeekly = (+teamsMessages * +teamsMessageEmission) + (+teamsHours * +teamsHourlyEmission);
     var totalTeamsEmissionsYearly = +totalTeamsEmissionsWeekly * 52;
-    document.getElementById("teams-emissions").textContent=totalTeamsEmissionsYearly.toFixed(3);
+    document.getElementById("teams-emissions").textContent=totalTeamsEmissionsYearly.toFixed(3) + " kg CO2e";
+
+
+    //business travel
+    var businessTravelFrequency = document.getElementById("data-holder-b-travel-frequency").textContent;
+    var businessTravelMode = document.getElementById("data-holder-b-travel-mode").textContent;
+    var businessTravelDistance = document.getElementById("data-holder-b-travel-distance").textContent;
+
+    var transportFactor = JSON.stringify(factors.transportFactors[businessTravelMode]);
+    var bTravelMonthlyEmissions = +businessTravelFrequency * +businessTravelDistance * +transportFactor;
+    var bTravelYearlyEmissions = +bTravelMonthlyEmissions * 12;
+    document.getElementById("business-travel-emissions").textContent=bTravelYearlyEmissions.toFixed(3) + " kg CO2e";
 
 }
 
