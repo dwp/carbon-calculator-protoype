@@ -17,16 +17,19 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <h1 class="govuk-heading-xl">
-        Check your answers before sending your application
+        Your emissions
       </h1>
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Name
+            <div>Laptop emissions:</div>
+            <div style="display:none;" id="data-holder-laptop">{{data['has-laptop']}}</div>
+            <div style="display:none;" id="data-holder-laptop-type">{{data['laptop-type']}}</div>
+          </dt>
           </dt>
           <dd class="govuk-summary-list__value">
-            <div id="changeMe">text</div>
+            <div id="changeMe"> </div>
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
@@ -34,10 +37,11 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Date of birth
+            <div>Desktop emissions:</div>
+            <div style="display:none;" id="data-holder-desktop">{{data['has-desktop']}}</div>
           </dt>
           <dd class="govuk-summary-list__value">
-            <div id="data-holder">{{data['laptop-type']}}</div>
+            <div id="desktop-emissions"> </div>
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
@@ -45,10 +49,12 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Address
+            <div>Monitor emissions:</div>
+            <div style="display:none;" id="data-holder-monitor">{{data['has-monitor']}}</div>
+            <div style="display:none;" id="data-holder-monitor-number">{{data['number-of-monitors']}}</div>
           </dt>
           <dd class="govuk-summary-list__value">
-            72 Guild Street<br>London<br>SE23 6FH
+            <div id="monitor-emissions"> </div>
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> address</span></a>
@@ -56,27 +62,21 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Contact details
+            <div>Smartphone emissions:</div>
+            <div style="display:none;" id="data-holder-smartphone">{{data['has-smartphone']}}</div>
+            <div style="display:none;" id="data-holder-smartphone-type">{{data['smartphone-type']}}</div>
           </dt>
           <dd class="govuk-summary-list__value">
-            <p class="govuk-body">07700 900457</p>
-            <p class="govuk-body">sarah.phillips@example.com</p>
+            <div id="smartphone-emissions"> </div>
           </dd>
           <dd class="govuk-summary-list__actions">
-            <ul class="govuk-summary-list__actions-list">
-              <li class="govuk-summary-list__actions-list-item">
-                <a class="govuk-link" href="#">Add<span class="govuk-visually-hidden"> contact details</span></a>
-              </li>
-              <li class="govuk-summary-list__actions-list-item">
-                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> contact details</span></a>
-              </li>
-            </ul>
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> address</span></a>
           </dd>
         </div>
       </dl>
 
       <h2 class="govuk-heading-m">
-        Now send your application
+        Press calculate to calculate emissions
       </h2>
 
       <p>
@@ -85,15 +85,9 @@
 
       <script src="/public/javascripts/calculations.js"></script>
 
-      <button onclick = "calculateLaptopCarbon(event)">calculate!</button>
-
-      <form action="/confirmation" method="post" novalidate>
-
-        {{ govukButton({
-          text: "Accept and send"
-        }) }}
-
-      </form>
+      <button onclick="calculateLaptopCarbon(event) "type="button" class="govuk-button" data-module="govuk-button">
+        Calculate
+      </button>
 
     </div>
   </div>
