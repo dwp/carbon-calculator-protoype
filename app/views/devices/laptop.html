@@ -19,12 +19,12 @@
 
       
 
-      <form class="form" action="/uses-laptop" method="post" onsubmit="calculateCarbon()">
+      <form class="form" action="/devices/desktop" method="post" onsubmit="calculateCarbon()">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 {{ govukRadios({
-  name: "doYouHaveLaptop",
+  name: "has-laptop",
   fieldset: {
     legend: {
       text: "Do you regularly use a laptop for work?",
@@ -34,11 +34,11 @@
   },
   items: [
     {
-      value: "yes",
+      value: "Yes",
       text: "Yes"
     },
     {
-      value: "no",
+      value: "No",
       text: "No"
     }
   ]
@@ -46,7 +46,7 @@
 
 
 {{ govukRadios({
-  name: "laptopType",
+  name: "laptop-type",
   fieldset: {
     legend: {
       text: "If so, what type of laptop?",
@@ -56,23 +56,21 @@
   },
   items: [
     {
-      value: "windowsDevice",
+      value: "Windows",
       text: "Windows Device"
     },
     {
-      value: "macbook",
+      value: "Macbook",
       text: "Macbook"
     },
     {
-      value: "otherLaptop",
+      value: "OtherLaptop",
       text: "Other Laptop"
     }
   ]
 }) }}
 
-{{ govukInput({
-  name: 'laptop-type'
-})}}
+
 
         {{ govukButton({
           text: "Continue"

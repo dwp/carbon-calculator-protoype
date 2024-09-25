@@ -18,12 +18,12 @@
 
       
 
-      <form class="form" action="/uses-smartphone" method="post">
+      <form class="form" action="/devices/deviceSummary" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 {{ govukRadios({
-  name: "doYouHaveSmartphone",
+  name: "has-smartphone",
   fieldset: {
     legend: {
       text: "Do you regularly use a smartphone for work?",
@@ -33,11 +33,11 @@
   },
   items: [
     {
-      value: "yes",
+      value: "Yes",
       text: "Yes"
     },
     {
-      value: "no",
+      value: "No",
       text: "No"
     }
   ]
@@ -45,7 +45,7 @@
 
 
 {{ govukRadios({
-  name: "smartphoneType",
+  name: "smartphone-type",
   fieldset: {
     legend: {
       text: "If so, what type of smartphone?",
@@ -55,11 +55,11 @@
   },
   items: [
     {
-      value: "androidDevice",
+      value: "Android",
       text: "Android Device"
     },
     {
-      value: "iphone",
+      value: "iPhone",
       text: "iPhone"
     },
     {

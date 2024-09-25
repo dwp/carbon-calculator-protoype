@@ -23,7 +23,7 @@
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 {{ govukRadios({
-  name: "doYouHaveDesktop",
+  name: "has-desktop",
   fieldset: {
     legend: {
       text: "Do you regularly use a desktop for work?",
@@ -33,11 +33,11 @@
   },
   items: [
     {
-      value: "yes",
+      value: "Yes",
       text: "Yes"
     },
     {
-      value: "no",
+      value: "No",
       text: "No"
     }
   ]

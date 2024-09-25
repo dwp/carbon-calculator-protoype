@@ -18,12 +18,12 @@
 
       
 
-      <form class="form" action="/uses-monitors" method="post">
+      <form class="form" action="/devices/smartphone" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 {{ govukRadios({
-  name: "doYouHaveMonitor",
+  name: "has-monitor",
   fieldset: {
     legend: {
       text: "Do you regularly use an external monitor for work?",
@@ -33,11 +33,11 @@
   },
   items: [
     {
-      value: "yes",
+      value: "Yes",
       text: "Yes"
     },
     {
-      value: "no",
+      value: "No",
       text: "No"
     }
   ]
@@ -52,7 +52,7 @@
     isPageHeading: true
   },
   id: "number-of-monitors",
-  name: "numberOfMonitors"
+  name: "number-of-monitors"
 }) }}
 
         {{ govukButton({
