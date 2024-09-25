@@ -1,0 +1,122 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">
+        Your emissions
+      </h1>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <div>Laptop emissions:</div>
+            <div style="display:none;" id="data-holder-laptop">{{data['has-laptop']}}</div>
+            <div style="display:none;" id="data-holder-laptop-type">{{data['laptop-type']}}</div>
+          </dt>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <div id="laptop-emissions"> </div>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <div>Desktop emissions:</div>
+            <div style="display:none;" id="data-holder-desktop">{{data['has-desktop']}}</div>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <div id="desktop-emissions"> </div>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <div>Monitor emissions:</div>
+            <div style="display:none;" id="data-holder-monitor">{{data['has-monitor']}}</div>
+            <div style="display:none;" id="data-holder-monitor-number">{{data['number-of-monitors']}}</div>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <div id="monitor-emissions"> </div>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> address</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <div>Smartphone emissions:</div>
+            <div style="display:none;" id="data-holder-smartphone">{{data['has-smartphone']}}</div>
+            <div style="display:none;" id="data-holder-smartphone-type">{{data['smartphone-type']}}</div>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <div id="smartphone-emissions"> </div>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> address</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <div>Email emissions:</div>
+            <div style="display:none;" id="data-holder-emails">{{data['how-many-emails']}}</div>
+            <div style="display:none;" id="data-holder-emails-attachments">{{data['how-many-emails-attachments']}}</div>
+          </dt>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <div id="email-emissions"> </div>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <div>Teams emissions:</div>
+            <div style="display:none;" id="data-holder-teams-messages">{{data['how-many-teams-messages']}}</div>
+            <div style="display:none;" id="data-holder-teams-hours">{{data['how-many-teams-hours']}}</div>
+          </dt>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <div id="teams-emissions"> </div>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">
+        Press calculate to calculate emissions
+      </h2>
+
+      <p>
+        By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.
+      </p>
+
+      <script src="/public/javascripts/calculations.js"></script>
+
+      <button onclick="calculateLaptopCarbon(event) "type="button" class="govuk-button" data-module="govuk-button">
+        Calculate
+      </button>
+
+    </div>
+  </div>
+{% endblock %}
