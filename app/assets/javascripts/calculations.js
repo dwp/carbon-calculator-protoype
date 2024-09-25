@@ -28,17 +28,69 @@ async function calculateLaptopCarbon(event){
         return;
     }
 
-    //Get laptop type from current HTML page
-    var laptopType = document.getElementById("data-holder").textContent;
-    //find the laptop emissions based on laptop type
-    var laptopStats = factors.deviceFactors.Laptop[laptopType];
-    //get laptop embodied and usage emissions and convert to strings
-    var laptopEmbodied = JSON.stringify(laptopStats['embodied']);
-    var laptopUsage = JSON.stringify(laptopStats['usagePerYear']);
-    //calculate total laptop emissions
-    var laptopTotal = +laptopEmbodied + (+laptopUsage * 5);
+    //Laptop
+    var hasLaptop = document.getElementById("data-holder-laptop").textContent;
+    if(hasLaptop == 'Yes'){
+        //Get laptop type from current HTML page
+        var laptopType = document.getElementById("data-holder-laptop-type").textContent;
+        //find the laptop emissions based on laptop type
+        var laptopStats = factors.deviceFactors.Laptop[laptopType];
+        //get laptop embodied and usage emissions and convert to strings
+        var laptopEmbodied = JSON.stringify(laptopStats['embodied']);
+        var laptopUsage = JSON.stringify(laptopStats['usagePerYear']);
+        //calculate total laptop emissions
+        var laptopTotal = +laptopEmbodied + (+laptopUsage * 5);
 
-    //change html element to value for total laptop emissions
-    document.getElementById("changeMe").textContent=laptopTotal;
+        //change html element to value for total laptop emissions
+        document.getElementById("changeMe").textContent=laptopTotal.toFixed(3);
+    }
+    else{
+        document.getElementById("changeMe").textContent="No emissions";
+    }
+   
+
+    //Desktop
+    var hasDesktop = document.getElementById("data-holder-desktop").textContent;
+    if (hasDesktop == 'Yes'){
+        var desktopStats = factors.deviceFactors['Desktop'];
+        var desktopEmbodied = JSON.stringify(desktopStats['embodied']);
+        var desktopUsage = JSON.stringify(desktopStats['usagePerYear']);
+        var desktopTotal = +desktopEmbodied + (+desktopUsage * 5);
+        document.getElementById("desktop-emissions").textContent=desktopTotal.toFixed(3);
+     }
+    else{
+        document.getElementById("desktop-emissions").textContent="No emissions";
+    }
+
+
+    //Monitors
+    var hasMonitor = document.getElementById("data-holder-monitor").textContent;
+    if (hasMonitor == 'Yes'){
+        var numberMonitors = document.getElementById("data-holder-monitor-number").textContent;
+        var monitorStats = factors.deviceFactors['Monitor'];
+        var monitorEmbodied = JSON.stringify(monitorStats['embodied']);
+        var monitorUsage = JSON.stringify(monitorStats['usagePerYear']);
+        var monitorTotal = (+monitorEmbodied + (+monitorUsage * 5)) * +numberMonitors;
+        document.getElementById("monitor-emissions").textContent=monitorTotal.toFixed(3);
+    }
+    else{
+        document.getElementById("monitor-emissions").textContent="No emissions";
+    }
+    
+    //Smartphone
+    var hasSmartphone = document.getElementById("data-holder-smartphone").textContent;
+    if (hasSmartphone == 'Yes'){
+        var smartphoneType = document.getElementById("data-holder-smartphone-type").textContent;
+        var smartphoneStats = factors.deviceFactors.Smartphone[smartphoneType];
+        var smartphoneEmbodied = JSON.stringify(smartphoneStats['embodied']);
+        var smartphoneUsage = JSON.stringify(smartphoneStats['usagePerYear']);
+        var smartphoneTotal = +smartphoneEmbodied + (+smartphoneUsage * 5);
+        document.getElementById("smartphone-emissions").textContent=smartphoneTotal.toFixed(3);
+    }
+    else{
+        document.getElementById("smartphone-emissions").textContent="No emissions";
+    }
+
+
 }
 
