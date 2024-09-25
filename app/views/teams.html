@@ -1,0 +1,90 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/summary" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+          name: "how-many-teams-messages",
+          fieldset: {
+            legend: {
+              text: "How many Teams messages do you send per week?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "25",
+              text: "0-50"
+            },
+            {
+              value: "75",
+              text: "50-100"
+            },
+            {
+              value: "125",
+              text: "100-150"
+            },
+            {
+              value: "175",
+              text: "150-200"
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          name: "how-many-teams-hours",
+          fieldset: {
+            legend: {
+              text: "How many hours do you spend in Teams calls per week?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "2.5",
+              text: "0-5"
+            },
+            {
+              value: "7.5",
+              text: "5-10"
+            },
+            {
+              value: "12.5",
+              text: "10-15"
+            },
+            {
+              value: "17.5",
+              text: "15+"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
