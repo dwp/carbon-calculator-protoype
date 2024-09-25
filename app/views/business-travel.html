@@ -1,0 +1,106 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/summary" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+        {{ govukInput({
+          label: {
+            text: "How many times per month do you travel for business?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          id: "business-travel-frequency",
+          name: "businessTravelFrequency"
+        }) }}
+
+        {{ govukRadios({
+          name: "businessTravelMode",
+          fieldset: {
+            legend: {
+              text: "What mode of transport do you usually use for business travel?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Car",
+              text: "Car"
+            },
+            {
+              value: "Train",
+              text: "Train"
+            },
+            {
+              value: "Bus",
+              text: "Bus"
+            },
+            {
+              value: "Walking",
+              text: "Walking"
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          name: "businessTravelDistance",
+          fieldset: {
+            legend: {
+              text: "On average how far do you travel in a given journey?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "12.5",
+              text: "0-25 miles"
+            },
+            {
+              value: "37.5",
+              text: "25-50 miles"
+            },
+            {
+              value: "75",
+              text: "50-100 miles"
+            },
+            {
+              value: "175",
+              text: "100-250 miles"
+            },
+            {
+              value: "300",
+              text: "250+ miles"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
