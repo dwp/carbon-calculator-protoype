@@ -92,5 +92,28 @@ async function calculateLaptopCarbon(event){
     }
 
 
+    //emails
+    var numEmails = document.getElementById("data-holder-emails").textContent;
+    var numAttachments = document.getElementById("data-holder-emails-attachments").textContent;
+
+    var emailEmission = JSON.stringify(factors.emailFactors['email']);
+    var attachmentEmission = JSON.stringify(factors.emailFactors['attachmentEmail']);
+
+    var totalEmailEmissionsWeekly = (+numEmails * +emailEmission) + (+numAttachments * +attachmentEmission);
+    var totalEmailEmissionsYearly = +totalEmailEmissionsWeekly * 52;
+    document.getElementById("email-emissions").textContent=totalEmailEmissionsYearly.toFixed(3);
+
+
+    //teams
+    var teamsMessages = document.getElementById("data-holder-teams-messages").textContent;
+    var teamsHours = document.getElementById("data-holder-teams-hours").textContent;
+
+    var teamsMessageEmission = JSON.stringify(factors.teamsFactors['messages']);
+    var teamsHourlyEmission = JSON.stringify(factors.teamsFactors['calls']);
+
+    var totalTeamsEmissionsWeekly = (+teamsMessages * +teamsMessageEmission) + (+teamsHours * +teamsHourlyEmission);
+    var totalTeamsEmissionsYearly = +totalTeamsEmissionsWeekly * 52;
+    document.getElementById("teams-emissions").textContent=totalTeamsEmissionsYearly.toFixed(3);
+
 }
 
