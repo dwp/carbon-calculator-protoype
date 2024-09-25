@@ -42,10 +42,10 @@ async function calculateLaptopCarbon(event){
         var laptopTotal = +laptopEmbodied + (+laptopUsage * 5);
 
         //change html element to value for total laptop emissions
-        document.getElementById("changeMe").textContent=laptopTotal.toFixed(3);
+        document.getElementById("laptop-emissions").textContent=laptopTotal.toFixed(3);
     }
     else{
-        document.getElementById("changeMe").textContent="No emissions";
+        document.getElementById("laptop-emissions").textContent="No emissions";
     }
    
 
