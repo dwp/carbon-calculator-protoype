@@ -126,5 +126,35 @@ async function calculateLaptopCarbon(event){
     var bTravelYearlyEmissions = +bTravelMonthlyEmissions * 12;
     document.getElementById("business-travel-emissions").textContent=bTravelYearlyEmissions.toFixed(3) + " kg CO2e";
 
+    //printing
+    var printingFrequency = document.getElementById("data-holder-printing").textContent;
+
+    var printingEmissions = JSON.stringify(factors.printingFactors['perPage']);
+
+    var totalPrintingEmissionsWeekly = +printingFrequency * +printingEmissions;
+    var totalPrintingEmissionsYearly = +totalPrintingEmissionsWeekly * 52;
+    document.getElementById("printing-emissions").textContent=totalPrintingEmissionsYearly.toFixed(3) + " kg CO2e";
+
+    //data storage
+    var clearEmailFrequency = document.getElementById("data-holder-clear-emails").textContent;
+    var clearOneDriveFrequency = document.getElementById("data-holder-clear-onedrive").textContent;
+
+    var emailStorageEmission = JSON.stringify(factors.dataStorageFactors['emailClearedMonthly']);
+    var oneDriveStorageEmission = JSON.stringify(factors.dataStorageFactors['oneDriveClearedMonthly']);
+
+    var storageEmissionsYearly = (+clearEmailFrequency * +emailStorageEmission) + (+clearOneDriveFrequency * +oneDriveStorageEmission);
+    document.getElementById("data-storage-emissions").textContent=storageEmissionsYearly.toFixed(3) + " kg CO2e";
+
+    //office working
+    var officeFrequency = document.getElementById("data-holder-office-frequency").textContent;
+    var commuteType = document.getElementById("data-holder-commute-type").textContent;
+    var commuteDistance = document.getElementById("data-holder-commute-distance").textContent;
+
+    var commuteTypeFactor = JSON.stringify(factors.transportFactors[commuteType]);
+    var commuteWeeklyEmissions = +commuteTypeFactor * +commuteDistance * +officeFrequency;
+    var commuteYearlyEmissions = +commuteWeeklyEmissions * 52;
+
+    document.getElementById("office-working-emissions").textContent=commuteYearlyEmissions.toFixed(3) + " kg CO2e";
+
 }
 
