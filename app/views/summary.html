@@ -117,6 +117,48 @@
             <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
           </dd>
         </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <div>Printing emissions:</div>
+            <div style="display:none;" id="data-holder-printing">{{data['printingFrequency']}}</div>
+          </dt>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <div id="printing-emissions"> </div>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <div>Data storage emissions:</div>
+            <div style="display:none;" id="data-holder-clear-emails">{{data['clearEmailFrequency']}}</div>
+            <div style="display:none;" id="data-holder-clear-onedrive">{{data['clearOneDriveFrequency']}}</div>
+          </dt>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <div id="data-storage-emissions"> </div>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <div>Office working emissions:</div>
+            <div style="display:none;" id="data-holder-office-frequency">{{data['officeFrequency']}}</div>
+            <div style="display:none;" id="data-holder-commute-type">{{data['commuteType']}}</div>
+            <div style="display:none;" id="data-holder-commute-distance">{{data['commuteDistance']}}</div>
+          </dt>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <div id="office-working-emissions"> </div>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
+          </dd>
+        </div>
       </dl>
 
       <h2 class="govuk-heading-m">
