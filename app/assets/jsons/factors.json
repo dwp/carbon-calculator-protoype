@@ -44,14 +44,14 @@
       "calls": 0.154
     },
     "printingFactors": {
-      "perPage": 0
+      "perPage": 0.006
     },
     "workingPatternsFactors": {
       "office": 0,
       "home": 0
     },
     "dataStorageFactors": {
-      "emailClearedMonthly": 0,
-      "oneDriveClearedMonthly": 0
+      "emailClearedMonthly": 3.5,
+      "oneDriveClearedMonthly": 5.3
     }
 }
