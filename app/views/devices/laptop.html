@@ -19,56 +19,53 @@
 
       
 
-      <form class="form" action="/devices/desktop" method="post" onsubmit="calculateCarbon()">
+      <form class="form" action="/devices/desktop" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
-{{ govukRadios({
-  name: "has-laptop",
-  fieldset: {
-    legend: {
-      text: "Do you regularly use a laptop for work?",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--l"
-    }
-  },
-  items: [
-    {
-      value: "Yes",
-      text: "Yes"
-    },
-    {
-      value: "No",
-      text: "No"
-    }
-  ]
-}) }}
 
 
-{{ govukRadios({
-  name: "laptop-type",
-  fieldset: {
-    legend: {
-      text: "If so, what type of laptop?",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--l"
-    }
-  },
-  items: [
-    {
-      value: "Windows",
-      text: "Windows Device"
-    },
-    {
-      value: "Macbook",
-      text: "Macbook"
-    },
-    {
-      value: "OtherLaptop",
-      text: "Other Laptop"
-    }
-  ]
-}) }}
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+        {% set otherLaptopHtml %}
+        {{ govukInput({
+          id: "other-laptop",
+          name: "otherLaptop",
+          type: "laptop",
+          autocomplete: "laptop",
+          spellcheck: false,
+          classes: "govuk-!-width-one-third",
+          label: {
+            text: "Laptop type"
+          }
+        }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+          name: "laptop-type",
+          value: data['laptop-type'],
+          fieldset: {
+            legend: {
+              text: "What type of laptop do you use for work?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Windows",
+              text: "Windows Device"
+            },
+            {
+              value: "Macbook",
+              text: "Macbook"
+            },
+            {
+              value: "noLaptop",
+              text: "I don't use a laptop"
+            }
+          ]
+        }) }}
 
 
 
