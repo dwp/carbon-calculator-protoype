@@ -18,37 +18,16 @@
 
       
 
-      <form class="form" action="/working-patterns/emails" method="post">
+      <form class="form" action="/messaging/messaging-intro" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 {{ govukRadios({
-  name: "has-smartphone",
-  fieldset: {
-    legend: {
-      text: "Do you regularly use a smartphone for work?",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--l"
-    }
-  },
-  items: [
-    {
-      value: "Yes",
-      text: "Yes"
-    },
-    {
-      value: "No",
-      text: "No"
-    }
-  ]
-}) }}
-
-
-{{ govukRadios({
   name: "smartphone-type",
+  value: data['smartphone-type'],
   fieldset: {
     legend: {
-      text: "If so, what type of smartphone?",
+      text: "What type of work phone do you use?",
       isPageHeading: true,
       classes: "govuk-fieldset__legend--l"
     }
@@ -63,8 +42,8 @@
       text: "iPhone"
     },
     {
-      value: "otherPhone",
-      text: "Other phone"
+      value: "noPhone",
+      text: "I don't use a work phone"
     }
   ]
 }) }}
