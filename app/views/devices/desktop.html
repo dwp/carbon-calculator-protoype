@@ -22,30 +22,31 @@
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
-{{ govukRadios({
-  name: "has-desktop",
-  fieldset: {
-    legend: {
-      text: "Do you regularly use a desktop for work?",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--l"
-    }
-  },
-  items: [
-    {
-      value: "Yes",
-      text: "Yes"
-    },
-    {
-      value: "No",
-      text: "No"
-    }
-  ]
-}) }}
+        {{ govukRadios({
+          name: "has-desktop",
+          value: data['has-desktop'],
+          fieldset: {
+            legend: {
+              text: "Do you regularly use a desktop for work?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
 
-{{ govukButton({
-  text: "Continue"
-}) }}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
 
 
       </form>
