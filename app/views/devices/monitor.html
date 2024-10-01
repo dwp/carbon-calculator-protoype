@@ -20,40 +20,21 @@
 
       <form class="form" action="/devices/smartphone" method="post">
 
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {% from "govuk/components/input/macro.njk" import govukInput %}
 
-{{ govukRadios({
-  name: "has-monitor",
-  fieldset: {
-    legend: {
-      text: "Do you regularly use an external monitor for work?",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--l"
-    }
-  },
-  items: [
-    {
-      value: "Yes",
-      text: "Yes"
-    },
-    {
-      value: "No",
-      text: "No"
-    }
-  ]
-}) }}
+        {{ govukInput({
+          label: {
+            text: "How many monitors do you use for work?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          classes: "govuk-input--width-2",
 
-{% from "govuk/components/input/macro.njk" import govukInput %}
-
-{{ govukInput({
-  label: {
-    text: "If so, how many?",
-    classes: "govuk-label--l",
-    isPageHeading: true
-  },
-  id: "number-of-monitors",
-  name: "number-of-monitors"
-}) }}
+          id: "number-of-monitors",
+          name: "number-of-monitors",
+          inputmode: "numeric",
+          value: data['number-of-monitors']
+        }) }}
 
         {{ govukButton({
           text: "Continue"
