@@ -12,6 +12,10 @@
         "Windows":{
           "embodied": 300,
           "usagePerYear": 4.212
+        },
+        "noLaptop":{
+          "embodied": 0,
+          "usagePerYear": 0
         }
       },
       "Smartphone": {
@@ -22,6 +26,10 @@
         "Android":{
           "embodied": 56.5,
           "usagePerYear": 1.265
+        },
+        "noPhone":{
+          "embodied": 0,
+          "usagePerYear": 0
         }
       },
       "Monitor": {
@@ -37,7 +45,8 @@
       "Car": 0.285,
       "Bus": 0.174,
       "Train": 0.0563,
-      "Bicycle/Foot": 0.0
+      "Bicycle/Foot": 0.0,
+      "TramTube": 0.0789
     },
     "teamsFactors": {
       "messages": 0.000058,
