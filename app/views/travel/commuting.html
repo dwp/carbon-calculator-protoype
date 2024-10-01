@@ -1,0 +1,123 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      
+
+      <form class="form" action="/travel/business-travel" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          name: "officeFrequency",
+          value: data['officeFrequency'],
+          fieldset: {
+            legend: {
+              text: "How many days per week do you go into the office?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "0",
+              text: "0"
+            },
+            {
+              value: "1",
+              text: "1"
+            },
+            {
+              value: "2",
+              text: "2"
+            },
+            {
+              value: "3",
+              text: "3"
+            },
+            {
+              value: "4",
+              text: "4"
+            },
+            {
+              value: "5",
+              text: "5"
+            }
+          ]
+        }) }}
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+          name: "commuteType",
+          value: data['commuteType'],
+          fieldset: {
+            legend: {
+              text: "What mode of transport do you use to commute?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Bicycle/Foot",
+              text: "Walk/Bike"
+            },
+            {
+              value: "Bus",
+              text: "Bus"
+            },
+            {
+              value: "Train",
+              text: "Train"
+            },
+            {
+              value: "Car",
+              text: "Car"
+            },
+            {
+              value: "TramTube",
+              text: "Tram/Tube"
+            }
+          ]
+        }) }}
+
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+        {{ govukInput({
+          label: {
+            text: "How far is your commute? (in miles)",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          id: "commute-distance",
+          name: "commuteDistance",
+          value: data['commuteDistance']
+        }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
