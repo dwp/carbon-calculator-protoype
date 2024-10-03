@@ -1,15 +1,15 @@
 {
     "deviceFactors": {
-      "Desktop": {
+      "desktop": {
         "embodied": 221,
         "usagePerYear": 41.415
       },
-      "Laptop": {
-        "Macbook":{
+      "laptop": {
+        "macbook":{
           "embodied": 266,
           "usagePerYear": 6.212
         },
-        "Windows":{
+        "windows":{
           "embodied": 300,
           "usagePerYear": 4.212
         },
@@ -18,12 +18,12 @@
           "usagePerYear": 0
         }
       },
-      "Smartphone": {
-        "iPhone":{
+      "smartphone": {
+        "iphone":{
           "embodied": 64.5,
           "usagePerYear": 1.035
         },
-        "Android":{
+        "android":{
           "embodied": 56.5,
           "usagePerYear": 1.265
         },
@@ -32,7 +32,7 @@
           "usagePerYear": 0
         }
       },
-      "Monitor": {
+      "monitor": {
         "embodied": 324,
         "usagePerYear": 37.066
       }
@@ -42,11 +42,11 @@
       "attachmentEmail": 0.019
     },
     "transportFactors": {
-      "Car": 0.285,
-      "Bus": 0.174,
-      "Train": 0.0563,
-      "Bicycle/Foot": 0.0,
-      "TramTube": 0.0789
+      "car": 0.285,
+      "bus": 0.174,
+      "train": 0.0563,
+      "bicycle/Foot": 0.0,
+      "tram/Tube": 0.0789
     },
     "teamsFactors": {
       "messages": 0.000058,
@@ -59,7 +59,7 @@
       "office": 0,
       "home": 0
     },
-    "dataStorageFactors": {
+    "cloudStorageFactors": {
       "emailClearedMonthly": 3.5,
       "oneDriveClearedMonthly": 5.3
     }

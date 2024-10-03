@@ -28,11 +28,13 @@ async function calculateLaptopCarbon(event){
         return;
     }
 
+
+
     //laptop
     //get laptop type from current HTML page
     var laptopType = document.getElementById("data-holder-laptop-type").textContent;
     //find the laptop emissions based on laptop type
-    var laptopStats = factors.deviceFactors.Laptop[laptopType];
+    var laptopStats = factors.deviceFactors.laptop[laptopType];
     //get laptop embodied and usage emissions and convert to strings
     var laptopEmbodied = JSON.stringify(laptopStats['embodied']);
     var laptopUsage = JSON.stringify(laptopStats['usagePerYear']);
@@ -43,7 +45,7 @@ async function calculateLaptopCarbon(event){
 
     //desktop
     //for more detailed breakdown, see comments for Laptop above
-    var desktopStats = factors.deviceFactors['Desktop'];
+    var desktopStats = factors.deviceFactors['desktop'];
     var desktopEmbodied = JSON.stringify(desktopStats['embodied']);
     var desktopUsage = JSON.stringify(desktopStats['usagePerYear']);
     var desktopTotal = (+desktopEmbodied/5) + +desktopUsage;
@@ -52,7 +54,7 @@ async function calculateLaptopCarbon(event){
     //monitors
     //for more detailed breakdown, see comments for laptop above
     var numberMonitors = document.getElementById("data-holder-monitor-number").textContent;
-    var monitorStats = factors.deviceFactors['Monitor'];
+    var monitorStats = factors.deviceFactors['monitor'];
     var monitorEmbodied = JSON.stringify(monitorStats['embodied']);
     var monitorUsage = JSON.stringify(monitorStats['usagePerYear']);
     var monitorTotal = ((+monitorEmbodied/5) + +monitorUsage) * +numberMonitors;
@@ -61,7 +63,7 @@ async function calculateLaptopCarbon(event){
     //smartphone
     //for more detailed breakdown, see comments for Laptop above
     var smartphoneType = document.getElementById("data-holder-smartphone-type").textContent;
-    var smartphoneStats = factors.deviceFactors.Smartphone[smartphoneType];
+    var smartphoneStats = factors.deviceFactors.smartphone[smartphoneType];
     var smartphoneEmbodied = JSON.stringify(smartphoneStats['embodied']);
     var smartphoneUsage = JSON.stringify(smartphoneStats['usagePerYear']);
     var smartphoneTotal = (+smartphoneEmbodied/5) + +smartphoneUsage;
@@ -141,8 +143,8 @@ async function calculateLaptopCarbon(event){
     var clearEmailFrequency = document.getElementById("data-holder-clear-emails").textContent;
     var clearOneDriveFrequency = document.getElementById("data-holder-clear-onedrive").textContent;
 
-    var emailStorageEmission = JSON.stringify(factors.dataStorageFactors['emailClearedMonthly']);
-    var oneDriveStorageEmission = JSON.stringify(factors.dataStorageFactors['oneDriveClearedMonthly']);
+    var emailStorageEmission = JSON.stringify(factors.cloudStorageFactors['emailClearedMonthly']);
+    var oneDriveStorageEmission = JSON.stringify(factors.cloudStorageFactors['oneDriveClearedMonthly']);
 
     var storageEmissionsYearly = (+clearEmailFrequency * +emailStorageEmission) + (+clearOneDriveFrequency * +oneDriveStorageEmission);
     
