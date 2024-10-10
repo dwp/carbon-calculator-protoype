@@ -42,7 +42,29 @@
       "attachmentEmail": 0.019
     },
     "transportFactors": {
-      "car": 0.285,
+      "car": {
+        "small": {
+          "petrol": 0.23126,
+          "diesel": 0.22522,
+          "electric": 0.00,
+          "hybrid": 0.18143,
+          "plugInHybrid": 0.04848
+        },
+        "medium": {
+          "petrol": 0.28526,
+          "diesel": 0.27050,
+          "electric": 0.00,
+          "hybrid": 0.18492,
+          "plugInHybrid": 0.13066
+        },
+        "large": {
+          "petrol": 0.43267,
+          "diesel": 0.33362,
+          "electric": 0.00,
+          "hybrid": 0.24921,
+          "plugInHybrid": 0.16506
+        }
+      },
       "bus": 0.174,
       "train": 0.0563,
       "bicycle/Foot": 0.0,
