@@ -18,9 +18,11 @@
 
       
 
-      <form class="form" action="/travel/business-travel" method="post">
+      <form class="form" action="/check-car-type" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        
 
         {{ govukRadios({
           classes: "govuk-radios--inline",
@@ -61,7 +63,6 @@
           ]
         }) }}
 
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
         {{ govukRadios({
           name: "commuteType",
@@ -96,6 +97,7 @@
             }
           ]
         }) }}
+
 
         {% from "govuk/components/input/macro.njk" import govukInput %}
 
