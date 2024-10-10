@@ -21,151 +21,6 @@
       </h1>
       <h2 class="govuk-heading-m">Values given in kilograms of carbon dioxide equivalent</h2>
 
-      <!--
-      <dl class="govuk-summary-list">
-      
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            <div>Total device emissions:</div>
-            <div style="display:none;" id="data-holder-laptop">{{data['has-laptop']}}</div>
-            <div style="display:none;" id="data-holder-laptop-type">{{data['laptop-type']}}</div>
-            <div style="display:none;" id="data-holder-desktop">{{data['has-desktop']}}</div>
-            <div style="display:none;" id="data-holder-monitor">{{data['has-monitor']}}</div>
-            <div style="display:none;" id="data-holder-monitor-number">{{data['number-of-monitors']}}</div>
-            <div style="display:none;" id="data-holder-smartphone">{{data['has-smartphone']}}</div>
-            <div style="display:none;" id="data-holder-smartphone-type">{{data['smartphone-type']}}</div>
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <div id="total-device-emissions"> </div>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/devices/devices-intro">Change<span class="govuk-visually-hidden"> name</span></a>
-          </dd>
-        </div>
-      
-
-        <details class="govuk-details">
-          <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">
-              Breakdown
-            </span>
-          </summary>
-          <div class="govuk-details__text">
-            <dt class="govuk-summary-list__key">
-              <div>Laptop:</div>
-            </dt>
-            <dd class="govuk-summary-list__value">
-            <div id="laptop-emissions"> </div>
-          </dd>
-          </div>
-        </details>
-      
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            <div>Email emissions:</div>
-            <div style="display:none;" id="data-holder-emails">{{data['how-many-emails']}}</div>
-            <div style="display:none;" id="data-holder-emails-attachments">{{data['how-many-emails-attachments']}}</div>
-          </dt>
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <div id="email-emissions"> </div>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/messaging/emails">Change<span class="govuk-visually-hidden"> name</span></a>
-          </dd>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            <div>Teams emissions:</div>
-            <div style="display:none;" id="data-holder-teams-messages">{{data['how-many-teams-messages']}}</div>
-            <div style="display:none;" id="data-holder-teams-hours">{{data['how-many-teams-hours']}}</div>
-          </dt>
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <div id="teams-emissions"> </div>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/messaging/teams">Change<span class="govuk-visually-hidden"> name</span></a>
-          </dd>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            <div>Business travel emissions:</div>
-            <div style="display:none;" id="data-holder-b-travel-frequency">{{data['businessTravelFrequency']}}</div>
-            <div style="display:none;" id="data-holder-b-travel-mode">{{data['businessTravelMode']}}</div>
-            <div style="display:none;" id="data-holder-b-travel-distance">{{data['businessTravelDistance']}}</div>
-          </dt>
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <div id="business-travel-emissions"> </div>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/travel/business-travel">Change<span class="govuk-visually-hidden"> name</span></a>
-          </dd>
-        </div>
-      
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            <div>Printing emissions:</div>
-            <div style="display:none;" id="data-holder-printing">{{data['printingFrequency']}}</div>
-          </dt>
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <div id="printing-emissions"> </div>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/data-storage/printing">Change<span class="govuk-visually-hidden"> name</span></a>
-          </dd>
-        </div>
-      
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            <div>Data storage emissions:</div>
-            <div style="display:none;" id="data-holder-clear-emails">{{data['clearEmailFrequency']}}</div>
-            <div style="display:none;" id="data-holder-clear-onedrive">{{data['clearOneDriveFrequency']}}</div>
-          </dt>
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <div id="data-storage-emissions"> </div>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/data-storage/cloud-storage">Change<span class="govuk-visually-hidden"> name</span></a>
-          </dd>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            <div>Office working emissions:</div>
-            <div style="display:none;" id="data-holder-office-frequency">{{data['officeFrequency']}}</div>
-            <div style="display:none;" id="data-holder-commute-type">{{data['commuteType']}}</div>
-            <div style="display:none;" id="data-holder-commute-distance">{{data['commuteDistance']}}</div>
-          </dt>
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <div id="office-working-emissions"> </div>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/travel/commuting">Change<span class="govuk-visually-hidden"> name</span></a>
-          </dd>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            <div>Total emissions:</div>
-          </dt>
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <div id="total-emissions"> </div>
-          </dd>
-        </div>
-      
-      </dl> -->
-
       <table class="govuk-table">
         <caption class="govuk-table__caption govuk-table__caption--m"> </caption>
         <thead class="govuk-table__head">
@@ -220,6 +75,10 @@
               <div style="display:none;" id="data-holder-office-frequency">{{data['officeFrequency']}}</div>
               <div style="display:none;" id="data-holder-commute-type">{{data['commuteType']}}</div>
               <div style="display:none;" id="data-holder-commute-distance">{{data['commuteDistance']}}</div>
+
+              <div style="display:none;" id="data-holder-car-size">{{data['carSize']}}</div>
+              <div style="display:none;" id="data-holder-car-fuel">{{data['carFuel']}}</div>
+              <div id="car-type"> </div>
             </th>
             <td class="govuk-table__cell">
               <div id="travel-emissions"> </div>
@@ -255,12 +114,21 @@
         </tbody>
       </table>
 
-      <canvas id="emissions-chart" width="0" height="0" ></canvas>
+      <div class="chart-container">
+        <canvas id="emissions-chart" width="0" height="0" ></canvas>
+      </div>
+
+      <div class="chart-container-2">
+        <canvas id="emissions-chart-2" width="0" height="0" ></canvas>
+      </div>
+
+
       <br>
+
       <h2 class="govuk-heading-m">
         Press calculate to calculate emissions
       </h2>
-  
+
       <script src="/public/javascripts/calculations.js"></script>
 
       <button onclick="calculateLaptopCarbon(event)" type="button" class="govuk-button" data-module="govuk-button">
