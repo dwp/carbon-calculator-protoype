@@ -59,7 +59,7 @@ async function calculateLaptopCarbon(event){
     var monitorEmbodied = JSON.stringify(monitorStats['embodied']);
     var monitorUsage = JSON.stringify(monitorStats['usagePerYear']);
     var monitorTotal = ((+monitorEmbodied/5) + +monitorUsage) * +numberMonitors;
-         
+
     // Smartphone
     // For more detailed breakdown, see comments for Laptop above
     var smartphoneType = document.getElementById("data-holder-smartphone-type").textContent;
@@ -71,7 +71,7 @@ async function calculateLaptopCarbon(event){
     // Total device emissions
     var totalDeviceEmissions = +laptopTotal + +desktopTotal + +monitorTotal + +smartphoneTotal;
     // Replace placeholder in html with newly calculated total emissions
-    document.getElementById("total-device-emissions").textContent=totalDeviceEmissions.toFixed(2) + " kg CO2e";
+    document.getElementById("total-device-emissions").textContent = totalDeviceEmissions.toFixed(2) + " kg CO2e";
 
 
     // MESSAGING
@@ -93,7 +93,7 @@ async function calculateLaptopCarbon(event){
     
     // Total messaging emissions
     var totalMessagingEmissions = +emailEmissionsYearly + +teamsEmissionsYearly;
-    document.getElementById("messaging-emissions").textContent=totalMessagingEmissions.toFixed(2) + " kg CO2e";
+    document.getElementById("messaging-emissions").textContent = totalMessagingEmissions.toFixed(2) + " kg CO2e";
 
 
     // TRAVEL
@@ -109,13 +109,26 @@ async function calculateLaptopCarbon(event){
     var officeFrequency = document.getElementById("data-holder-office-frequency").textContent;
     var commuteType = document.getElementById("data-holder-commute-type").textContent;
     var commuteDistance = document.getElementById("data-holder-commute-distance").textContent;
-    var commuteTypeFactor = JSON.stringify(factors.transportFactors[commuteType]);
+    
+    if (commuteType == 'car'){
+        var carSize = document.getElementById("data-holder-car-size").textContent;
+        var carFuel = document.getElementById("data-holder-car-fuel").textContent;
+        var carType = carSize + carFuel;
+        document.getElementById("car-type").textContent = carType;
+        carSizeFactor = factors.transportFactors.car[carSize];
+        var commuteTypeFactor = JSON.stringify(carSizeFactor[carFuel]);
+    } else{
+        var commuteTypeFactor = JSON.stringify(factors.transportFactors[commuteType]);
+    }
+
     var commuteWeeklyEmissions = +commuteTypeFactor * +commuteDistance * +officeFrequency;
     var commuteYearlyEmissions = +commuteWeeklyEmissions * 52;
 
+
+
     // Total travel emissions
     var totalTravelEmissions = +businessTravelEmissionsYearly + +commuteYearlyEmissions;
-    document.getElementById("travel-emissions").textContent=totalTravelEmissions.toFixed(2) + " kg CO2e";
+    document.getElementById("travel-emissions").textContent = totalTravelEmissions.toFixed(2) + " kg CO2e";
 
 
     // DATA STORAGE
@@ -135,22 +148,22 @@ async function calculateLaptopCarbon(event){
     
     // Total data storage
     var totalDataStorageEmissions = +totalPrintingEmissionsYearly + +storageEmissionsYearly;
-    document.getElementById("total-data-storage-emissions").textContent=totalDataStorageEmissions.toFixed(2) + " kg CO2e";
+    document.getElementById("total-data-storage-emissions").textContent = totalDataStorageEmissions.toFixed(2) + " kg CO2e";
 
     
     // RESULTS
     // Total emissions
     var totalEmissions = +totalDeviceEmissions + +emailEmissionsYearly + +teamsEmissionsYearly +
      +businessTravelEmissionsYearly + +totalPrintingEmissionsYearly + +commuteYearlyEmissions + +storageEmissionsYearly;
-    document.getElementById("total-emissions").textContent=totalEmissions.toFixed(2) + " kg CO2e";
+    document.getElementById("total-emissions").textContent = totalEmissions.toFixed(2) + " kg CO2e";
 
     // Percentage calculations
-    document.getElementById("device-percentage").textContent=((+totalDeviceEmissions/+totalEmissions)*100).toFixed(2) + "%";
-    document.getElementById("messaging-percentage").textContent=((+totalMessagingEmissions/+totalEmissions)*100).toFixed(2) + "%";
-    document.getElementById("travel-percentage").textContent=((+totalTravelEmissions/+totalEmissions)*100).toFixed(2) + "%";
-    document.getElementById("data-percentage").textContent=((+totalDataStorageEmissions/+totalEmissions)*100).toFixed(2) + "%";
+    document.getElementById("device-percentage").textContent = ((+totalDeviceEmissions/+totalEmissions)*100).toFixed(2) + "%";
+    document.getElementById("messaging-percentage").textContent = ((+totalMessagingEmissions/+totalEmissions)*100).toFixed(2) + "%";
+    document.getElementById("travel-percentage").textContent = ((+totalTravelEmissions/+totalEmissions)*100).toFixed(2) + "%";
+    document.getElementById("data-percentage").textContent = ((+totalDataStorageEmissions/+totalEmissions)*100).toFixed(2) + "%";
 
-    // Create pie chart
+    // Create pie charts
     const ctx = document.getElementById('emissions-chart').getContext('2d');
     new Chart(ctx, {
         type: 'pie',
@@ -159,9 +172,7 @@ async function calculateLaptopCarbon(event){
                 'Device Emissions',
                 'Email Usage',
                 'Teams Usage',
-                'Business Travel',
                 'Printing',
-                'Commuting',
                 'Data Storage'
             ],
             datasets: [{
@@ -169,28 +180,133 @@ async function calculateLaptopCarbon(event){
                     totalDeviceEmissions,
                     emailEmissionsYearly,
                     teamsEmissionsYearly,
-                    businessTravelEmissionsYearly,
                     totalPrintingEmissionsYearly,
-                    commuteYearlyEmissions,
                     storageEmissionsYearly
                 ],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(50, 50, 139, 0.2)'
+                    'rgba(140, 198, 63, 0.2)',
+                    'rgba(81, 49, 132, 0.2)',
+                    'rgba(193, 38, 55, 0.2)',
+                    'rgba(0, 99, 1, 0.2)',
+                    'rgba(224, 82, 6, 0.2)'
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(50, 50, 139, 0.6)'
+                    'rgba(140, 198, 63, 0.6)',
+                    'rgba(81, 49, 132, 0.6)',
+                    'rgba(193, 38, 55, 0.6)',
+                    'rgba(0, 99, 1, 0.6)',
+                    'rgba(224, 82, 6, 0.6)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.label + ': ' + tooltipItem.raw.toFixed(2) + ' kg CO2e';
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    const ctx2 = document.getElementById('emissions-chart-2').getContext('2d');
+    new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            labels: [
+                'Business Travel',
+                'Commuting'
+            ],
+            datasets: [{
+                data: [
+                    businessTravelEmissionsYearly,
+                    commuteYearlyEmissions
+                ],
+                backgroundColor: [
+                    'rgba(0, 192, 181, 0.2)',
+                    'rgba(169, 0, 97, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(0, 192, 181, 0.6)',
+                    'rgba(169, 0, 97, 0.6)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.label + ': ' + tooltipItem.raw.toFixed(2) + ' kg CO2e';
+                        }
+                    }
+                }
+            }
+        }
+    });
+    /*
+    var averageDevice = 200.00;
+    var averageEmail = 80;
+    var averageTeams = 100;
+    var averagePrinting = 15;
+    var averageData = 100;
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
+                'Device Emissions',
+                'Email Usage',
+                'Teams Usage',
+                'Printing',
+                'Data Storage'
+            ],
+            datasets: [{
+                label: "Your emissions",
+                data: [
+                    totalDeviceEmissions,
+                    emailEmissionsYearly,
+                    teamsEmissionsYearly,
+                    totalPrintingEmissionsYearly,
+                    storageEmissionsYearly
+                ],
+                backgroundColor: [
+                    'rgba(0, 114, 143, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(0, 114, 143, 1)'
+                ],
+                borderWidth: 1
+            },
+            {
+                label: "Average emissions",
+                data: [
+                    averageDevice,
+                    averageEmail,
+                    averageTeams,
+                    averagePrinting,
+                    averageData
+                ],
+                backgroundColor: [
+                    'rgba(173, 173, 173, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(173, 173, 173, 1)',
                 ],
                 borderWidth: 1
             }]
@@ -211,6 +327,5 @@ async function calculateLaptopCarbon(event){
             }
         }
     });
-
+    */
 }
-
