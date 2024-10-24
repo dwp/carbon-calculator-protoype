@@ -15,10 +15,9 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-      
-
       <form class="form" action="/data-storage/printing" method="post">
+
+        <p>In this section, clearing refers to deleting all non-important emails/files</p>
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
@@ -85,9 +84,7 @@
         {{ govukButton({
           text: "Continue"
         }) }}
-
       </form>
-
     </div>
   </div>
 
