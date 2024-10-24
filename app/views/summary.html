@@ -33,7 +33,8 @@
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">
-              <div>Devices:</div>
+              <!-- DATA HOLDERS -->
+               <!-- Device data -->
               <div style="display:none;" id="data-holder-laptop">{{data['has-laptop']}}</div>
               <div style="display:none;" id="data-holder-laptop-type">{{data['laptop-type']}}</div>
               <div style="display:none;" id="data-holder-desktop">{{data['has-desktop']}}</div>
@@ -41,6 +42,32 @@
               <div style="display:none;" id="data-holder-monitor-number">{{data['number-of-monitors']}}</div>
               <div style="display:none;" id="data-holder-smartphone">{{data['has-smartphone']}}</div>
               <div style="display:none;" id="data-holder-smartphone-type">{{data['smartphone-type']}}</div>
+
+              <!-- Messaging data -->
+              <div style="display:none;" id="data-holder-emails">{{data['how-many-emails']}}</div>
+              <div style="display:none;" id="data-holder-emails-attachments">{{data['how-many-emails-attachments']}}</div>
+              <div style="display:none;" id="data-holder-teams-messages">{{data['how-many-teams-messages']}}</div>
+              <div style="display:none;" id="data-holder-teams-hours">{{data['how-many-teams-hours']}}</div>
+              <div style="display:none;" id="data-holder-teams-camera">{{data['teamsCameraOn']}}</div>
+
+
+              <!-- Travel data -->
+              <div style="display:none;" id="data-holder-b-travel-frequency">{{data['businessTravelFrequency']}}</div>
+              <div style="display:none;" id="data-holder-b-travel-mode">{{data['businessTravelMode']}}</div>
+              <div style="display:none;" id="data-holder-b-travel-distance">{{data['businessTravelDistance']}}</div>
+              <div style="display:none;" id="data-holder-office-frequency">{{data['officeFrequency']}}</div>
+              <div style="display:none;" id="data-holder-commute-type">{{data['commuteType']}}</div>
+              <div style="display:none;" id="data-holder-commute-distance">{{data['commuteDistance']}}</div>
+              <div style="display:none;" id="data-holder-car-size">{{data['carSize']}}</div>
+              <div style="display:none;" id="data-holder-car-fuel">{{data['carFuel']}}</div>
+
+              <!-- Data storage data -->
+              <div style="display:none;" id="data-holder-clear-emails">{{data['clearEmailFrequency']}}</div>
+              <div style="display:none;" id="data-holder-clear-onedrive">{{data['clearOneDriveFrequency']}}</div>
+              <div style="display:none;" id="data-holder-printing">{{data['printingFrequency']}}</div>
+              
+
+              <div>Devices:</div>
             </th>
             <td class="govuk-table__cell">
               <div id="total-device-emissions"> </div>
@@ -53,10 +80,6 @@
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">
               <div>Messaging:</div>
-              <div style="display:none;" id="data-holder-emails">{{data['how-many-emails']}}</div>
-              <div style="display:none;" id="data-holder-emails-attachments">{{data['how-many-emails-attachments']}}</div>
-              <div style="display:none;" id="data-holder-teams-messages">{{data['how-many-teams-messages']}}</div>
-              <div style="display:none;" id="data-holder-teams-hours">{{data['how-many-teams-hours']}}</div>
             </th>
             <td class="govuk-table__cell">
               <div id="messaging-emissions"> </div>
@@ -69,16 +92,6 @@
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">
               <div>Travel:</div>
-              <div style="display:none;" id="data-holder-b-travel-frequency">{{data['businessTravelFrequency']}}</div>
-              <div style="display:none;" id="data-holder-b-travel-mode">{{data['businessTravelMode']}}</div>
-              <div style="display:none;" id="data-holder-b-travel-distance">{{data['businessTravelDistance']}}</div>
-              <div style="display:none;" id="data-holder-office-frequency">{{data['officeFrequency']}}</div>
-              <div style="display:none;" id="data-holder-commute-type">{{data['commuteType']}}</div>
-              <div style="display:none;" id="data-holder-commute-distance">{{data['commuteDistance']}}</div>
-
-              <div style="display:none;" id="data-holder-car-size">{{data['carSize']}}</div>
-              <div style="display:none;" id="data-holder-car-fuel">{{data['carFuel']}}</div>
-              <div id="car-type"> </div>
             </th>
             <td class="govuk-table__cell">
               <div id="travel-emissions"> </div>
@@ -91,9 +104,6 @@
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">
               <div>Data storage:</div>
-              <div style="display:none;" id="data-holder-clear-emails">{{data['clearEmailFrequency']}}</div>
-              <div style="display:none;" id="data-holder-clear-onedrive">{{data['clearOneDriveFrequency']}}</div>
-              <div style="display:none;" id="data-holder-printing">{{data['printingFrequency']}}</div>
             </th>
             <td class="govuk-table__cell">
               <div id="total-data-storage-emissions"> </div>
@@ -113,6 +123,11 @@
           </tr>
         </tbody>
       </table>
+
+      <div id="tea" class="govuk-body"> </div>
+      <div id="trees" class="govuk-body"> </div>
+      <div id="driving" class="govuk-body"> </div>
+
 
       <div class="chart-container">
         <canvas id="emissions-chart" width="0" height="0" ></canvas>
@@ -134,6 +149,15 @@
       <button onclick="calculateLaptopCarbon(event)" type="button" class="govuk-button" data-module="govuk-button">
         Calculate
       </button>
+
+      <p class="govuk-body">
+        Check out our <a href="https://dwpgovuk.sharepoint.com/sites/EXT-DWPDigital/SitePages/Digital-Sustainability.aspx" 
+        class="govuk-link" rel="noreferrer noopener" target="_blank">SharePoint site (opens in new tab)</a> for more info on Digital Sustainability
+      </p>
+
+      <p class="govuk-body">
+        See <a href="/how-we-calculate" class="govuk-link">how we calculate these emissions</a>.
+      </p>
 
     </div>
   </div>
