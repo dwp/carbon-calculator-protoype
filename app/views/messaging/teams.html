@@ -50,6 +50,30 @@
           ]
         }) }}
 
+        {% set cameraHtml %}
+        {{ govukRadios({
+          name: "teamsCameraOn",
+          value: data['teamsCameraOn'],
+          fieldset: {
+            legend: {
+              text: "Do you usually have your camera on?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% endset -%}
+
         {{ govukRadios({
           name: "how-many-teams-hours",
           value: data['how-many-teams-hours'],
@@ -63,19 +87,31 @@
           items: [
             {
               value: "2.5",
-              text: "0-5"
+              text: "0-5",
+              conditional: {
+                html: cameraHtml
+              }
             },
             {
               value: "7.5",
-              text: "5-10"
+              text: "5-10",
+              conditional: {
+                html: cameraHtml
+              }
             },
             {
               value: "12.5",
-              text: "10-15"
+              text: "10-15",
+              conditional: {
+                html: cameraHtml
+              }
             },
             {
               value: "17.5",
-              text: "15+"
+              text: "15+",
+              conditional: {
+                html: cameraHtml
+              }
             }
           ]
         }) }}
