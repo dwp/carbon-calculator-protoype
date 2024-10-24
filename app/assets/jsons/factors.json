@@ -6,40 +6,27 @@
       },
       "laptop": {
         "macbook":{
-          "embodied": 266,
-          "usagePerYear": 6.212
+          "lifetimeEmissions": 394
         },
         "windows":{
-          "embodied": 300,
-          "usagePerYear": 4.212
-        },
-        "noLaptop":{
-          "embodied": 0,
-          "usagePerYear": 0
+          "lifetimeEmissions": 341
         }
       },
       "smartphone": {
         "iphone":{
-          "embodied": 64.5,
-          "usagePerYear": 1.035
+          "lifetimeEmissions": 46
         },
         "android":{
-          "embodied": 56.5,
-          "usagePerYear": 1.265
-        },
-        "noPhone":{
-          "embodied": 0,
-          "usagePerYear": 0
+          "lifetimeEmissions": 56.5
         }
       },
       "monitor": {
-        "embodied": 324,
-        "usagePerYear": 37.066
+        "lifetimeEmissions": 465
       }
     },
     "emailFactors": {
-      "email": 0.004,
-      "attachmentEmail": 0.019
+      "email": 0.0003,
+      "attachmentEmail": 0.05
     },
     "transportFactors": {
       "car": {
@@ -65,14 +52,15 @@
           "plugInHybrid": 0.16506
         }
       },
-      "bus": 0.174,
-      "train": 0.0563,
+      "bus": 0.10846,
+      "train": 0.03546,
       "bicycle/Foot": 0.0,
-      "tram/Tube": 0.0789
+      "tram/Tube": 0.0273403
     },
     "teamsFactors": {
-      "messages": 0.000058,
-      "calls": 0.154
+      "messages": 0.000056,
+      "videoCalls": 0.15734,
+      "audioCalls": 0.00629
     },
     "printingFactors": {
       "perPage": 0.006
@@ -82,7 +70,25 @@
       "home": 0
     },
     "cloudStorageFactors": {
-      "emailClearedMonthly": 3.5,
-      "oneDriveClearedMonthly": 5.3
+      "emailClearedMonthly": 0.5,
+      "oneDriveClearedMonthly": 0.8
+    },
+    "drivingDistances": {
+      "600": "Geneva, Switzerland",
+      "700": "Munich, Germany",
+      "800": "Salzburg, Austria",
+      "900": "Venice, Italy",
+      "1000": "Barcelona, Spain",
+      "1100": "Oslo, Norway",
+      "1200": "Rome, Italy",
+      "1300": "Vilnius, Lithuania",
+      "1400": "Riga, Latvia",
+      "1500": "Algiers, Algeria",
+      "1600": "Tallinn, Estonia",
+      "1700": "Thessaloniki, Greece",
+      "1800": "Kharkiv, Ukraine",
+      "1900": "Marrakesh, Morrocco",
+      "2000": "Athens, Greece",
+      "2100": "Ankara, Türkiye"
     }
 }
