@@ -16,41 +16,73 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/data-storage/data-storage-intro" method="post">
+      <form class="form" action="/data-storage/cloud-storage" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        <h1 class="govuk-heading-l">Microsoft Teams</h1>
 
         {{ govukRadios({
           name: "how-many-teams-messages",
           value: data['how-many-teams-messages'],
           fieldset: {
             legend: {
-              text: "How many Teams messages do you send per week?",
+              text: "How many Microsoft Teams messages do you send in a week?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
               value: "25",
-              text: "0-50"
+              text: "0-49"
             },
             {
               value: "75",
-              text: "50-100"
+              text: "50-99"
             },
             {
               value: "125",
-              text: "100-150"
+              text: "100-149"
             },
             {
               value: "175",
-              text: "150-200"
+              text: "150+"
             }
           ]
         }) }}
 
-        {% set cameraHtml %}
+
+        {{ govukRadios({
+          name: "how-many-teams-hours",
+          value: data['how-many-teams-hours'],
+          fieldset: {
+            legend: {
+              text: "How many hours do you spend in Teams calls per week?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "2.5",
+              text: "0-5"
+            },
+            {
+              value: "7.5",
+              text: "5-10"
+            },
+            {
+              value: "12.5",
+              text: "10-15"
+            },
+            {
+              value: "17.5",
+              text: "15+"
+            }
+          ]
+        }) }}
+
         {{ govukRadios({
           name: "teamsCameraOn",
           value: data['teamsCameraOn'],
@@ -64,51 +96,14 @@
           items: [
             {
               value: "yes",
-              text: "Yes"
+              text: "Yes",
+              conditional: {
+                html: cameraHtml
+              }
             },
             {
               value: "no",
-              text: "No"
-            }
-          ]
-        }) }}
-        {% endset -%}
-
-        {{ govukRadios({
-          name: "how-many-teams-hours",
-          value: data['how-many-teams-hours'],
-          fieldset: {
-            legend: {
-              text: "How many hours do you spend in Teams calls per week?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
-          items: [
-            {
-              value: "2.5",
-              text: "0-5",
-              conditional: {
-                html: cameraHtml
-              }
-            },
-            {
-              value: "7.5",
-              text: "5-10",
-              conditional: {
-                html: cameraHtml
-              }
-            },
-            {
-              value: "12.5",
-              text: "10-15",
-              conditional: {
-                html: cameraHtml
-              }
-            },
-            {
-              value: "17.5",
-              text: "15+",
+              text: "No",
               conditional: {
                 html: cameraHtml
               }
