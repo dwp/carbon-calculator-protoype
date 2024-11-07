@@ -20,21 +20,47 @@
 
       <form class="form" action="/devices/smartphone" method="post">
 
+        <h1 class="govuk-heading-l">Devices</h1>
+
         {% from "govuk/components/input/macro.njk" import govukInput %}
 
-        {{ govukInput({
-          label: {
-            text: "How many monitors do you use for work?",
-            classes: "govuk-label--l",
-            isPageHeading: true
-          },
-          classes: "govuk-input--width-2",
 
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
           id: "number-of-monitors",
           name: "number-of-monitors",
-          inputmode: "numeric",
-          value: data['number-of-monitors']
+          value: data['number-of-monitors'],
+          fieldset: {
+            legend: {
+              text: "How many computer monitors do you use for work?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }     
+          },
+          hint: {
+            text: "A laptop screen is not classed as a computer monitor"
+          },
+          items: [
+            {
+              value: "0",
+              text: "0"
+            },
+            {
+              value: "1",
+              text: "1"
+            },
+            {
+              value: "2",
+              text: "2"
+            },
+            {
+              value: "3",
+              text: "3"
+            }
+          ]
         }) }}
+
 
         {{ govukButton({
           text: "Continue"
