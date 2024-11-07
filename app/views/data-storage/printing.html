@@ -16,18 +16,20 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/travel/travel-intro" method="post">
+      <form class="form" action="/travel/commuting" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        <h1 class="govuk-heading-l">Storing data</h1>
 
         {{ govukRadios({
           name: "printingFrequency",
           value: data['printingFrequency'],
           fieldset: {
             legend: {
-              text: "How many pages do you print per week?",
+              text: "How many pages do you print in a week?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
@@ -37,11 +39,11 @@
             },
             {
               value: "15",
-              text: "0-30"
+              text: "0-29"
             },
             {
               value: "45",
-              text: "30-60"
+              text: "30-59"
             },
             {
               value: "80",
@@ -49,7 +51,7 @@
             },
             {
               value: "120",
-              text: "100+"
+              text: "More than 100"
             }
           ]
         }) }}

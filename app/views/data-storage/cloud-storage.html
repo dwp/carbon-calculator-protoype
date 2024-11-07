@@ -17,36 +17,36 @@
     <div class="govuk-grid-column-two-thirds">
       <form class="form" action="/data-storage/printing" method="post">
 
-        <p>In this section, clearing refers to deleting all non-important emails/files</p>
-
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        <h1 class="govuk-heading-l">Storing data</h1>
 
         {{ govukRadios({
           name: "clearEmailFrequency",
           value: data['clearEmailFrequency'],
           fieldset: {
             legend: {
-              text: "How often do you clear your emails?",
+              text: "How often do you delete work emails?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
-              value: "36",
-              text: "Never"
-            },
-            {
-              value: "12",
-              text: "Yearly"
+              value: "1",
+              text: "Monthly"
             },
             {
               value: "3",
               text: "Quarterly"
             },
             {
-              value: "1",
-              text: "Monthly"
+              value: "12",
+              text: "Yearly"
+            },
+            {
+              value: "36",
+              text: "Never"
             }
           ]
         }) }}
@@ -58,25 +58,25 @@
             legend: {
               text: "How often do you clear your OneDrive files?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
-              value: "36",
-              text: "Never"
-            },
-            {
-              value: "12",
-              text: "Yearly"
+              value: "1",
+              text: "Monthly"
             },
             {
               value: "3",
               text: "Quarterly"
             },
             {
-              value: "1",
-              text: "Monthly"
+              value: "12",
+              text: "Yearly"
+            },
+            {
+              value: "36",
+              text: "Never"
             }
           ]
         }) }}

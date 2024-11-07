@@ -21,6 +21,8 @@
 
       <form class="form" action="/devices/desktop" method="post">
 
+        <h1 class="govuk-heading-l">Devices</h1>
+
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 
@@ -48,7 +50,7 @@
             legend: {
               text: "What type of laptop do you use for work?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              classes: "govuk-fieldset__legend--m"
             }
           },
           items: [

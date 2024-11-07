@@ -22,17 +22,53 @@
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
-        
+        <h1 class="govuk-heading-l">Travel</h1>
 
         {{ govukRadios({
-          classes: "govuk-radios--inline",
+          name: "commuteType",
+          value: data['commuteType'],
+          fieldset: {
+            legend: {
+              text: "How do you get to work?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "bicycle/Foot",
+              text: "Walk/Bike"
+            },
+            {
+              value: "bus",
+              text: "Bus"
+            },
+            {
+              value: "train",
+              text: "Train"
+            },
+            {
+              value: "car",
+              text: "Car"
+            },
+            {
+              value: "tram/Tube",
+              text: "Tram/Tube"
+            }
+          ]
+        }) }}
+
+
+
+
+        {{ govukRadios({
           name: "officeFrequency",
           value: data['officeFrequency'],
           fieldset: {
             legend: {
-              text: "How many days per week do you go into the office?",
+              text: "How many days do you travel to work?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
@@ -64,47 +100,16 @@
         }) }}
 
 
-        {{ govukRadios({
-          name: "commuteType",
-          value: data['commuteType'],
-          fieldset: {
-            legend: {
-              text: "What mode of transport do you use to commute?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
-          items: [
-            {
-              value: "bicycle/Foot",
-              text: "Walk/Bike"
-            },
-            {
-              value: "bus",
-              text: "Bus"
-            },
-            {
-              value: "train",
-              text: "Train"
-            },
-            {
-              value: "car",
-              text: "Car"
-            },
-            {
-              value: "tram/Tube",
-              text: "Tram/Tube"
-            }
-          ]
-        }) }}
+     
 
 
         {% from "govuk/components/input/macro.njk" import govukInput %}
 
         {{ govukInput({
           label: {
-            text: "How far is your commute? (in miles)",
-            classes: "govuk-label--l",
+            text: "How far do you travel? (in miles)",
+            hint: "This is the distance one-way, so how far you travel into work",
+            classes: "govuk-label--m",
             isPageHeading: true
           },
           id: "commute-distance",

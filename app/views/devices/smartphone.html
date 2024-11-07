@@ -18,38 +18,40 @@
 
       
 
-      <form class="form" action="/messaging/messaging-intro" method="post">
+      <form class="form" action="/messaging/emails" method="post">
+
+        <h1 class="govuk-heading-l">Devices</h1>
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
-{{ govukRadios({
-  name: "smartphone-type",
-  value: data['smartphone-type'],
-  fieldset: {
-    legend: {
-      text: "What type of work phone do you use?",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--l"
-    }
-  },
-  items: [
-    {
-      value: "android",
-      text: "Android Device"
-    },
-    {
-      value: "iphone",
-      text: "iPhone"
-    },
-    {
-      text: "I don't use a work phone"
-    }
-  ]
-}) }}
+        {{ govukRadios({
+          name: "smartphone-type",
+          value: data['smartphone-type'],
+          fieldset: {
+            legend: {
+              text: "What type of work phone do you use?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "android",
+              text: "Android Device"
+            },
+            {
+              value: "iphone",
+              text: "iPhone"
+            },
+            {
+              text: "I don't use a work phone"
+            }
+          ]
+        }) }}
 
-{{ govukButton({
-  text: "Continue"
-}) }}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
 
 
       </form>

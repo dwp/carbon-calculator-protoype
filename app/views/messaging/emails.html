@@ -20,24 +20,26 @@
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
+        <h1 class="govuk-heading-l">Emails</h1>
+
         {{ govukRadios({
           name: "how-many-emails",
           value: data['how-many-emails'],
           fieldset: {
             legend: {
-              text: "How many emails do you send per week?",
+              text: "How many work emails do you send per week?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
               value: "10",
-              text: "0-20"
+              text: "0-19"
             },
             {
               value: "35",
-              text: "20-50"
+              text: "20-49"
             },
             {
               value: "75",
@@ -45,7 +47,7 @@
             },
             {
               value: "125",
-              text: "100+"
+              text: "More than 100"
             }
           ]
         }) }}
@@ -55,27 +57,27 @@
           value: data['how-many-emails-attachments'],
           fieldset: {
             legend: {
-              text: "How many include attachments?",
+              text: "How many emails have an attachment?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
               value: "10",
-              text: "0-20"
+              text: "0-19"
             },
             {
-              value: "30",
-              text: "20-40"
+              value: "35",
+              text: "20-49"
             },
             {
-              value: "50",
-              text: "40-60"
+              value: "75",
+              text: "50-100"
             },
             {
-              value: "70",
-              text: "60-80"
+              value: "125",
+              text: "More than 100"
             }
           ]
         }) }}
