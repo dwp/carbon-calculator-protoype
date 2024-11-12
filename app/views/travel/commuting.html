@@ -18,7 +18,7 @@
 
       
 
-      <form class="form" action="/travel/business-travel" method="post">
+      <form class="form" name="commuteForm" action="/travel/business-travel" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
@@ -100,21 +100,62 @@
         }) }}
 
 
-     
 
+        {% from "govuk/components/select/macro.njk" import govukSelect %}
 
-        {% from "govuk/components/input/macro.njk" import govukInput %}
-
-        {{ govukInput({
-          label: {
-            text: "How far do you travel? (in miles)",
-            hint: "This is the distance one-way, so how far you travel into work",
-            classes: "govuk-label--m",
-            isPageHeading: true
-          },
+        {{ govukSelect({
           id: "commute-distance",
           name: "commuteDistance",
-          value: data['commuteDistance']
+          value: data['commuteDistance'],
+          label: {
+            text: "How far do you travel? (in miles)"
+          },
+          items: [
+            {
+              value: "0",
+              text: "0"
+            },
+            {
+              value: "5",
+              text: "5"
+            },
+            {
+              value: "10",
+              text: "10"
+            },
+            {
+              value: "15",
+              text: "15"
+            },
+            {
+              value: "20",
+              text: "20"
+            },
+            {
+              value: "25",
+              text: "25"
+            },
+            {
+              value: "30",
+              text: "30"
+            },
+            {
+              value: "35",
+              text: "35"
+            },
+            {
+              value: "40",
+              text: "40"
+            },
+            {
+              value: "45",
+              text: "45"
+            },
+            {
+              value: "50",
+              text: "50"
+            }
+          ]
         }) }}
 
 
