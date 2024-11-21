@@ -12,6 +12,7 @@
 {% endblock %}
 
 {% block content %}
+<body onload = "calculateLaptopCarbon(event)">
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
@@ -146,9 +147,6 @@
 
       <script src="/public/javascripts/calculations.js"></script>
 
-      <button onclick="calculateLaptopCarbon(event)" type="button" class="govuk-button" data-module="govuk-button">
-        Calculate
-      </button>
 
       <p class="govuk-body">
         Check out our <a href="https://dwpgovuk.sharepoint.com/sites/EXT-DWPDigital/SitePages/Digital-Sustainability.aspx" 
@@ -163,4 +161,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
 {% endblock %}
