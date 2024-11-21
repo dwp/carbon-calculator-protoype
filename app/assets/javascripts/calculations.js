@@ -17,7 +17,33 @@ async function fetchFactors() {
     }
 }
 
-
+function validateCommuteForm(){
+    let commuteType = document.forms["commuteForm"]["commuteType"].value;
+    if (commuteType == ""){
+        alert("Please choose a mode of transport");
+        const element = document.createElement('div');
+        document.body.appendChild(element);
+        document.getElementById('div').innerHTML = `<div class="govuk-error-summary" data-module="govuk-error-summary">
+        <div role="alert">
+            <h2 class="govuk-error-summary__title">
+            There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+                <li>
+                <a href="#">Enter your full name</a>
+                </li>
+                <li>
+                <a href="#">The date your passport was issued must be in the past</a>
+                </li>
+            </ul>
+            </div>
+        </div>
+        </div>`;
+        
+        return false;
+    }
+}
 
 async function calculateLaptopCarbon(event){
     event.preventDefault();
@@ -62,9 +88,6 @@ async function calculateLaptopCarbon(event){
     var numberMonitors = document.getElementById("data-holder-monitor-number").textContent;
     var monitorStats = factors.deviceFactors['monitor'];
     var monitorLifetime = JSON.stringify(monitorStats['lifetimeEmissions']);
-    //var monitorEmbodied = JSON.stringify(monitorStats['embodied']);
-    //var monitorUsage = JSON.stringify(monitorStats['usagePerYear']);
-    //var monitorTotal = ((+monitorEmbodied/5) + +monitorUsage) * +numberMonitors;
     var monitorYearly = (+monitorLifetime / 5) * +numberMonitors;
 
     // Smartphone
@@ -73,9 +96,6 @@ async function calculateLaptopCarbon(event){
     if (smartphoneType == 'iphone' || smartphoneType == 'android'){
         var smartphoneStats = factors.deviceFactors.smartphone[smartphoneType];
         var smartphoneLifetime = JSON.stringify(smartphoneStats['lifetimeEmissions'])
-        //var smartphoneEmbodied = JSON.stringify(smartphoneStats['embodied']);
-        //var smartphoneUsage = JSON.stringify(smartphoneStats['usagePerYear']);
-        //var smartphoneTotal = (+smartphoneEmbodied/5) + +smartphoneUsage;
         var smartphoneYearly = +smartphoneLifetime / 4;
     } else {
         var smartphoneYearly = 0;
@@ -85,7 +105,7 @@ async function calculateLaptopCarbon(event){
     var totalDeviceEmissions = +laptopYearly + +desktopTotal + +monitorYearly + +smartphoneYearly;
     // Replace placeholder in html with newly calculated total emissions
     document.getElementById("total-device-emissions").textContent = totalDeviceEmissions.toFixed(2) + " kg CO2e";
-
+    document.getElementById("total-device-emissions-monthly").textContent = (totalDeviceEmissions/12).toFixed(2) + " kg CO2e";
 
     // MESSAGING
     // Emails
@@ -112,6 +132,7 @@ async function calculateLaptopCarbon(event){
     // Total messaging emissions
     var totalMessagingEmissions = +emailEmissionsYearly + +teamsEmissionsYearly;
     document.getElementById("messaging-emissions").textContent = totalMessagingEmissions.toFixed(2) + " kg CO2e";
+    document.getElementById("messaging-emissions-monthly").textContent = (totalMessagingEmissions/12).toFixed(2) + " kg CO2e";
 
 
     // TRAVEL
@@ -121,7 +142,6 @@ async function calculateLaptopCarbon(event){
     if (businessTravelFrequency > 0){
         var businessTravelMode = document.getElementById("data-holder-b-travel-mode").textContent;
         var businessTravelDistance = document.getElementById("data-holder-b-travel-distance").textContent;
-
         if (businessTravelMode == 'car'){
             var carSize = document.getElementById("data-holder-car-size").textContent;
             var carFuel = document.getElementById("data-holder-car-fuel").textContent;
@@ -130,7 +150,6 @@ async function calculateLaptopCarbon(event){
         } else{
             var transportFactor = JSON.stringify(factors.transportFactors[businessTravelMode]);
         }
-
         var businessTravelEmissionsMonthly = +businessTravelFrequency * +businessTravelDistance * +transportFactor;
         var businessTravelEmissionsYearly = +businessTravelEmissionsMonthly * 12;
     } else {
@@ -160,11 +179,10 @@ async function calculateLaptopCarbon(event){
     }
 
 
-
-
     // Total travel emissions
     var totalTravelEmissions = +businessTravelEmissionsYearly + +commuteYearlyEmissions;
     document.getElementById("travel-emissions").textContent = totalTravelEmissions.toFixed(2) + " kg CO2e";
+    document.getElementById("travel-emissions-monthly").textContent = (totalTravelEmissions/12).toFixed(2) + " kg CO2e";
 
 
     // DATA STORAGE
@@ -185,6 +203,7 @@ async function calculateLaptopCarbon(event){
     // Total data storage
     var totalDataStorageEmissions = +totalPrintingEmissionsYearly + +storageEmissionsYearly;
     document.getElementById("total-data-storage-emissions").textContent = totalDataStorageEmissions.toFixed(2) + " kg CO2e";
+    document.getElementById("total-data-storage-emissions-monthly").textContent = (totalDataStorageEmissions/12).toFixed(2) + " kg CO2e";
 
     
     // RESULTS
@@ -192,13 +211,28 @@ async function calculateLaptopCarbon(event){
     var totalEmissions = +totalDeviceEmissions + +emailEmissionsYearly + +teamsEmissionsYearly +
      +businessTravelEmissionsYearly + +totalPrintingEmissionsYearly + +commuteYearlyEmissions + +storageEmissionsYearly;
     document.getElementById("total-emissions").textContent = totalEmissions.toFixed(2) + " kg CO2e";
+    document.getElementById("total-emissions-monthly").textContent = (totalEmissions/12).toFixed(2) + " kg CO2e";
+
+    // Percentage calculations
+    document.getElementById("device-percentage").textContent = ((+totalDeviceEmissions/+totalEmissions)*100).toFixed(2) + "%";
+    document.getElementById("messaging-percentage").textContent = ((+totalMessagingEmissions/+totalEmissions)*100).toFixed(2) + "%";
+    document.getElementById("travel-percentage").textContent = ((+totalTravelEmissions/+totalEmissions)*100).toFixed(2) + "%";
+    document.getElementById("data-percentage").textContent = ((+totalDataStorageEmissions/+totalEmissions)*100).toFixed(2) + "%";
+
+    document.getElementById("device-percentage-monthly").textContent = ((+totalDeviceEmissions/+totalEmissions)*100).toFixed(2) + "%";
+    document.getElementById("messaging-percentage-monthly").textContent = ((+totalMessagingEmissions/+totalEmissions)*100).toFixed(2) + "%";
+    document.getElementById("travel-percentage-monthly").textContent = ((+totalTravelEmissions/+totalEmissions)*100).toFixed(2) + "%";
+    document.getElementById("data-percentage-monthly").textContent = ((+totalDataStorageEmissions/+totalEmissions)*100).toFixed(2) + "%";
+
 
     // Tea calculation
     var teaCarbon = 0.021;
     var teaTotal = +totalEmissions/+teaCarbon;
-    document.getElementById("tea").textContent = "This is the equivalent of making " + teaTotal.toFixed(0) + " cups of tea."
+    document.getElementById("tea").textContent = teaTotal.toFixed(0) + " cups of tea";
+    document.getElementById("tea-monthly").textContent = (teaTotal/12).toFixed(0) + " cups of tea";
 
 
+    /*
     // Tree calculation
     var treeCarbon = 22;
     var treesPerAcre = 500;
@@ -219,37 +253,30 @@ async function calculateLaptopCarbon(event){
         document.getElementById("driving").textContent = "This is the amount of carbon produced by driving the average petrol car " 
         + drivingEquivalent.toFixed(0) + " miles. Or driving from London to ";
         drivingEquivalent = Math.ceil(drivingEquivalent/100)*100;
-        if (drivingEquivalent < 2200){
-            var country = JSON.stringify(factors.drivingDistances[drivingEquivalent]);
-            var country = country.replace(/"/g, "");
-            document.getElementById("driving").textContent += country + ".";
-        } if (drivingEquivalent > 2100 && drivingEquivalent < 4300){
-            drivingEquivalent = +drivingEquivalent/2;
-            drivingEquivalent = Math.ceil(drivingEquivalent/100)*100;
-            var country = JSON.stringify(factors.drivingDistances[drivingEquivalent]);
-            var country = country.replace(/"/g, "");
-            document.getElementById("driving").textContent += country + " and back again.";
-        } if (drivingEquivalent > 4200 && drivingEquivalent < 8500){
-            drivingEquivalent = +drivingEquivalent/4;
-            drivingEquivalent = Math.ceil(drivingEquivalent/100)*100;
-            var country = JSON.stringify(factors.drivingDistances[drivingEquivalent]);
-            var country = country.replace(/"/g, "");
-            document.getElementById("driving").textContent += country + " and back again twice.";
-        } if (drivingEquivalent > 8400 && drivingEquivalent < 16800){
-            drivingEquivalent = +drivingEquivalent/8;
-            drivingEquivalent = Math.ceil(drivingEquivalent/100)*100;
-            var country = JSON.stringify(factors.drivingDistances[drivingEquivalent]);
-            var country = country.replace(/"/g, "");
-            document.getElementById("driving").textContent += country + " and back again four times.";
-        }
+
+        if (drivingEquivalent < 2200) { var diviser = 1; var repeatText = "." }
+        if (drivingEquivalent > 2100 && drivingEquivalent < 4300) { var diviser = 2; var repeatText = " and back again." }
+        if (drivingEquivalent > 4200 && drivingEquivalent < 8500) { var diviser = 4; var repeatText = " and back again, twice." }
+        if (drivingEquivalent > 8400 && drivingEquivalent < 16900) { var diviser = 8; var repeatText = " and back again, four times." }
+        if (drivingEquivalent > 16800 && drivingEquivalent < 33600) {var diviser = 16; var repeatText = " and back again, eight times." }
+
+        drivingEquivalent = +drivingEquivalent/diviser;
+        drivingEquivalent = Math.ceil(drivingEquivalent/100)*100;
+        var country = JSON.stringify(factors.drivingDistances[drivingEquivalent]);
+        var country = country.replace(/"/g, "");
+        document.getElementById("driving").textContent += country + repeatText;
     }
 
-    // Percentage calculations
-    document.getElementById("device-percentage").textContent = ((+totalDeviceEmissions/+totalEmissions)*100).toFixed(2) + "%";
-    document.getElementById("messaging-percentage").textContent = ((+totalMessagingEmissions/+totalEmissions)*100).toFixed(2) + "%";
-    document.getElementById("travel-percentage").textContent = ((+totalTravelEmissions/+totalEmissions)*100).toFixed(2) + "%";
-    document.getElementById("data-percentage").textContent = ((+totalDataStorageEmissions/+totalEmissions)*100).toFixed(2) + "%";
+    // Ice/water calculation
+    var icePerKilo = 15;
+    var iceAmount = totalEmissions * icePerKilo;
+    var lifeTimeIce = iceAmount * 45;
+    var lifeTimeTons = lifeTimeIce/1000;
+    document.getElementById("ice").textContent = "This amount of CO2 will melt " + iceAmount.toFixed(0) + "KG of glacial ice." +
+    " Extrapolate this over ~45 years of working, and this would be " + lifeTimeTons.toFixed(0) + " tons of glacial ice melted. To put this into perspective, " + 
+    "a double-decker bus weighs about 12 tons, so you would be melting the amount of ice equivalent to " + (lifeTimeTons/12).toFixed(0) + " double-decker buses.";
 
+    
     // Create pie charts
     const ctx = document.getElementById('emissions-chart').getContext('2d');
     new Chart(ctx, {
@@ -346,14 +373,16 @@ async function calculateLaptopCarbon(event){
             }
         }
     });
-    /*
+    
     var averageDevice = 200.00;
     var averageEmail = 80;
     var averageTeams = 100;
     var averagePrinting = 15;
     var averageData = 100;
 
-    new Chart(ctx, {
+    const ctx3 = document.getElementById('emissions-chart-3').getContext('2d');
+
+    new Chart(ctx3, {
         type: 'bar',
         data: {
             labels: [
@@ -414,5 +443,6 @@ async function calculateLaptopCarbon(event){
             }
         }
     });
+
     */
 }

@@ -1,166 +1,251 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block beforeContent %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
+  Confirmation page template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block content %}
 <body onload = "calculateLaptopCarbon(event)">
-
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds-from-desktop">
-
-      <h1 class="govuk-heading-xl">
-        Your yearly emissions
-      </h1>
-      <h2 class="govuk-heading-m">Values given in kilograms of carbon dioxide equivalent</h2>
-
-      <table class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--m"> </caption>
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Source</th>
-            <th scope="col" class="govuk-table__header">Emissions</th>
-            <th scope="col" class="govuk-table__header">Percentage of total</th>
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">
-              <!-- DATA HOLDERS -->
-               <!-- Device data -->
-              <div style="display:none;" id="data-holder-laptop">{{data['has-laptop']}}</div>
-              <div style="display:none;" id="data-holder-laptop-type">{{data['laptop-type']}}</div>
-              <div style="display:none;" id="data-holder-desktop">{{data['has-desktop']}}</div>
-              <div style="display:none;" id="data-holder-monitor">{{data['has-monitor']}}</div>
-              <div style="display:none;" id="data-holder-monitor-number">{{data['number-of-monitors']}}</div>
-              <div style="display:none;" id="data-holder-smartphone">{{data['has-smartphone']}}</div>
-              <div style="display:none;" id="data-holder-smartphone-type">{{data['smartphone-type']}}</div>
-
-              <!-- Messaging data -->
-              <div style="display:none;" id="data-holder-emails">{{data['how-many-emails']}}</div>
-              <div style="display:none;" id="data-holder-emails-attachments">{{data['how-many-emails-attachments']}}</div>
-              <div style="display:none;" id="data-holder-teams-messages">{{data['how-many-teams-messages']}}</div>
-              <div style="display:none;" id="data-holder-teams-hours">{{data['how-many-teams-hours']}}</div>
-              <div style="display:none;" id="data-holder-teams-camera">{{data['teamsCameraOn']}}</div>
-
-
-              <!-- Travel data -->
-              <div style="display:none;" id="data-holder-b-travel-frequency">{{data['businessTravelFrequency']}}</div>
-              <div style="display:none;" id="data-holder-b-travel-mode">{{data['businessTravelMode']}}</div>
-              <div style="display:none;" id="data-holder-b-travel-distance">{{data['businessTravelDistance']}}</div>
-              <div style="display:none;" id="data-holder-office-frequency">{{data['officeFrequency']}}</div>
-              <div style="display:none;" id="data-holder-commute-type">{{data['commuteType']}}</div>
-              <div style="display:none;" id="data-holder-commute-distance">{{data['commuteDistance']}}</div>
-              <div style="display:none;" id="data-holder-car-size">{{data['carSize']}}</div>
-              <div style="display:none;" id="data-holder-car-fuel">{{data['carFuel']}}</div>
-
-              <!-- Data storage data -->
-              <div style="display:none;" id="data-holder-clear-emails">{{data['clearEmailFrequency']}}</div>
-              <div style="display:none;" id="data-holder-clear-onedrive">{{data['clearOneDriveFrequency']}}</div>
-              <div style="display:none;" id="data-holder-printing">{{data['printingFrequency']}}</div>
-              
-
-              <div>Devices:</div>
-            </th>
-            <td class="govuk-table__cell">
-              <div id="total-device-emissions"> </div>
-            </td>
-            <td class="govuk-table__cell">
-              <div id="device-percentage"> </div>
-            </td>
-          </tr>
-
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">
-              <div>Messaging:</div>
-            </th>
-            <td class="govuk-table__cell">
-              <div id="messaging-emissions"> </div>
-            </td>
-            <td class="govuk-table__cell">
-              <div id="messaging-percentage"> </div>
-            </td>
-          </tr>
-
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">
-              <div>Travel:</div>
-            </th>
-            <td class="govuk-table__cell">
-              <div id="travel-emissions"> </div>
-            </td>
-            <td class="govuk-table__cell">
-              <div id="travel-percentage"> </div>
-            </td>
-          </tr>
-
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">
-              <div>Data storage:</div>
-            </th>
-            <td class="govuk-table__cell">
-              <div id="total-data-storage-emissions"> </div>
-            </td>
-            <td class="govuk-table__cell">
-              <div id="data-percentage"> </div>
-            </td>
-          </tr>
-
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">
-              <div>Total emissions:</div>
-            </th>
-            <td class="govuk-table__cell">
-              <div id="total-emissions"> </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div id="tea" class="govuk-body"> </div>
-      <div id="trees" class="govuk-body"> </div>
-      <div id="driving" class="govuk-body"> </div>
-
-
-      <div class="chart-container">
-        <canvas id="emissions-chart" width="0" height="0" ></canvas>
-      </div>
-
-      <div class="chart-container-2">
-        <canvas id="emissions-chart-2" width="0" height="0" ></canvas>
-      </div>
-
-
-      <br>
-
-      <h2 class="govuk-heading-m">
-        Press calculate to calculate emissions
-      </h2>
-
-      <script src="/public/javascripts/calculations.js"></script>
-
-
-      <p class="govuk-body">
-        Check out our <a href="https://dwpgovuk.sharepoint.com/sites/EXT-DWPDigital/SitePages/Digital-Sustainability.aspx" 
-        class="govuk-link" rel="noreferrer noopener" target="_blank">SharePoint site (opens in new tab)</a> for more info on Digital Sustainability
-      </p>
-
-      <p class="govuk-body">
-        See <a href="/how-we-calculate" class="govuk-link">how we calculate these emissions</a>.
-      </p>
-
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-heading-xl">Your estimated emissions for 2024/25</div>
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  {% from "govuk/components/tabs/macro.njk" import govukTabs %}
+
+
+  {% set yearlyEmissionsHtml %}
+  <div class="govuk-panel govuk-panel--confirmation">
+    <h1 class="govuk-panel__title">
+      Yearly Emissions
+    </h1>
+    <div class="govuk-panel__body">
+      Your total yearly emissions
+      <br>
+      <strong> <div id="total-emissions"> </div></strong>
+    </div>
+    <div class="govuk-panel__body">
+      Tea equivalent:
+      <br>
+      <strong> <div id="tea"> </div></strong>
+    </div>
+  </div>
+
+  <table class="govuk-table">
+    <caption class="govuk-table__caption govuk-table__caption--m"> </caption>
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">Source</th>
+        <th scope="col" class="govuk-table__header">Emissions</th>
+        <th scope="col" class="govuk-table__header">Percentage of total</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">
+          <!-- DATA HOLDERS -->
+           <!-- Device data -->
+          <div style="display:none;" id="data-holder-laptop">{{data['has-laptop']}}</div>
+          <div style="display:none;" id="data-holder-laptop-type">{{data['laptop-type']}}</div>
+          <div style="display:none;" id="data-holder-desktop">{{data['has-desktop']}}</div>
+          <div style="display:none;" id="data-holder-monitor">{{data['has-monitor']}}</div>
+          <div style="display:none;" id="data-holder-monitor-number">{{data['number-of-monitors']}}</div>
+          <div style="display:none;" id="data-holder-smartphone">{{data['has-smartphone']}}</div>
+          <div style="display:none;" id="data-holder-smartphone-type">{{data['smartphone-type']}}</div>
+
+          <!-- Messaging data -->
+          <div style="display:none;" id="data-holder-emails">{{data['how-many-emails']}}</div>
+          <div style="display:none;" id="data-holder-emails-attachments">{{data['how-many-emails-attachments']}}</div>
+          <div style="display:none;" id="data-holder-teams-messages">{{data['how-many-teams-messages']}}</div>
+          <div style="display:none;" id="data-holder-teams-hours">{{data['how-many-teams-hours']}}</div>
+          <div style="display:none;" id="data-holder-teams-camera">{{data['teamsCameraOn']}}</div>
+
+          <!-- Travel data -->
+          <div style="display:none;" id="data-holder-b-travel-frequency">{{data['businessTravelFrequency']}}</div>
+          <div style="display:none;" id="data-holder-b-travel-mode">{{data['businessTravelMode']}}</div>
+          <div style="display:none;" id="data-holder-b-travel-distance">{{data['businessTravelDistance']}}</div>
+          <div style="display:none;" id="data-holder-office-frequency">{{data['officeFrequency']}}</div>
+          <div style="display:none;" id="data-holder-commute-type">{{data['commuteType']}}</div>
+          <div style="display:none;" id="data-holder-commute-distance">{{data['commuteDistance']}}</div>
+          <div style="display:none;" id="data-holder-car-size">{{data['carSize']}}</div>
+          <div style="display:none;" id="data-holder-car-fuel">{{data['carFuel']}}</div>
+
+          <!-- Data storage data -->
+          <div style="display:none;" id="data-holder-clear-emails">{{data['clearEmailFrequency']}}</div>
+          <div style="display:none;" id="data-holder-clear-onedrive">{{data['clearOneDriveFrequency']}}</div>
+          <div style="display:none;" id="data-holder-printing">{{data['printingFrequency']}}</div>
+
+          <div>Devices:</div>
+        </th>
+        <td class="govuk-table__cell">
+          <div id="total-device-emissions"> </div>
+        </td>
+        <td class="govuk-table__cell">
+          <div id="device-percentage"> </div>
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">
+          <div>Messaging:</div>
+        </th>
+        <td class="govuk-table__cell">
+          <div id="messaging-emissions"> </div>
+        </td>
+        <td class="govuk-table__cell">
+          <div id="messaging-percentage"> </div>
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">
+          <div>Travel:</div>
+        </th>
+        <td class="govuk-table__cell">
+          <div id="travel-emissions"> </div>
+        </td>
+        <td class="govuk-table__cell">
+          <div id="travel-percentage"> </div>
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">
+          <div>Data storage:</div>
+        </th>
+        <td class="govuk-table__cell">
+          <div id="total-data-storage-emissions"> </div>
+        </td>
+        <td class="govuk-table__cell">
+          <div id="data-percentage"> </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="govuk-heading-m">What next?</div>
+
+  <p class="govuk-body">
+    Check out our <a href="https://dwpgovuk.sharepoint.com/sites/EXT-DWPDigital/SitePages/Digital-Sustainability.aspx" 
+    class="govuk-link" rel="noreferrer noopener" target="_blank">SharePoint site (opens in new tab)</a> for more info on Digital Sustainability
+  </p>
+
+  <p class="govuk-body">
+    See <a href="/how-we-calculate" class="govuk-link">how we calculate these emissions</a>.
+  </p>
+  {% endset -%}
+
+  {% set monthlyEmissionsHtml %}
+  <div class="govuk-panel govuk-panel--confirmation">
+    <h1 class="govuk-panel__title">
+      Monthly Emissions
+    </h1>
+    <div class="govuk-panel__body">
+      Your total monthly emissions
+      <br>
+      <strong> <div id="total-emissions-monthly"> </div></strong>
+    </div>
+    <div class="govuk-panel__body">
+      Tea equivalent:
+      <br>
+      <strong> <div id="tea-monthly"> </div></strong>
+    </div>
+  </div>
+
+  <table class="govuk-table">
+    <caption class="govuk-table__caption govuk-table__caption--m"> </caption>
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">Source</th>
+        <th scope="col" class="govuk-table__header">Emissions</th>
+        <th scope="col" class="govuk-table__header">Percentage of total</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">
+          <div>Devices:</div>
+        </th>
+        <td class="govuk-table__cell">
+          <div id="total-device-emissions-monthly"> </div>
+        </td>
+        <td class="govuk-table__cell">
+          <div id="device-percentage-monthly"> </div>
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">
+          <div>Messaging:</div>
+        </th>
+        <td class="govuk-table__cell">
+          <div id="messaging-emissions-monthly"> </div>
+        </td>
+        <td class="govuk-table__cell">
+          <div id="messaging-percentage-monthly"> </div>
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">
+          <div>Travel:</div>
+        </th>
+        <td class="govuk-table__cell">
+          <div id="travel-emissions-monthly"> </div>
+        </td>
+        <td class="govuk-table__cell">
+          <div id="travel-percentage-monthly"> </div>
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">
+          <div>Data storage:</div>
+        </th>
+        <td class="govuk-table__cell">
+          <div id="total-data-storage-emissions-monthly"> </div>
+        </td>
+        <td class="govuk-table__cell">
+          <div id="data-percentage-monthly"> </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="govuk-heading-m">What next?</div>
+
+  <p class="govuk-body">
+    Check out our <a href="https://dwpgovuk.sharepoint.com/sites/EXT-DWPDigital/SitePages/Digital-Sustainability.aspx" 
+    class="govuk-link" rel="noreferrer noopener" target="_blank">SharePoint site (opens in new tab)</a> for more info on Digital Sustainability
+  </p>
+
+  <p class="govuk-body">
+    See <a href="/how-we-calculate" class="govuk-link">how we calculate these emissions</a>.
+  </p>
+  {% endset -%}
+
+
+  {{ govukTabs({
+    items: [
+      {
+        label: "Yearly",
+        id: "yearly",
+        panel: {
+          html: yearlyEmissionsHtml
+        }
+      },
+      {
+        label: "Monthly",
+        id: "monthly",
+        panel: {
+          html: monthlyEmissionsHtml
+        }
+      }
+    ]
+  }) }}
 
 </body>
+
 {% endblock %}
+
