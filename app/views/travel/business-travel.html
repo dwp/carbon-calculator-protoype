@@ -28,7 +28,7 @@
           value: data['doesBusinessTravel'],
           fieldset: {
             legend: {
-              text: "Do you travel for business?",
+              text: "Do you travel for business more than once a month?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
@@ -144,10 +144,6 @@
             {
               value: "bus",
               text: "Bus"
-            },
-            {
-              value: "walking",
-              text: "Walking"
             }
           ]
         }) }}
@@ -165,23 +161,35 @@
           items: [
             {
               value: "12.5",
-              text: "0-25 miles"
+              text: "0 to 25 miles"
             },
             {
               value: "37.5",
-              text: "25-50 miles (Example: Leeds to Manchester)"
+              text: "25 to 50 miles",
+              hint: {
+                text: "Example: Leeds to Manchester"
+              }
             },
             {
               value: "75",
-              text: "50-100 miles (Example: Leeds to Newcastle)"
+              text: "50 to 100 miles",
+              hint: {
+                text: "Example: Leeds to Newcastle"
+              }
             },
             {
               value: "175",
-              text: "100-250 miles (Example: Leeds to London)"
+              text: "100 to 250 miles",
+              hint: {
+                text: "Example: Leeds to London"
+              }
             },
             {
               value: "300",
-              text: "250+ miles (Example: Leeds to Bournemouth)"
+              text: "more than 250 miles",
+              hint: {
+                text: "Example: Leeds to Bournemouth"
+              }
             }
           ]
         }) }}
