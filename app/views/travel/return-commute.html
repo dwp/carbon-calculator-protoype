@@ -16,42 +16,32 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/travel/commute-mode" method="post">
+      <h1 class="govuk-heading-l">
+        Travel
+      </h1>
+
+      <form class="form" action="/check-return" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
-        <h1 class="govuk-heading-l">Storing data</h1>
-
         {{ govukRadios({
-          name: "printingFrequency",
-          value: data['printingFrequency'],
+          name: "same-return",
+          value: data['same-return'],
           fieldset: {
             legend: {
-              text: "How many pages do you print in a week?",
+              text: "Do you return from work via the same mode of transport?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
-              value: "0",
-              text: "None"
+              value: "yes",
+              text: "Yes"
             },
             {
-              value: "15",
-              text: "1 to 30"
-            },
-            {
-              value: "45",
-              text: "31 to 60"
-            },
-            {
-              value: "80",
-              text: "61 to 100"
-            },
-            {
-              value: "120",
-              text: "More than 100"
+              value: "no",
+              text: "No"
             }
           ]
         }) }}

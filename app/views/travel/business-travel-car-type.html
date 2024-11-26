@@ -16,15 +16,17 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">Travel</h1>
+      <h1 class="govuk-heading-l">
+        Travel
+      </h1>
 
       <form class="form" action="/summary" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
         {{ govukRadios({
-          name: "carSize",
-          value: data['carSize'],
+          name: "businessCarSize",
+          value: data['businessCarSize'],
           fieldset: {
             legend: {
               text: "What size car do you use?",
@@ -49,8 +51,8 @@
         }) }}
 
         {{ govukRadios({
-          name: "carFuel",
-          value: data['carFuel'],
+          name: "businessCarFuel",
+          value: data['businessCarFuel'],
           fieldset: {
             legend: {
               text: "What type of fuel does your car use?",

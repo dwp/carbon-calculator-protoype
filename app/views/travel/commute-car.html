@@ -18,7 +18,7 @@
 
       <h1 class="govuk-heading-l">Travel</h1>
 
-      <form class="form" action="/summary" method="post">
+      <form class="form" action="/travel/commute-distance" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
@@ -85,7 +85,6 @@
         {{ govukButton({
           text: "Continue"
         }) }}
-
       </form>
 
     </div>

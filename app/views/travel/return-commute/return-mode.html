@@ -16,49 +16,54 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/travel/commute-mode" method="post">
+      <h1 class="govuk-heading-l">
+        Travel
+      </h1>
+
+      <form class="form" action="/travel/commute-distance" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
-        <h1 class="govuk-heading-l">Storing data</h1>
 
         {{ govukRadios({
-          name: "printingFrequency",
-          value: data['printingFrequency'],
+          name: "returnCommuteType",
+          value: data['returnCommuteType'],
           fieldset: {
             legend: {
-              text: "How many pages do you print in a week?",
+              text: "How do you return from work?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
-              value: "0",
-              text: "None"
+              value: "bicycle/Foot",
+              text: "Walk"
             },
             {
-              value: "15",
-              text: "1 to 30"
+              value: "bicycle/Foot",
+              text: "Bike"
             },
             {
-              value: "45",
-              text: "31 to 60"
+              value: "bus",
+              text: "Bus"
             },
             {
-              value: "80",
-              text: "61 to 100"
+              value: "train",
+              text: "Train"
             },
             {
-              value: "120",
-              text: "More than 100"
+              value: "tram/Tube",
+              text: "Tram or Tube"
             }
           ]
         }) }}
 
+
         {{ govukButton({
           text: "Continue"
         }) }}
+
 
       </form>
 

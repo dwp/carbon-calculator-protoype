@@ -24,49 +24,13 @@
 
         <h1 class="govuk-heading-l">Travel</h1>
 
-        {{ govukRadios({
-          name: "commuteType",
-          value: data['commuteType'],
-          fieldset: {
-            legend: {
-              text: "How do you get to work?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "bicycle/Foot",
-              text: "Walk/Bike"
-            },
-            {
-              value: "bus",
-              text: "Bus"
-            },
-            {
-              value: "train",
-              text: "Train"
-            },
-            {
-              value: "car",
-              text: "Car"
-            },
-            {
-              value: "tram/Tube",
-              text: "Tram/Tube"
-            }
-          ]
-        }) }}
-
-
-
 
         {{ govukRadios({
           name: "officeFrequency",
           value: data['officeFrequency'],
           fieldset: {
             legend: {
-              text: "How many days do you travel to work?",
+              text: "How many days do you travel to work in a week?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
