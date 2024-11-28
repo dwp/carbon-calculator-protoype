@@ -1,0 +1,96 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Travel
+      </h1>
+
+      <form class="form" action="/summary" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+          name: "businessCarSize",
+          value: data['businessCarSize'],
+          fieldset: {
+            legend: {
+              text: "What size car do you use?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "small",
+              text: "Small (Hatchback, Coupe)"
+            },
+            {
+              value: "medium",
+              text: "Medium (Estate, Saloon)"
+            },
+            {
+              value: "large",
+              text: "Large (SUV, 4x4)"
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          name: "businessCarFuel",
+          value: data['businessCarFuel'],
+          fieldset: {
+            legend: {
+              text: "What type of fuel does your car use?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "petrol",
+              text: "Petrol"
+            },
+            {
+              value: "diesel",
+              text: "Diesel"
+            },
+            {
+              value: "electric",
+              text: "Electricity"
+            },
+            {
+              value: "hybrid",
+              text: "Hybrid"
+            },
+            {
+              value: "plugInHybrid",
+              text: "Plug in Hybrid"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

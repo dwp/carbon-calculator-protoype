@@ -16,111 +16,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <h1 class="govuk-heading-l">Business travel</h1>
+
       <form class="form" action="/check-car-type" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {% from "govuk/components/input/macro.njk" import govukInput %}
-
-        <h1 class="govuk-heading-l">Business travel</h1>
-
-        {{ govukRadios({
-          name: "doesBusinessTravel",
-          value: data['doesBusinessTravel'],
-          fieldset: {
-            legend: {
-              text: "Do you travel for business more than once a month?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          hint: {
-            text: "Business travel is travel further than your regular commute, for events such as larger team meetings and conferences."
-          },
-          items: [
-            {
-              value: "yes",
-              text: "Yes",
-              conditional: {
-                html: cameraHtml
-              }
-            },
-            {
-              value: "no",
-              text: "No",
-              conditional: {
-                html: cameraHtml
-              }
-            }
-          ]
-        }) }}
-
-
-        {% from "govuk/components/select/macro.njk" import govukSelect %}
-
-        {{ govukSelect({
-          id: "business-travel-frequency",
-          name: "businessTravelFrequency",
-          value: data['businessTravelFrequency'],
-          label: {
-            text: "How many times do you travel for business in a month?"
-          },
-          items: [
-            {
-              value: "0",
-              text: "0"
-            },
-            {
-              value: "1",
-              text: "1"
-            },
-            {
-              value: "2",
-              text: "2"
-            },
-            {
-              value: "3",
-              text: "3"
-            },
-            {
-              value: "4",
-              text: "4"
-            },
-            {
-              value: "5",
-              text: "5"
-            },
-            {
-              value: "6",
-              text: "6"
-            },
-            {
-              value: "7",
-              text: "7"
-            },
-            {
-              value: "8",
-              text: "8"
-            },
-            {
-              value: "9",
-              text: "9"
-            },
-            {
-              value: "10",
-              text: "10"
-            },
-            {
-              value: "11",
-              text: "11"
-            },
-            {
-              value: "12",
-              text: "12"
-            }
-          ]
-        }) }}
-
-
 
         {{ govukRadios({
           name: "businessTravelMode",
