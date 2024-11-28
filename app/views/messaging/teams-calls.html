@@ -16,42 +16,10 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <h1 class="govuk-heading-l">Teams</h1>
+
       <form class="form" action="/data-storage/cloud-storage" method="post">
-
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
-
-        <h1 class="govuk-heading-l">Microsoft Teams</h1>
-
-        {{ govukRadios({
-          name: "how-many-teams-messages",
-          value: data['how-many-teams-messages'],
-          fieldset: {
-            legend: {
-              text: "How many Microsoft Teams messages do you send in a week?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "25",
-              text: "0 to 49"
-            },
-            {
-              value: "75",
-              text: "50 to 99"
-            },
-            {
-              value: "125",
-              text: "100 to 149"
-            },
-            {
-              value: "175",
-              text: "More than 150"
-            }
-          ]
-        }) }}
-
 
         {{ govukRadios({
           name: "how-many-teams-hours",
