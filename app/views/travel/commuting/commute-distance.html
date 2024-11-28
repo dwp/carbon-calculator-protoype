@@ -16,15 +16,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      
+      <h1 class="govuk-heading-l">Commuting</h1>
 
-      <form class="form" name="commuteForm" action="/travel/business-travel/business-travel" method="post">
+      <form class="form" name="commuteForm" action="/travel/business-travel/intro" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
-
-        <h1 class="govuk-heading-l">Travel</h1>
-
-
+        
         {{ govukRadios({
           name: "officeFrequency",
           value: data['officeFrequency'],
@@ -72,7 +69,7 @@
           name: "commuteDistance",
           value: data['commuteDistance'],
           label: {
-            text: "How far do you travel? (in miles)"
+            text: "How far do you travel? (in miles, one way)"
           },
           items: [
             {
