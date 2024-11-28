@@ -37,7 +37,7 @@ router.post('/check-car-type', function(req, res){
 
 
 router.post('/check-return', function(req, res){
-    var sameReturn = req.session.data['same-return'];
+    var sameReturn = req.session.data['sameReturn'];
     var commuteMode = req.session.data['commuteType'];
     if (sameReturn == 'no'){
         res.redirect('/travel/commuting/return-mode');
