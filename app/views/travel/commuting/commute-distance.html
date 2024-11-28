@@ -21,7 +21,7 @@
       <form class="form" name="commuteForm" action="/travel/business-travel/intro" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
-        
+
         {{ govukRadios({
           name: "officeFrequency",
           value: data['officeFrequency'],
@@ -60,63 +60,22 @@
           ]
         }) }}
 
+        {% from "govuk/components/input/macro.njk" import govukInput %}
 
-
-        {% from "govuk/components/select/macro.njk" import govukSelect %}
-
-        {{ govukSelect({
+        {{ govukInput({
+          label: {
+            text: "How far do you travel? (in miles, one way)",
+            classes: "govuk-fieldset__legend--m"
+          },
+          hint: {
+            text: "Please input a whole number"
+          },
+          classes: "govuk-input--width-2",
           id: "commute-distance",
           name: "commuteDistance",
           value: data['commuteDistance'],
-          label: {
-            text: "How far do you travel? (in miles, one way)"
-          },
-          items: [
-            {
-              value: "0",
-              text: "0"
-            },
-            {
-              value: "5",
-              text: "5"
-            },
-            {
-              value: "10",
-              text: "10"
-            },
-            {
-              value: "15",
-              text: "15"
-            },
-            {
-              value: "20",
-              text: "20"
-            },
-            {
-              value: "25",
-              text: "25"
-            },
-            {
-              value: "30",
-              text: "30"
-            },
-            {
-              value: "35",
-              text: "35"
-            },
-            {
-              value: "40",
-              text: "40"
-            },
-            {
-              value: "45",
-              text: "45"
-            },
-            {
-              value: "50",
-              text: "50"
-            }
-          ]
+          inputmode: "numeric",
+          spellcheck: false
         }) }}
 
 
