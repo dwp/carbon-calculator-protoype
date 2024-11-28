@@ -20,7 +20,7 @@
         Travel
       </h1>
 
-      <form class="form" action="/travel/commuting/commute-distance" method="post">
+      <form class="form" action="/check-car-share" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
@@ -51,6 +51,10 @@
             {
               value: "train",
               text: "Train"
+            },
+            {
+              value: "carShare",
+              text: "Car Share"
             },
             {
               value: "tram/Tube",

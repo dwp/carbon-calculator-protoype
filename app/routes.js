@@ -16,15 +16,6 @@ const router = govukPrototypeKit.requests.setupRouter()
 //     }
 // })
 
-router.post('/check-car-type', function(req, res){
-    var bTravelTransportType = req.session.data['businessTravelMode'];
-    if (bTravelTransportType == 'car'){
-        res.redirect('/travel/business-travel/business-travel-car-type');
-    } else {
-        res.redirect('/summary');
-    }
-})
-
 router.post('/check-commute-type', function(req, res){
     var commuteMode = req.session.data['commuteType'];
     if (commuteMode == 'car'){
@@ -34,12 +25,39 @@ router.post('/check-commute-type', function(req, res){
     }
 })
 
+router.post('/check-car-type', function(req, res){
+    var bTravelTransportType = req.session.data['businessTravelMode'];
+    if (bTravelTransportType == 'car'){
+        res.redirect('/travel/business-travel/business-travel-car-type');
+    } else {
+        res.redirect('/summary');
+    }
+})
+
+
+
 router.post('/check-return', function(req, res){
-    var sameReturn = req.session.data['same-return']
+    var sameReturn = req.session.data['same-return'];
+    var commuteMode = req.session.data['commuteType'];
     if (sameReturn == 'no'){
         res.redirect('/travel/commuting/return-mode');
     }
     else {
+        if (commuteMode == 'carShare'){
+            res.redirect('/travel/commuting/commute-car');
+        } else {
+        res.redirect('/travel/commuting/commute-distance');
+        }
+    }
+})
+
+
+router.post('/check-car-share', function(req, res){
+    var returnCommuteMode = req.session.data['returnCommuteType'];
+    var commuteMode = req.session.data['commuteType'];
+    if (returnCommuteMode == 'carShare' || commuteMode == 'carShare'){
+        res.redirect('/travel/commuting/commute-car');
+    } else {
         res.redirect('/travel/commuting/commute-distance');
     }
 })

@@ -136,6 +136,61 @@ async function calculateLaptopCarbon(event){
 
 
     // TRAVEL
+       
+    // Commuting
+    var officeFrequency = document.getElementById("data-holder-office-frequency").textContent;
+
+
+    if (officeFrequency > 0){
+        var commuteType = document.getElementById("data-holder-commute-type").textContent;
+        var commuteDistance = document.getElementById("data-holder-commute-distance").textContent;
+
+        var sameReturn = document.getElementById("data-holder-return-commute").textContent;
+        var returnType = document.getElementById("data-holder-return-commute-type").textContent;
+        
+        
+        if (commuteType == 'car'){
+            sameReturn = 'yes';
+            var carSize = document.getElementById("data-holder-car-size").textContent;
+            var carFuel = document.getElementById("data-holder-car-fuel").textContent;
+            var carSizeFactor = factors.transportFactors.car[carSize];
+            var commuteTypeFactor = JSON.stringify(carSizeFactor[carFuel]);
+        } else if (commuteType == 'carShare'){
+            var carSize = document.getElementById("data-holder-car-size").textContent;
+            var carFuel = document.getElementById("data-holder-car-fuel").textContent;
+            var carSizeFactor = factors.transportFactors.car[carSize];
+            var commuteTypeFactor = JSON.stringify(carSizeFactor[carFuel]);
+            var commuteTypeFactor = +commuteTypeFactor / 2;
+        } else{
+            var commuteTypeFactor = JSON.stringify(factors.transportFactors[commuteType]);
+        }
+
+
+        var commuteWeeklyEmissions = +commuteTypeFactor * +commuteDistance * +officeFrequency;
+        var commuteYearlyEmissions = +commuteWeeklyEmissions * 52;
+        
+
+        if (sameReturn == 'yes'){
+            commuteYearlyEmissions = +commuteYearlyEmissions * 2;
+        } else {
+            if (returnType == 'carShare'){
+                var carSize = document.getElementById("data-holder-car-size").textContent;
+                var carFuel = document.getElementById("data-holder-car-fuel").textContent;
+                var carSizeFactor = factors.transportFactors.car[carSize];
+                var returnCommuteTypeFactor = JSON.stringify(carSizeFactor[carFuel]);
+                var returnCommuteTypeFactor = +returnCommuteTypeFactor / 2;
+            } else {
+                var returnCommuteTypeFactor = JSON.stringify(factors.transportFactors[returnType]);
+            }
+            var returnCommuteYearlyEmissions = (+returnCommuteTypeFactor * +commuteDistance * +officeFrequency) * 52;
+            commuteYearlyEmissions = +commuteYearlyEmissions + +returnCommuteYearlyEmissions;
+        }
+    } else {
+        var commuteYearlyEmissions = 0;
+    }
+
+
+
     // Business travel
     var businessTravelFrequency = document.getElementById("data-holder-b-travel-frequency").textContent;
 
@@ -143,8 +198,8 @@ async function calculateLaptopCarbon(event){
         var businessTravelMode = document.getElementById("data-holder-b-travel-mode").textContent;
         var businessTravelDistance = document.getElementById("data-holder-b-travel-distance").textContent;
         if (businessTravelMode == 'car'){
-            var carSize = document.getElementById("data-holder-car-size").textContent;
-            var carFuel = document.getElementById("data-holder-car-fuel").textContent;
+            var carSize = document.getElementById("data-holder-business-car-size").textContent;
+            var carFuel = document.getElementById("data-holder-business-car-fuel").textContent;
             carSizeFactor = factors.transportFactors.car[carSize];
             var transportFactor = JSON.stringify(carSizeFactor[carFuel]);
         } else{
@@ -155,28 +210,9 @@ async function calculateLaptopCarbon(event){
     } else {
         var businessTravelEmissionsYearly = 0;
     }
+ 
+
     
-    // Commuting
-    var officeFrequency = document.getElementById("data-holder-office-frequency").textContent;
-
-    if (officeFrequency > 0){
-        var commuteType = document.getElementById("data-holder-commute-type").textContent;
-        var commuteDistance = document.getElementById("data-holder-commute-distance").textContent;
-        
-        if (commuteType == 'car'){
-            var carSize = document.getElementById("data-holder-car-size").textContent;
-            var carFuel = document.getElementById("data-holder-car-fuel").textContent;
-            carSizeFactor = factors.transportFactors.car[carSize];
-            var commuteTypeFactor = JSON.stringify(carSizeFactor[carFuel]);
-        } else{
-            var commuteTypeFactor = JSON.stringify(factors.transportFactors[commuteType]);
-        }
-
-        var commuteWeeklyEmissions = +commuteTypeFactor * +commuteDistance * +officeFrequency;
-        var commuteYearlyEmissions = +commuteWeeklyEmissions * 52;
-    } else {
-        var commuteYearlyEmissions = 0;
-    }
 
 
     // Total travel emissions
@@ -245,12 +281,13 @@ async function calculateLaptopCarbon(event){
     }
     document.getElementById("trees").textContent = "This is the amount of carbon that " + treeEquivalent.toFixed(0) + 
     " mature trees absorb in a year" + acresText;
+    */
 
     // Driving calculation
     if (totalEmissions > 150){
         var averagePetrolCarbon = 0.26364;
         var drivingEquivalent = totalEmissions/averagePetrolCarbon;
-        document.getElementById("driving").textContent = "This is the amount of carbon produced by driving the average petrol car " 
+        document.getElementById("driving").textContent = "Driving the average petrol car " 
         + drivingEquivalent.toFixed(0) + " miles. Or driving from London to ";
         drivingEquivalent = Math.ceil(drivingEquivalent/100)*100;
 
@@ -265,18 +302,28 @@ async function calculateLaptopCarbon(event){
         var country = JSON.stringify(factors.drivingDistances[drivingEquivalent]);
         var country = country.replace(/"/g, "");
         document.getElementById("driving").textContent += country + repeatText;
+
+        document.getElementById("driving-shortened").textContent = "Driving " + drivingEquivalent.toFixed(0) + " miles in a petrol car";
     }
 
     // Ice/water calculation
     var icePerKilo = 15;
     var iceAmount = totalEmissions * icePerKilo;
-    var lifeTimeIce = iceAmount * 45;
+    var lifeTimeIce = iceAmount * 50;
     var lifeTimeTons = lifeTimeIce/1000;
     document.getElementById("ice").textContent = "This amount of CO2 will melt " + iceAmount.toFixed(0) + "KG of glacial ice." +
-    " Extrapolate this over ~45 years of working, and this would be " + lifeTimeTons.toFixed(0) + " tons of glacial ice melted. To put this into perspective, " + 
-    "a double-decker bus weighs about 12 tons, so you would be melting the amount of ice equivalent to " + (lifeTimeTons/12).toFixed(0) + " double-decker buses.";
+    " Extrapolate this over ~50 years of working, and this would be " + lifeTimeTons.toFixed(0) + " tons of glacial ice melted. To put this into perspective, " + 
+    "a double-decker bus weighs about 12 tons, so you would be melting the same weight in ice as " + (lifeTimeTons/12).toFixed(0) + " double-decker buses.";
 
-    
+    document.getElementById("ice-shortened").textContent = "Melting " + iceAmount.toFixed(0) + "kg of glacial ice"
+
+    // Coal calculation
+    var cO2PerCoal = 3.3;
+    var coalAmount = totalEmissions/cO2PerCoal;
+
+    document.getElementById("coal").textContent = "Burning " + coalAmount.toFixed(0) + "kg of coal"
+
+    /*
     // Create pie charts
     const ctx = document.getElementById('emissions-chart').getContext('2d');
     new Chart(ctx, {
