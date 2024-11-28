@@ -16,11 +16,11 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      
+      <h1 class="govuk-heading-l">Devices</h1>
 
       <form class="form" action="/devices/monitor" method="post">
 
-        <h1 class="govuk-heading-l">Devices</h1>
+        
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
@@ -33,6 +33,9 @@
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
+          },
+          hint: {
+            text: "A desktop is either a tower-style computer or mini-pc, not a laptop with monitor(s)"
           },
           items: [
             {
