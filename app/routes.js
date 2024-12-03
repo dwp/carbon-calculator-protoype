@@ -43,7 +43,7 @@ router.post('/check-return', function(req, res){
         res.redirect('/travel/commuting/return-mode');
     }
     else {
-        if (commuteMode == 'carShare'){
+        if (commuteMode == 'car share'){
             res.redirect('/travel/commuting/commute-car');
         } else {
         res.redirect('/travel/commuting/commute-distance');
@@ -55,7 +55,7 @@ router.post('/check-return', function(req, res){
 router.post('/check-car-share', function(req, res){
     var returnCommuteMode = req.session.data['returnCommuteType'];
     var commuteMode = req.session.data['commuteType'];
-    if (returnCommuteMode == 'carShare' || commuteMode == 'carShare'){
+    if (returnCommuteMode == 'car share' || commuteMode == 'car share'){
         res.redirect('/travel/commuting/commute-car');
     } else {
         res.redirect('/travel/commuting/commute-distance');

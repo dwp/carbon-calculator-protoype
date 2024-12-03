@@ -155,7 +155,7 @@ async function calculateLaptopCarbon(event){
             var carFuel = document.getElementById("data-holder-car-fuel").textContent;
             var carSizeFactor = factors.transportFactors.car[carSize];
             var commuteTypeFactor = JSON.stringify(carSizeFactor[carFuel]);
-        } else if (commuteType == 'carShare'){
+        } else if (commuteType == 'car share'){
             var carSize = document.getElementById("data-holder-car-size").textContent;
             var carFuel = document.getElementById("data-holder-car-fuel").textContent;
             var carSizeFactor = factors.transportFactors.car[carSize];
@@ -173,7 +173,7 @@ async function calculateLaptopCarbon(event){
         if (sameReturn == 'yes'){
             commuteYearlyEmissions = +commuteYearlyEmissions * 2;
         } else {
-            if (returnType == 'carShare'){
+            if (returnType == 'car share'){
                 var carSize = document.getElementById("data-holder-car-size").textContent;
                 var carFuel = document.getElementById("data-holder-car-fuel").textContent;
                 var carSizeFactor = factors.transportFactors.car[carSize];

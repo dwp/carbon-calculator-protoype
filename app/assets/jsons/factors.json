@@ -54,8 +54,9 @@
       },
       "bus": 0.10846,
       "train": 0.03546,
-      "bicycle/Foot": 0.0,
-      "tram/Tube": 0.0273403
+      "walking": 0.0,
+      "bike": 0.0,
+      "tram/tube": 0.0273403
     },
     "teamsFactors": {
       "messages": 0.000056,
