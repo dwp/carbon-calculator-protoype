@@ -18,39 +18,36 @@
 
       <h1 class="govuk-heading-l">Teams</h1>
 
-      <form class="form" action="/messaging/teams-camera" method="post">
+      <form class="form" action="/data-storage/email-storage" method="post">
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
         {{ govukRadios({
-          name: "teamsHours",
-          value: data['teamsHours'],
+          name: "teamsCameraOn",
+          value: data['teamsCameraOn'],
           fieldset: {
             legend: {
-              text: "How many hours do you spend in Teams calls per week?",
+              text: "Do you often have your camera on? (more than 50% of the time)",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
-              value: "2.5",
-              text: "0 to 5"
+              value: "yes",
+              text: "Yes",
+              conditional: {
+                html: cameraHtml
+              }
             },
             {
-              value: "7.5",
-              text: "6 to 10"
-            },
-            {
-              value: "12.5",
-              text: "11 to 15"
-            },
-            {
-              value: "17.5",
-              text: "More than 15"
+              value: "no",
+              text: "No",
+              conditional: {
+                html: cameraHtml
+              }
             }
           ]
         }) }}
-
 
         {{ govukButton({
           text: "Continue"
