@@ -30,7 +30,7 @@ router.post('/check-car-type', function(req, res){
     if (bTravelTransportType == 'car'){
         res.redirect('/travel/business-travel/car-type');
     } else {
-        res.redirect('/summary');
+        res.redirect('/check-answers');
     }
 })
 
@@ -64,11 +64,11 @@ router.post('/check-car-share', function(req, res){
 
 
 router.post('/check-business-travel', function(req, res){
-    var doesBusinessTravel = req.session.data['doesBusinessTravel'];
-    if (doesBusinessTravel == 'yes'){
-        res.redirect('/travel/business-travel/frequency');
+    var businessTravelFrequency = req.session.data['businessTravelFrequency'];
+    if (businessTravelFrequency > 0){
+        res.redirect('/travel/business-travel/mode');
     } else {
-        res.redirect('/summary');
+        res.redirect('/check-answers');
     }
 })
 
