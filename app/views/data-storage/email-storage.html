@@ -15,7 +15,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form class="form" action="/data-storage/printing" method="post">
+      <form class="form" action="/data-storage/onedrive-storage" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
@@ -27,40 +27,6 @@
           fieldset: {
             legend: {
               text: "How often do you delete work emails?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "0.25",
-              text: "Weekly or less"
-            },
-            {
-              value: "1",
-              text: "Monthly"
-            },
-            {
-              value: "3",
-              text: "Quarterly"
-            },
-            {
-              value: "12",
-              text: "Yearly"
-            },
-            {
-              value: "36",
-              text: "Never"
-            }
-          ]
-        }) }}
-
-        {{ govukRadios({
-          name: "clearOneDriveFrequency",
-          value: data['clearOneDriveFrequency'],
-          fieldset: {
-            legend: {
-              text: "How often do you delete OneDrive files?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }

@@ -1,0 +1,68 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="/data-storage/printing" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        <h1 class="govuk-heading-l">Storing data</h1>
+
+        {{ govukRadios({
+          name: "clearOneDriveFrequency",
+          value: data['clearOneDriveFrequency'],
+          fieldset: {
+            legend: {
+              text: "How often do you delete OneDrive files?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "Permanently delete, not archive"
+          },
+          items: [
+            {
+              value: "0.25",
+              text: "Weekly or less"
+            },
+            {
+              value: "1",
+              text: "Monthly"
+            },
+            {
+              value: "3",
+              text: "Quarterly"
+            },
+            {
+              value: "12",
+              text: "Yearly"
+            },
+            {
+              value: "36",
+              text: "Never"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
