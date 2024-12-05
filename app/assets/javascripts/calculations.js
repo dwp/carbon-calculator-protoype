@@ -17,33 +17,91 @@ async function fetchFactors() {
     }
 }
 
-function validateCommuteForm(){
-    let commuteType = document.forms["commuteForm"]["commuteType"].value;
-    if (commuteType == ""){
-        alert("Please choose a mode of transport");
-        const element = document.createElement('div');
-        document.body.appendChild(element);
-        document.getElementById('div').innerHTML = `<div class="govuk-error-summary" data-module="govuk-error-summary">
-        <div role="alert">
-            <h2 class="govuk-error-summary__title">
-            There is a problem
-            </h2>
-            <div class="govuk-error-summary__body">
-            <ul class="govuk-list govuk-error-summary__list">
-                <li>
-                <a href="#">Enter your full name</a>
-                </li>
-                <li>
-                <a href="#">The date your passport was issued must be in the past</a>
-                </li>
-            </ul>
-            </div>
-        </div>
-        </div>`;
-        
-        return false;
+
+
+function checkAnswers(){
+
+    var emailAmount = document.getElementById('data-holder-emails').textContent;
+    if (emailAmount == 10){document.getElementById('emails-placeholder').textContent = "0 to 19 per week";}
+    else if (emailAmount == 35){document.getElementById('emails-placeholder').textContent = "20 to 49 per week";}
+    else if (emailAmount == 75){document.getElementById('emails-placeholder').textContent = "50 to 100 per week";}
+    else if (emailAmount == 125){document.getElementById('emails-placeholder').textContent = "more than 100 per week";}
+    else {document.getElementById('emails-placeholder').textContent = "no answer";}
+
+    var attachmentsAmount = document.getElementById('data-holder-emails-attachments').textContent;
+    if (attachmentsAmount == 10){document.getElementById('email-attachments-placeholder').textContent = "0 to 19 per week";}
+    else if (attachmentsAmount == 35){document.getElementById('email-attachments-placeholder').textContent = "20 to 49 per week";}
+    else if (attachmentsAmount == 75){document.getElementById('email-attachments-placeholder').textContent = "50 to 100 per week";}
+    else if (attachmentsAmount == 125){document.getElementById('email-attachments-placeholder').textContent = "more than 100 per week";}
+    else {document.getElementById('email-attachments-placeholder').textContent = "no answer";}
+
+    var teamsMessages = document.getElementById('data-holder-teams-messages').textContent;
+    if (teamsMessages == 25){document.getElementById('teams-messages-placeholder').textContent = "0 to 49 per week";}
+    else if (teamsMessages == 75){document.getElementById('teams-messages-placeholder').textContent = "50 to 99 per week";}
+    else if (teamsMessages == 125){document.getElementById('teams-messages-placeholder').textContent = "100 to 149 per week";}
+    else if (teamsMessages == 175){document.getElementById('teams-messages-placeholder').textContent = "more than 150 per week";}
+    else {document.getElementById('teams-messages-placeholder').textContent = "no answer";}
+
+    var teamsHours = document.getElementById('data-holder-teams-hours').textContent;
+    if (teamsHours == 2.5){document.getElementById('teams-calls-placeholder').textContent = "0 to 5 hours per week";}
+    else if (teamsHours == 7.5){document.getElementById('teams-calls-placeholder').textContent = "6 to 10 hours per week";}
+    else if (teamsHours == 12.5){document.getElementById('teams-calls-placeholder').textContent = "11 to 15 hours per week";}
+    else if (teamsHours == 17.5){document.getElementById('teams-calls-placeholder').textContent = "more than 15 hours per week";}
+    else {document.getElementById('teams-calls-placeholder').textContent = "no answer";}
+
+    document.getElementById('camera-on-placeholder').textContent = document.getElementById('data-holder-teams-camera').textContent;
+
+    var clearEmailFrequency = document.getElementById('data-holder-clear-emails').textContent;
+    if (clearEmailFrequency == 0.25){document.getElementById('email-clear-placeholder').textContent = "weekly or less";}
+    if (clearEmailFrequency == 1){document.getElementById('email-clear-placeholder').textContent = "monthly";}
+    if (clearEmailFrequency == 3){document.getElementById('email-clear-placeholder').textContent = "quarterly";}
+    if (clearEmailFrequency == 12){document.getElementById('email-clear-placeholder').textContent = "yearly";}
+    if (clearEmailFrequency == 36){document.getElementById('email-clear-placeholder').textContent = "never";}
+    else {document.getElementById('email-clear-placeholder').textContent = "no answer";}
+
+    var clearOneDriveFrequency = document.getElementById('data-holder-clear-onedrive').textContent;
+    if (clearOneDriveFrequency == 0.25){document.getElementById('onedrive-clear-placeholder').textContent = "weekly or less";}
+    else if (clearOneDriveFrequency == 1){document.getElementById('onedrive-clear-placeholder').textContent = "monthly";}
+    else if (clearOneDriveFrequency == 3){document.getElementById('onedrive-clear-placeholder').textContent = "quarterly";}
+    else if (clearOneDriveFrequency == 12){document.getElementById('onedrive-clear-placeholder').textContent = "yearly";}
+    else if (clearOneDriveFrequency == 36){document.getElementById('onedrive-clear-placeholder').textContent = "never";}
+    else {document.getElementById('onedrive-clear-placeholder').textContent = "no answer";}
+
+    var printingPerWeek = document.getElementById('data-holder-printing').textContent;
+    if (printingPerWeek == 0){document.getElementById('printing-placeholder').textContent = "none";}
+    else if (printingPerWeek == 15){document.getElementById('printing-placeholder').textContent = "1 to 30 pages per week";}
+    else if (printingPerWeek == 45){document.getElementById('printing-placeholder').textContent = "31 to 60 pages per week";}
+    else if (printingPerWeek == 80){document.getElementById('printing-placeholder').textContent = "61 to 100 pages per week";}
+    else if (printingPerWeek == 120){document.getElementById('printing-placeholder').textContent = "more than 100 pages per week";}
+    else {document.getElementById('printing-placeholder').textContent = "no answer";}
+
+    document.getElementById('commute-mode-placeholder').textContent = document.getElementById('data-holder-commute-type').textContent;
+    document.getElementById('same-return-placeholder').textContent = document.getElementById('data-holder-return-commute').textContent;
+    
+    if (document.getElementById('data-holder-return-commute').textContent == 'yes'){
+        document.getElementById('return').style.display="none";
+    }
+    else{
+        document.getElementById('return-mode-placeholder').textContent = document.getElementById('data-holder-return-commute-type').textContent;
+    }
+
+    document.getElementById('commute-frequency-placeholder').textContent = document.getElementById('data-holder-office-frequency').textContent + " days per week";
+    document.getElementById('commute-distance-placeholder').textContent = document.getElementById('data-holder-commute-distance').textContent + " miles";
+    document.getElementById('business-travel-frequency-placeholder').textContent = document.getElementById('data-holder-b-travel-frequency').textContent + " time(s) per month";
+    if (document.getElementById('data-holder-b-travel-frequency').textContent == 0){
+        document.getElementById('business-mode').style.display="none";
+        document.getElementById('business-distance').style.display="none";
+    } else {
+        document.getElementById('business-travel-mode-placeholder').textContent = document.getElementById('data-holder-b-travel-mode').textContent;
+        var btDistance = document.getElementById('data-holder-b-travel-distance').textContent;
+        if (btDistance == 12.5){document.getElementById('business-travel-distance-placeholder').textContent = "0 to 25 miles";}
+        else if (btDistance == 37.5){document.getElementById('business-travel-distance-placeholder').textContent = "25 to 50 miles";}
+        else if (btDistance == 75){document.getElementById('business-travel-distance-placeholder').textContent = "50 to 100 miles";}
+        else if (btDistance == 175){document.getElementById('business-travel-distance-placeholder').textContent = "100 to 250 miles";}
+        else if (btDistance == 300){document.getElementById('business-travel-distance-placeholder').textContent = "more than 250 miles";}
     }
 }
+
 
 async function calculateLaptopCarbon(event){
     event.preventDefault();
@@ -190,7 +248,6 @@ async function calculateLaptopCarbon(event){
     }
 
 
-
     // Business travel
     var businessTravelFrequency = document.getElementById("data-holder-b-travel-frequency").textContent;
 
@@ -211,10 +268,6 @@ async function calculateLaptopCarbon(event){
         var businessTravelEmissionsYearly = 0;
     }
  
-
-    
-
-
     // Total travel emissions
     var totalTravelEmissions = +businessTravelEmissionsYearly + +commuteYearlyEmissions;
     document.getElementById("travel-emissions").textContent = totalTravelEmissions.toFixed(2) + " kg CO2e";
@@ -260,28 +313,11 @@ async function calculateLaptopCarbon(event){
     document.getElementById("travel-percentage-monthly").textContent = ((+totalTravelEmissions/+totalEmissions)*100).toFixed(2) + "%";
     document.getElementById("data-percentage-monthly").textContent = ((+totalDataStorageEmissions/+totalEmissions)*100).toFixed(2) + "%";
 
-
     // Tea calculation
     var teaCarbon = 0.021;
     var teaTotal = +totalEmissions/+teaCarbon;
     document.getElementById("tea").textContent = teaTotal.toFixed(0) + " cups of tea";
     document.getElementById("tea-monthly").textContent = (teaTotal/12).toFixed(0) + " cups of tea";
-
-
-    /*
-    // Tree calculation
-    var treeCarbon = 22;
-    var treesPerAcre = 500;
-    var treeEquivalent = totalEmissions/treeCarbon;
-    var acresEquivalent = treeEquivalent/treesPerAcre;
-    if (acresEquivalent > 0.1){
-        var acresText = ", or " + acresEquivalent.toFixed(2) + " acres of forest";
-    } else {
-        var acresText = "";
-    }
-    document.getElementById("trees").textContent = "This is the amount of carbon that " + treeEquivalent.toFixed(0) + 
-    " mature trees absorb in a year" + acresText;
-    */
 
     // Driving calculation
     if (totalEmissions > 150){
@@ -322,174 +358,6 @@ async function calculateLaptopCarbon(event){
     var coalAmount = totalEmissions/cO2PerCoal;
 
     document.getElementById("coal").textContent = "Burning " + coalAmount.toFixed(0) + "kg of coal"
-
-    /*
-    // Create pie charts
-    const ctx = document.getElementById('emissions-chart').getContext('2d');
-    new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: [
-                'Device Emissions',
-                'Email Usage',
-                'Teams Usage',
-                'Printing',
-                'Data Storage'
-            ],
-            datasets: [{
-                data: [
-                    totalDeviceEmissions,
-                    emailEmissionsYearly,
-                    teamsEmissionsYearly,
-                    totalPrintingEmissionsYearly,
-                    storageEmissionsYearly
-                ],
-                backgroundColor: [
-                    'rgba(140, 198, 63, 0.2)',
-                    'rgba(81, 49, 132, 0.2)',
-                    'rgba(193, 38, 55, 0.2)',
-                    'rgba(0, 99, 1, 0.2)',
-                    'rgba(224, 82, 6, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(140, 198, 63, 0.6)',
-                    'rgba(81, 49, 132, 0.6)',
-                    'rgba(193, 38, 55, 0.6)',
-                    'rgba(0, 99, 1, 0.6)',
-                    'rgba(224, 82, 6, 0.6)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'top'
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            return tooltipItem.label + ': ' + tooltipItem.raw.toFixed(2) + ' kg CO2e';
-                        }
-                    }
-                }
-            }
-        }
-    });
-
-    const ctx2 = document.getElementById('emissions-chart-2').getContext('2d');
-    new Chart(ctx2, {
-        type: 'pie',
-        data: {
-            labels: [
-                'Business Travel',
-                'Commuting'
-            ],
-            datasets: [{
-                data: [
-                    businessTravelEmissionsYearly,
-                    commuteYearlyEmissions
-                ],
-                backgroundColor: [
-                    'rgba(0, 192, 181, 0.2)',
-                    'rgba(169, 0, 97, 0.2)',
-                ],
-                borderColor: [
-                    'rgba(0, 192, 181, 0.6)',
-                    'rgba(169, 0, 97, 0.6)',
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'top'
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            return tooltipItem.label + ': ' + tooltipItem.raw.toFixed(2) + ' kg CO2e';
-                        }
-                    }
-                }
-            }
-        }
-    });
-    
-    var averageDevice = 200.00;
-    var averageEmail = 80;
-    var averageTeams = 100;
-    var averagePrinting = 15;
-    var averageData = 100;
-
-    const ctx3 = document.getElementById('emissions-chart-3').getContext('2d');
-
-    new Chart(ctx3, {
-        type: 'bar',
-        data: {
-            labels: [
-                'Device Emissions',
-                'Email Usage',
-                'Teams Usage',
-                'Printing',
-                'Data Storage'
-            ],
-            datasets: [{
-                label: "Your emissions",
-                data: [
-                    totalDeviceEmissions,
-                    emailEmissionsYearly,
-                    teamsEmissionsYearly,
-                    totalPrintingEmissionsYearly,
-                    storageEmissionsYearly
-                ],
-                backgroundColor: [
-                    'rgba(0, 114, 143, 0.6)'
-                ],
-                borderColor: [
-                    'rgba(0, 114, 143, 1)'
-                ],
-                borderWidth: 1
-            },
-            {
-                label: "Average emissions",
-                data: [
-                    averageDevice,
-                    averageEmail,
-                    averageTeams,
-                    averagePrinting,
-                    averageData
-                ],
-                backgroundColor: [
-                    'rgba(173, 173, 173, 0.5)'
-                ],
-                borderColor: [
-                    'rgba(173, 173, 173, 1)',
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top'
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            return tooltipItem.label + ': ' + tooltipItem.raw.toFixed(2) + ' kg CO2e';
-                        }
-                    }
-                }
-            }
-        }
-    });
-
-    */
 }
+
+
