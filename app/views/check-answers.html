@@ -12,13 +12,55 @@
 {% endblock %}
 
 {% block content %}
+<body onload = "checkAnswers()">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
+      <!-- DATA HOLDERS -->
+      <!-- Device data -->
+      <div style="display:none;" id="data-holder-laptop-type">{{data['laptopType']}}</div>
+      <div style="display:none;" id="data-holder-desktop">{{data['hasDesktop']}}</div>
+      <div style="display:none;" id="data-holder-monitor-number">{{data['numberOfMonitors']}}</div>
+      <div style="display:none;" id="data-holder-smartphone-type">{{data['smartphoneType']}}</div>
+
+      <!-- Messaging data -->
+      <div style="display:none;" id="data-holder-emails">{{data['howManyEmails']}}</div>
+      <div style="display:none;" id="data-holder-emails-attachments">{{data['howManyEmailsAttachments']}}</div>
+      <div style="display:none;" id="data-holder-teams-messages">{{data['teamsMessageAmount']}}</div>
+      <div style="display:none;" id="data-holder-teams-hours">{{data['teamsHours']}}</div>
+      <div style="display:none;" id="data-holder-teams-camera">{{data['teamsCameraOn']}}</div>
+
+      <!-- Travel data -->
+      <div style="display:none;" id="data-holder-b-travel-frequency">{{data['businessTravelFrequency']}}</div>
+      <div style="display:none;" id="data-holder-b-travel-mode">{{data['businessTravelMode']}}</div>
+      <div style="display:none;" id="data-holder-b-travel-distance">{{data['businessTravelDistance']}}</div>
+      <div style="display:none;" id="data-holder-office-frequency">{{data['officeFrequency']}}</div>
+
+      <div style="display:none;" id="data-holder-commute-type">{{data['commuteType']}}</div>
+      <div style="display:none;" id="data-holder-return-commute">{{data['sameReturn']}}</div>
+      <div style="display:none;" id="data-holder-return-commute-type">{{data['returnCommuteType']}}</div>
+      <div style="display:none;" id="data-holder-commute-distance">{{data['commuteDistance']}}</div>
+      <div style="display:none;" id="data-holder-car-size">{{data['carSize']}}</div>
+      <div style="display:none;" id="data-holder-car-fuel">{{data['carFuel']}}</div>
+
+      <div style="display:none;" id="data-holder-business-car-size">{{data['businessCarSize']}}</div>
+      <div style="display:none;" id="data-holder-business-car-fuel">{{data['businessCarFuel']}}</div>
+
+      <!-- Data storage data -->
+      <div style="display:none;" id="data-holder-clear-emails">{{data['clearEmailFrequency']}}</div>
+      <div style="display:none;" id="data-holder-clear-onedrive">{{data['clearOneDriveFrequency']}}</div>
+      <div style="display:none;" id="data-holder-printing">{{data['printingFrequency']}}</div>
+
+
       <h1 class="govuk-heading-xl">
-        Check your answers before sending your application
+        Check your answers before viewing your results
       </h1>
 
+      <h2 class="govuk-heading-m">
+        Devices
+      </h2>
+
+      
       {{ govukSummaryList({
         rows: [
           {
@@ -31,7 +73,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "/devices/laptop",
                   text: "Change",
                   visuallyHiddenText: "Question 1"
                 }
@@ -49,7 +91,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "/devices/desktop",
                   text: "Change",
                   visuallyHiddenText: "Question 2"
                 }
@@ -67,7 +109,24 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "/devices/monitors",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Work Phone"
+            },
+            value: {
+              text: data['smartphoneType']
+            },
+            actions: {
+              items: [
+                {
+                  href: "/devices/smartphone",
                   text: "Change",
                   visuallyHiddenText: "Question 3"
                 }
@@ -78,21 +137,229 @@
       }) }}
 
       <h2 class="govuk-heading-m">
-        Now send your application
+        Messaging
+      </h2>
+
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Emails
+          </dt>
+          <dd class="govuk-summary-list__value" id="emails-placeholder">
+             
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/messaging/emails">Change<span class="govuk-visually-hidden"> emails</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Emails with attachments
+          </dt>
+          <dd class="govuk-summary-list__value" id="email-attachments-placeholder">
+             
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/messaging/email-attachments">Change<span class="govuk-visually-hidden"> emails with attachments</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Teams messages
+          </dt>
+          <dd class="govuk-summary-list__value" id="teams-messages-placeholder">
+             
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/messaging/teams-messages">Change<span class="govuk-visually-hidden"> teams messages</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Teams calls
+          </dt>
+          <dd class="govuk-summary-list__value" id="teams-calls-placeholder">
+              
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/messaging/teams-calls">Change<span class="govuk-visually-hidden"> teams messages</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Camera on?
+          </dt>
+          <dd class="govuk-summary-list__value" id="camera-on-placeholder">
+             
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/messaging/teams-camera">Change<span class="govuk-visually-hidden"> teams messages</span></a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">
+        Data storage
+      </h2>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email clear frequency
+          </dt>
+          <dd class="govuk-summary-list__value" id="email-clear-placeholder">
+             
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="data-storage/email-storage">Change<span class="govuk-visually-hidden"> emails</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            OneDrive clear frequency
+          </dt>
+          <dd class="govuk-summary-list__value" id="onedrive-clear-placeholder">
+             
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/data-storage/onedrive-storage">Change<span class="govuk-visually-hidden"> emails with attachments</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Printing
+          </dt>
+          <dd class="govuk-summary-list__value" id="printing-placeholder">
+             
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/data-storage/printing">Change<span class="govuk-visually-hidden"> teams messages</span></a>
+          </dd>
+        </div>
+      </dl>
+
+
+      <h2 class="govuk-heading-m">
+        Travel
+      </h2>
+
+      
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Commute mode of transport
+          </dt>
+          <dd class="govuk-summary-list__value" id="commute-mode-placeholder">
+             
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="travel/commuting/commute-mode">Change<span class="govuk-visually-hidden"> emails</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Same return?
+          </dt>
+          <dd class="govuk-summary-list__value" id="same-return-placeholder">
+             
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/travel/commuting/return-commute">Change<span class="govuk-visually-hidden"> emails with attachments</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row" id="return">
+          <dt class="govuk-summary-list__key">
+            Return mode of transport
+          </dt>
+          <dd class="govuk-summary-list__value" id="return-mode-placeholder">
+             
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/travel/commuting/return-mode">Change<span class="govuk-visually-hidden"> teams messages</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Travel frequency
+          </dt>
+          <dd class="govuk-summary-list__value" id="commute-frequency-placeholder">
+             
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/travel/commuting/commute-frequency">Change<span class="govuk-visually-hidden"> teams messages</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Commute distance
+          </dt>
+          <dd class="govuk-summary-list__value" id="commute-distance-placeholder">
+             
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/travel/commuting/commute-distance">Change<span class="govuk-visually-hidden"> teams messages</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Business travel frequency
+          </dt>
+          <dd class="govuk-summary-list__value" id="business-travel-frequency-placeholder">
+             
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/travel/business-travel/frequency">Change<span class="govuk-visually-hidden"> teams messages</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row" id="business-mode">
+          <dt class="govuk-summary-list__key">
+            Business travel transport
+          </dt>
+          <dd class="govuk-summary-list__value" id="business-travel-mode-placeholder">
+             
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/travel/business-travel/mode">Change<span class="govuk-visually-hidden"> teams messages</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row" id="business-distance">
+          <dt class="govuk-summary-list__key">
+            Business travel distance
+          </dt>
+          <dd class="govuk-summary-list__value" id="business-travel-distance-placeholder">
+             
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/travel/business-travel/distance">Change<span class="govuk-visually-hidden"> teams messages</span></a>
+          </dd>
+        </div>
+        
+      </dl>
+
+
+
+
+
+
+      <h2 class="govuk-heading-m">
+        Now view your results
       </h2>
 
       <p>
         By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.
       </p>
 
-      <form action="/confirmation" method="post" novalidate>
+      <form action="/summary" method="post" novalidate>
 
         {{ govukButton({
-          text: "Accept and send"
+          text: "View results"
         }) }}
 
       </form>
 
     </div>
   </div>
+
+</body>
 {% endblock %}
