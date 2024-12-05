@@ -18,47 +18,8 @@
 
       <h1 class="govuk-heading-l">Commuting</h1>
 
-      <form class="form" name="commuteForm" action="/travel/business-travel/intro" method="post">
+      <form class="form" name="commuteForm" action="/travel/commuting/commute-frequency" method="post">
 
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
-
-        {{ govukRadios({
-          name: "officeFrequency",
-          value: data['officeFrequency'],
-          fieldset: {
-            legend: {
-              text: "How many days do you travel to work in a week?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "0",
-              text: "0"
-            },
-            {
-              value: "1",
-              text: "1"
-            },
-            {
-              value: "2",
-              text: "2"
-            },
-            {
-              value: "3",
-              text: "3"
-            },
-            {
-              value: "4",
-              text: "4"
-            },
-            {
-              value: "5",
-              text: "5"
-            }
-          ]
-        }) }}
 
         {% from "govuk/components/input/macro.njk" import govukInput %}
 
@@ -70,7 +31,7 @@
           hint: {
             text: "Please input a whole number"
           },
-          classes: "govuk-input--width-2",
+          classes: "govuk-input--width-10",
           id: "commute-distance",
           name: "commuteDistance",
           value: data['commuteDistance'],
