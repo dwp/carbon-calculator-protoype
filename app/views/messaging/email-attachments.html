@@ -16,18 +16,18 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/messaging/email-attachments" method="post">
+      <form class="form" action="/messaging/teams-messages" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
         <h1 class="govuk-heading-l">Emails</h1>
 
         {{ govukRadios({
-          name: "howManyEmails",
-          value: data['howManyEmails'],
+          name: "howManyEmailsAttachments",
+          value: data['howManyEmailsAttachments'],
           fieldset: {
             legend: {
-              text: "How many work emails do you send per week?",
+              text: "How many emails have an attachment?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
@@ -51,7 +51,6 @@
             }
           ]
         }) }}
-
 
         {{ govukButton({
           text: "Continue"
