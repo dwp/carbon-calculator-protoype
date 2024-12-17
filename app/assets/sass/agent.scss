@@ -1,0 +1,10 @@
+
+
+
+$govuk-font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+$govuk-canvas-background-colour: #000000;
+
+@use "node_modules/govuk-prototype-kit/lib/assets/sass/prototype" with (
+    $govuk-font-family: $govuk-font-family,
+    $govuk-canvas-background-colour: $govuk-canvas-background-colour,
+  );
