@@ -112,6 +112,8 @@ async function calculateLaptopCarbon(event){
         return;
     }
 
+
+
     // DEVICES
     // Laptop
     // Get laptop type from current HTML page
@@ -318,6 +320,39 @@ async function calculateLaptopCarbon(event){
     var teaTotal = +totalEmissions/+teaCarbon;
     document.getElementById("tea").textContent = teaTotal.toFixed(0) + " cups of tea";
     document.getElementById("tea-monthly").textContent = (teaTotal/12).toFixed(0) + " cups of tea";
+
+
+    if (totalEmissions < 500){
+        var persona = "eco-champion-img";  
+        var personaTitle = "Eco Champion";
+        var personaDescription = "You’re the best of the best! The crème de la crème! The eco champion! You do so much for the earth, you’re deeply committed to the environment and the preservation of our planet. You make conscious decisions at every turn to reduce your carbon footprint, and we can’t thank you enough for that!";
+        var personaImprovements = "Spread your positive habits by taking part in workplace sustainability initiatives. Encourage teammates and colleagues to reduce their carbon footprint by taking public transport to work or switching off any unneeded equipment such as extra monitors.";
+    }
+    if (totalEmissions >= 500 && totalEmissions < 1200){
+        var persona = "green-advocate-img";
+        var personaTitle = "Green Advocate";
+        var personaDescription = "Good job! You’ve made some great strides towards reducing your carbon footprint. If everyone could be more like you, then we’d be well on our way to resolving this climate emergency!";
+        var personaImprovements = "Try challenging yourself to attempting 1 new sustainable habit every month, such as cycling to work instead of getting the bus for a week, or bringing your own lunch to work instead of buying it from the canteen.";
+    }
+    if (totalEmissions >= 1200 && totalEmissions < 2000){
+        var persona = "environmentally-curious-img";
+        var personaTitle = "Environmentally curious";
+        var personaDescription = "We’re glad you’re interested! Making sustainable changes to your lifestyle can seem overwhelming, but it’s much easier than it seems! All you have to do to start is make 1 small change, and then when you’re comfortable with that make another small change, and so on and so on.";
+        var personaImprovements = "Try taking public transport to work instead of driving. Try turning off devices such as monitors when you’re not using them. Try saving documents digitally instead of printing off.";
+    }
+    if (totalEmissions >= 2000){
+        var persona = "carbon-heavyweight-img";
+        var personaTitle = "Carbon Heavyweight";
+        var personaDescription = "Wow! Your carbon footprint is hefty! While we understand that not everyone can control all aspects of their carbon footprint, it would be great if you could try to make some small changes for the planet.";
+        var personaImprovements = "Turn off devices such as laptop and monitors at the end of the work day. Take public transport to work instead of driving. Next time you’re buying a new car, consider going for an electric vehicle. Use a reuseable water bottle instead of buying disposable.";
+    }
+
+    document.getElementById(persona).style.display = '';
+    document.getElementById("persona-title").textContent = personaTitle;
+    document.getElementById("persona-description").textContent = personaDescription;
+    document.getElementById("persona-improvements").textContent = personaImprovements;
+
+
 
     // Driving calculation
     if (totalEmissions > 150){
