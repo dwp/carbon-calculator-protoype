@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block content %}
-<body onload = "checkAnswers()">
+<body onload = "checkAnswers(event)">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
@@ -53,7 +53,7 @@
 
 
       <h1 class="govuk-heading-xl">
-        Check your answers before viewing your results
+        Check your answers
       </h1>
 
       <h2 class="govuk-heading-m">
@@ -136,6 +136,10 @@
         ]
       }) }}
 
+      <br>
+      <br>
+      <br>
+
       <h2 class="govuk-heading-m">
         Messaging
       </h2>
@@ -199,6 +203,10 @@
         </div>
       </dl>
 
+      <br>
+      <br>
+      <br>
+
       <h2 class="govuk-heading-m">
         Data storage
       </h2>
@@ -239,6 +247,9 @@
         </div>
       </dl>
 
+      <br>
+      <br>
+      <br>
 
       <h2 class="govuk-heading-m">
         Travel
@@ -337,23 +348,16 @@
         
       </dl>
 
+      <br>
+      <br>
 
 
 
-
-
-      <h2 class="govuk-heading-m">
-        Now view your results
-      </h2>
-
-      <p>
-        By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.
-      </p>
 
       <form action="/summary" method="post" novalidate>
 
         {{ govukButton({
-          text: "View results"
+          text: "Calculate work carbon emissions"
         }) }}
 
       </form>

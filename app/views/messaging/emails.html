@@ -27,15 +27,19 @@
           value: data['howManyEmails'],
           fieldset: {
             legend: {
-              text: "How many work emails do you send per week?",
+              text: "How many work emails do you send a week?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
+              value: "0",
+              text: "None"
+            },
+            {
               value: "10",
-              text: "0 to 19"
+              text: "1 to 19"
             },
             {
               value: "35",

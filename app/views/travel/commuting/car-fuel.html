@@ -16,42 +16,42 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/messaging/teams-messages" method="post">
+      <h1 class="govuk-heading-l">
+        Commuting
+      </h1>
 
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
-
-        <h1 class="govuk-heading-l">Emails</h1>
+      <form class="form" action="/travel/commuting/commute-distance" method="post">
 
         {{ govukRadios({
-          name: "howManyEmailsAttachments",
-          value: data['howManyEmailsAttachments'],
+          name: "carFuel",
+          value: data['carFuel'],
           fieldset: {
             legend: {
-              text: "How many emails have an attachment?",
+              text: "What type of fuel does your car use?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
-              value: "0",
-              text: "None"
+              value: "petrol",
+              text: "Petrol"
             },
             {
-              value: "10",
-              text: "1 to 19"
+              value: "diesel",
+              text: "Diesel"
             },
             {
-              value: "35",
-              text: "20 to 49"
+              value: "electric",
+              text: "Electricity"
             },
             {
-              value: "75",
-              text: "50 to 100"
+              value: "hybrid",
+              text: "Hybrid"
             },
             {
-              value: "125",
-              text: "More than 100"
+              value: "plugInHybrid",
+              text: "Plug in Hybrid"
             }
           ]
         }) }}

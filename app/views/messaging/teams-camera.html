@@ -16,7 +16,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">Teams</h1>
+      <h1 class="govuk-heading-l">Calls and messaging</h1>
 
       <form class="form" action="/data-storage/email-storage" method="post">
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
@@ -26,7 +26,7 @@
           value: data['teamsCameraOn'],
           fieldset: {
             legend: {
-              text: "Do you often have your camera on? (more than 50% of the time)",
+              text: "How often do you turn your camera on in calls",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
@@ -34,17 +34,15 @@
           items: [
             {
               value: "yes",
-              text: "Yes",
-              conditional: {
-                html: cameraHtml
-              }
+              text: "All of the time"
+            },
+            {
+              value: "sometimes",
+              text: "Some of the time"
             },
             {
               value: "no",
-              text: "No",
-              conditional: {
-                html: cameraHtml
-              }
+              text: "Not at all"
             }
           ]
         }) }}

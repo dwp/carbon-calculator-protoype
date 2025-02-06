@@ -20,7 +20,6 @@
 
       <form class="form" action="/devices/monitor" method="post">
 
-        
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
@@ -29,13 +28,13 @@
           value: data['hasDesktop'],
           fieldset: {
             legend: {
-              text: "Do you regularly use a desktop for work?",
+              text: "Do you use a desktop computer for work?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
           },
           hint: {
-            text: "A desktop is either a tower-style computer or mini-pc, not a laptop with monitor(s)"
+            text: "A desktop is a computer in a fixed place, not a laptop connected to a monitor"
           },
           items: [
             {

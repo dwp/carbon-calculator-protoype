@@ -17,7 +17,6 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      
 
       <form class="form" action="/devices/desktop" method="post">
 
@@ -48,7 +47,7 @@
           value: data['laptopType'],
           fieldset: {
             legend: {
-              text: "What type of laptop do you use for work?",
+              text: "What laptop do you use for work?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
@@ -61,6 +60,9 @@
             {
               value: "macbook",
               text: "Macbook"
+            },
+            {
+              divider: "or"
             },
             {
               text: "I don't use a laptop"

@@ -16,7 +16,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">Teams</h1>
+      <h1 class="govuk-heading-l">Calls and messaging</h1>
 
       <form class="form" action="/messaging/teams-camera" method="post">
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
@@ -26,12 +26,16 @@
           value: data['teamsHours'],
           fieldset: {
             legend: {
-              text: "How many hours do you spend in Teams calls per week?",
+              text: "How many hours do you spend in calls a week?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
+            {
+              value: "0",
+              text: "None"
+            },
             {
               value: "2.5",
               text: "0 to 5"

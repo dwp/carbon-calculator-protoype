@@ -34,6 +34,15 @@ router.post('/check-car-type', function(req, res){
     }
 })
 
+router.post('/does-commute', function(req, res){
+    var commuteFrequency = req.session.data['officeFrequency'];
+    if (commuteFrequency == 0){
+        res.redirect('/travel/business-travel/frequency');
+    } else {
+        res.redirect('/travel/commuting/commute-mode');
+    }
+})
+
 
 
 router.post('/check-return', function(req, res){

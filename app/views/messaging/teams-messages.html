@@ -20,22 +20,29 @@
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
-        <h1 class="govuk-heading-l">Microsoft Teams</h1>
+        <h1 class="govuk-heading-l">Calls and messaging</h1>
 
         {{ govukRadios({
           name: "teamsMessageAmount",
           value: data['teamsMessageAmount'],
           fieldset: {
             legend: {
-              text: "How many Microsoft Teams messages do you send in a week?",
+              text: "How many work messages do you send a week?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
           },
+          hint: {
+            text: "For example, on Microsoft Teams"
+          },
           items: [
             {
+              value: "0",
+              text: "None"
+            },
+            {
               value: "25",
-              text: "0 to 49"
+              text: "1 to 49"
             },
             {
               value: "75",

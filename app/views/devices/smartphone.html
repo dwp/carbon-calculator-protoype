@@ -16,8 +16,6 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      
-
       <form class="form" action="/messaging/emails" method="post">
 
         <h1 class="govuk-heading-l">Devices</h1>
@@ -29,7 +27,7 @@
           value: data['smartphoneType'],
           fieldset: {
             legend: {
-              text: "What type of work phone do you use?",
+              text: "What work phone do you use?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
@@ -37,11 +35,14 @@
           items: [
             {
               value: "android",
-              text: "Android Device"
+              text: "Android"
             },
             {
               value: "iphone",
               text: "iPhone"
+            },
+            {
+              divider: "or"
             },
             {
               value: "no",

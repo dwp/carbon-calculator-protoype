@@ -24,51 +24,22 @@
         {% from "govuk/components/input/macro.njk" import govukInput %}
 
 
-        {{ govukRadios({
-          name: "businessTravelDistance",
-          value: data['businessTravelDistance'],
-          fieldset: {
-            legend: {
-              text: "How far do you usually travel?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
+        {{ govukInput({
+          label: {
+            text: "How far do you travel in miles?",
+            classes: "govuk-fieldset__legend--m"
           },
-          items: [
-            {
-              value: "12.5",
-              text: "0 to 25 miles"
-            },
-            {
-              value: "37.5",
-              text: "25 to 50 miles",
-              hint: {
-                text: "Example: Leeds to Manchester"
-              }
-            },
-            {
-              value: "75",
-              text: "50 to 100 miles",
-              hint: {
-                text: "Example: Leeds to Newcastle"
-              }
-            },
-            {
-              value: "175",
-              text: "100 to 250 miles",
-              hint: {
-                text: "Example: Leeds to London"
-              }
-            },
-            {
-              value: "300",
-              text: "more than 250 miles",
-              hint: {
-                text: "Example: Leeds to Bournemouth"
-              }
-            }
-          ]
+          hint: {
+            text: "One way, on an average journey. Must be a whole number"
+          },
+          classes: "govuk-input--width-10",
+          name: "businessTravelDistance",
+          id: "businessTravelDistance",
+          value: data['businessTravelDistance'],
+          inputmode: "numeric",
+          spellcheck: false
         }) }}
+
 
         {{ govukButton({
           text: "Continue"

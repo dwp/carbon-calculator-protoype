@@ -18,7 +18,7 @@
 
       <h1 class="govuk-heading-l">Commuting</h1>
 
-      <form class="form" name="commuteForm" action="/travel/business-travel/frequency" method="post">
+      <form class="form" name="commuteForm" action="/does-commute" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
@@ -56,6 +56,14 @@
             {
               value: "5",
               text: "5"
+            },
+            {
+              value: "6",
+              text: "6"
+            },
+            {
+              value: "7",
+              text: "7"
             }
           ]
         }) }}

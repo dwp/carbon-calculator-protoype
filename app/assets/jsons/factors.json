@@ -91,5 +91,42 @@
       "1900": "Marrakesh, Morrocco",
       "2000": "Athens, Greece",
       "2100": "Ankara, Türkiye"
+    },
+    "emailCheckAnswers": {
+      "10": "0 to 19 per week",
+      "35": "20 to 49 per week",
+      "75": "50 to 100 per week",
+      "125": "more than 100 per week"
+    },
+    "teamsCheckAnswers": {
+      "25": "0 to 49 per week",
+      "75": "50 to 99 per week",
+      "125": "100 to 149 per week",
+      "175": "more than 150 per week",
+      "2.5": "0 to 5 hours per week",
+      "7.5": "6 to 10 hours per week",
+      "12.5": "11 to 15 hours per week",
+      "17.5": "more than 15 hours per week"
+    },
+    "clearCheckAnswers": {
+      "0.25": "weekly or less",
+      "1": "monthly",
+      "3": "quarterly",
+      "12": "yearly",
+      "36": "never"
+    },
+    "printingCheckAnswers": {
+      "0": "none",
+      "15": "1 to 30 pages per week",
+      "45": "31 to 60 pages per week",
+      "80": "61 to 100 pages per week",
+      "120": "more than 100 pages per week"
+    },
+    "businessTravelCheckAnswers": {
+      "12.5": "0 to 25 miles",
+      "37.5": "25 to 50 miles",
+      "75": "50 to 100 miles",
+      "175": "100 to 250 miles",
+      "300": "more than 250 miles"
     }
 }

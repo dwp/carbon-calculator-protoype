@@ -18,7 +18,7 @@
 
       <h1 class="govuk-heading-l">Commuting</h1>
 
-      <form class="form" action="/travel/commuting/commute-distance" method="post">
+      <form class="form" action="/travel/commuting/car-fuel" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
@@ -44,40 +44,6 @@
             {
               value: "large",
               text: "Large (SUV, 4x4)"
-            }
-          ]
-        }) }}
-
-        {{ govukRadios({
-          name: "carFuel",
-          value: data['carFuel'],
-          fieldset: {
-            legend: {
-              text: "What type of fuel does your car use?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "petrol",
-              text: "Petrol"
-            },
-            {
-              value: "diesel",
-              text: "Diesel"
-            },
-            {
-              value: "electric",
-              text: "Electricity"
-            },
-            {
-              value: "hybrid",
-              text: "Hybrid"
-            },
-            {
-              value: "plugInHybrid",
-              text: "Plug in Hybrid"
             }
           ]
         }) }}

@@ -1,7 +1,4 @@
-
 let factors;
-
-
 async function fetchFactors() {
     try {
         // Wait for factors.json file to be fetched
@@ -17,67 +14,74 @@ async function fetchFactors() {
     }
 }
 
+async function checkAnswers(event){
+    event.preventDefault();
+    // Try to fetch factors.json file by calling to fetchFactors function
+    try {
+        factors = await fetchFactors();
+    } catch {
+        return;
+    }
 
-
-function checkAnswers(){
-
+    // Get user-inputted data, remove quotation marks, and display 'no answer' if user didn't answer the question
     var emailAmount = document.getElementById('data-holder-emails').textContent;
-    if (emailAmount == 10){document.getElementById('emails-placeholder').textContent = "0 to 19 per week";}
-    else if (emailAmount == 35){document.getElementById('emails-placeholder').textContent = "20 to 49 per week";}
-    else if (emailAmount == 75){document.getElementById('emails-placeholder').textContent = "50 to 100 per week";}
-    else if (emailAmount == 125){document.getElementById('emails-placeholder').textContent = "more than 100 per week";}
-    else {document.getElementById('emails-placeholder').textContent = "no answer";}
+    try{
+        document.getElementById('emails-placeholder').textContent = (JSON.stringify(factors.emailCheckAnswers[emailAmount])).replace(/"/g, "");
+    } catch {
+        document.getElementById('emails-placeholder').textContent = "no answer";
+    }
 
     var attachmentsAmount = document.getElementById('data-holder-emails-attachments').textContent;
-    if (attachmentsAmount == 10){document.getElementById('email-attachments-placeholder').textContent = "0 to 19 per week";}
-    else if (attachmentsAmount == 35){document.getElementById('email-attachments-placeholder').textContent = "20 to 49 per week";}
-    else if (attachmentsAmount == 75){document.getElementById('email-attachments-placeholder').textContent = "50 to 100 per week";}
-    else if (attachmentsAmount == 125){document.getElementById('email-attachments-placeholder').textContent = "more than 100 per week";}
-    else {document.getElementById('email-attachments-placeholder').textContent = "no answer";}
+    try{
+        document.getElementById('email-attachments-placeholder').textContent = (JSON.stringify(factors.emailCheckAnswers[attachmentsAmount])).replace(/"/g, "");
+    } catch {
+        document.getElementById('email-attachments-placeholder').textContent = "no answer";
+    }
 
     var teamsMessages = document.getElementById('data-holder-teams-messages').textContent;
-    if (teamsMessages == 25){document.getElementById('teams-messages-placeholder').textContent = "0 to 49 per week";}
-    else if (teamsMessages == 75){document.getElementById('teams-messages-placeholder').textContent = "50 to 99 per week";}
-    else if (teamsMessages == 125){document.getElementById('teams-messages-placeholder').textContent = "100 to 149 per week";}
-    else if (teamsMessages == 175){document.getElementById('teams-messages-placeholder').textContent = "more than 150 per week";}
-    else {document.getElementById('teams-messages-placeholder').textContent = "no answer";}
+    try {
+        document.getElementById('teams-messages-placeholder').textContent = (JSON.stringify(factors.teamsCheckAnswers[teamsMessages])).replace(/"/g, "");
+    } catch {
+        document.getElementById('teams-messages-placeholder').textContent = "no answer";
+    }
 
     var teamsHours = document.getElementById('data-holder-teams-hours').textContent;
-    if (teamsHours == 2.5){document.getElementById('teams-calls-placeholder').textContent = "0 to 5 hours per week";}
-    else if (teamsHours == 7.5){document.getElementById('teams-calls-placeholder').textContent = "6 to 10 hours per week";}
-    else if (teamsHours == 12.5){document.getElementById('teams-calls-placeholder').textContent = "11 to 15 hours per week";}
-    else if (teamsHours == 17.5){document.getElementById('teams-calls-placeholder').textContent = "more than 15 hours per week";}
-    else {document.getElementById('teams-calls-placeholder').textContent = "no answer";}
+    try {
+        document.getElementById('teams-calls-placeholder').textContent = (JSON.stringify(factors.teamsCheckAnswers[teamsHours])).replace(/"/g, "");
+    } catch {
+        document.getElementById('teams-calls-placeholder').textContent = "no answer";
+    }
 
-    document.getElementById('camera-on-placeholder').textContent = document.getElementById('data-holder-teams-camera').textContent;
+    if (document.getElementById('data-holder-teams-camera').textContent == 'yes' || document.getElementById('data-holder-teams-camera').textContent == 'no' || document.getElementById('data-holder-teams-camera').textContent == 'sometimes'){
+        document.getElementById('camera-on-placeholder').textContent = document.getElementById('data-holder-teams-camera').textContent;
+    } else {
+        document.getElementById('camera-on-placeholder').textContent = "no answer";
+    }
 
     var clearEmailFrequency = document.getElementById('data-holder-clear-emails').textContent;
-    if (clearEmailFrequency == 0.25){document.getElementById('email-clear-placeholder').textContent = "weekly or less";}
-    if (clearEmailFrequency == 1){document.getElementById('email-clear-placeholder').textContent = "monthly";}
-    if (clearEmailFrequency == 3){document.getElementById('email-clear-placeholder').textContent = "quarterly";}
-    if (clearEmailFrequency == 12){document.getElementById('email-clear-placeholder').textContent = "yearly";}
-    if (clearEmailFrequency == 36){document.getElementById('email-clear-placeholder').textContent = "never";}
-    else {document.getElementById('email-clear-placeholder').textContent = "no answer";}
+    try {
+        document.getElementById('email-clear-placeholder').textContent = (JSON.stringify(factors.clearCheckAnswers[clearEmailFrequency])).replace(/"/g, "");
+    } catch {
+        document.getElementById('email-clear-placeholder').textContent = "no answer";
+    }
 
     var clearOneDriveFrequency = document.getElementById('data-holder-clear-onedrive').textContent;
-    if (clearOneDriveFrequency == 0.25){document.getElementById('onedrive-clear-placeholder').textContent = "weekly or less";}
-    else if (clearOneDriveFrequency == 1){document.getElementById('onedrive-clear-placeholder').textContent = "monthly";}
-    else if (clearOneDriveFrequency == 3){document.getElementById('onedrive-clear-placeholder').textContent = "quarterly";}
-    else if (clearOneDriveFrequency == 12){document.getElementById('onedrive-clear-placeholder').textContent = "yearly";}
-    else if (clearOneDriveFrequency == 36){document.getElementById('onedrive-clear-placeholder').textContent = "never";}
-    else {document.getElementById('onedrive-clear-placeholder').textContent = "no answer";}
+    try {
+        document.getElementById('onedrive-clear-placeholder').textContent = (JSON.stringify(factors.clearCheckAnswers[clearOneDriveFrequency])).replace(/"/g, "");
+    } catch {
+        document.getElementById('onedrive-clear-placeholder').textContent = "no answer";
+    }
 
     var printingPerWeek = document.getElementById('data-holder-printing').textContent;
-    if (printingPerWeek == 0){document.getElementById('printing-placeholder').textContent = "none";}
-    else if (printingPerWeek == 15){document.getElementById('printing-placeholder').textContent = "1 to 30 pages per week";}
-    else if (printingPerWeek == 45){document.getElementById('printing-placeholder').textContent = "31 to 60 pages per week";}
-    else if (printingPerWeek == 80){document.getElementById('printing-placeholder').textContent = "61 to 100 pages per week";}
-    else if (printingPerWeek == 120){document.getElementById('printing-placeholder').textContent = "more than 100 pages per week";}
-    else {document.getElementById('printing-placeholder').textContent = "no answer";}
+    try {
+        document.getElementById('printing-placeholder').textContent = (JSON.stringify(factors.printingCheckAnswers[printingPerWeek])).replace(/"/g, "");
+    } catch {
+        document.getElementById('printing-placeholder').textContent = "no answer";
+    }
 
     document.getElementById('commute-mode-placeholder').textContent = document.getElementById('data-holder-commute-type').textContent;
     document.getElementById('same-return-placeholder').textContent = document.getElementById('data-holder-return-commute').textContent;
-    
+
     if (document.getElementById('data-holder-return-commute').textContent == 'yes'){
         document.getElementById('return').style.display="none";
     }
@@ -94,11 +98,11 @@ function checkAnswers(){
     } else {
         document.getElementById('business-travel-mode-placeholder').textContent = document.getElementById('data-holder-b-travel-mode').textContent;
         var btDistance = document.getElementById('data-holder-b-travel-distance').textContent;
-        if (btDistance == 12.5){document.getElementById('business-travel-distance-placeholder').textContent = "0 to 25 miles";}
-        else if (btDistance == 37.5){document.getElementById('business-travel-distance-placeholder').textContent = "25 to 50 miles";}
-        else if (btDistance == 75){document.getElementById('business-travel-distance-placeholder').textContent = "50 to 100 miles";}
-        else if (btDistance == 175){document.getElementById('business-travel-distance-placeholder').textContent = "100 to 250 miles";}
-        else if (btDistance == 300){document.getElementById('business-travel-distance-placeholder').textContent = "more than 250 miles";}
+        try {
+            document.getElementById('business-travel-distance-placeholder').textContent = btDistance + " mile(s)";
+        } catch {
+            document.getElementById('business-travel-distance-placeholder').textContent = "no answer"
+        }
     }
 }
 
@@ -113,7 +117,6 @@ async function calculateLaptopCarbon(event){
     }
 
 
-
     // DEVICES
     // Laptop
     // Get laptop type from current HTML page
@@ -123,12 +126,12 @@ async function calculateLaptopCarbon(event){
         // Find the laptop emissions based on laptop type
         var laptopStats = factors.deviceFactors.laptop[laptopType];
         // Get laptop embodied and usage emissions and convert to strings
-        var laptopLifetime = JSON.stringify(laptopStats['lifetimeEmissions']);
+        var laptopLifetimeEmissions = JSON.stringify(laptopStats['lifetimeEmissions']);
         //var laptopUsage = JSON.stringify(laptopStats['usagePerYear']);
         // Calculate total laptop emissions
-        var laptopYearly = (+laptopLifetime/5);
+        var laptopYearlyEmissions = (+laptopLifetimeEmissions/5);
     } else {
-        var laptopYearly = 0;
+        var laptopYearlyEmissions = 0;
     }
 
     // Desktop
@@ -138,31 +141,31 @@ async function calculateLaptopCarbon(event){
         var desktopStats = factors.deviceFactors['desktop'];
         var desktopEmbodied = JSON.stringify(desktopStats['embodied']);
         var desktopUsage = JSON.stringify(desktopStats['usagePerYear']);
-        var desktopTotal = (+desktopEmbodied/5) + +desktopUsage;
+        var desktopYearlyEmissions = (+desktopEmbodied/5) + +desktopUsage;
     } else{
-        var desktopTotal = 0;
+        var desktopYearlyEmissions = 0;
     }
 
     // Monitors
     // For more detailed breakdown, see comments for laptop above
     var numberMonitors = document.getElementById("data-holder-monitor-number").textContent;
     var monitorStats = factors.deviceFactors['monitor'];
-    var monitorLifetime = JSON.stringify(monitorStats['lifetimeEmissions']);
-    var monitorYearly = (+monitorLifetime / 5) * +numberMonitors;
+    var monitorLifetimeEmissions = JSON.stringify(monitorStats['lifetimeEmissions']);
+    var monitorYearlyEmissions = (+monitorLifetimeEmissions / 5) * +numberMonitors;
 
     // Smartphone
     // For more detailed breakdown, see comments for Laptop above
     var smartphoneType = document.getElementById("data-holder-smartphone-type").textContent;
     if (smartphoneType == 'iphone' || smartphoneType == 'android'){
         var smartphoneStats = factors.deviceFactors.smartphone[smartphoneType];
-        var smartphoneLifetime = JSON.stringify(smartphoneStats['lifetimeEmissions'])
-        var smartphoneYearly = +smartphoneLifetime / 4;
+        var smartphoneLifetimeEmissions = JSON.stringify(smartphoneStats['lifetimeEmissions'])
+        var smartphoneYearlyEmissions = +smartphoneLifetimeEmissions / 4;
     } else {
-        var smartphoneYearly = 0;
+        var smartphoneYearlyEmissions = 0;
     }
 
     // Total device emissions
-    var totalDeviceEmissions = +laptopYearly + +desktopTotal + +monitorYearly + +smartphoneYearly;
+    var totalDeviceEmissions = +laptopYearlyEmissions + +desktopYearlyEmissions + +monitorYearlyEmissions + +smartphoneYearlyEmissions;
     // Replace placeholder in html with newly calculated total emissions
     document.getElementById("total-device-emissions").textContent = totalDeviceEmissions.toFixed(2) + " kg CO2e";
     document.getElementById("total-device-emissions-monthly").textContent = (totalDeviceEmissions/12).toFixed(2) + " kg CO2e";
@@ -173,33 +176,32 @@ async function calculateLaptopCarbon(event){
     var numAttachments = document.getElementById("data-holder-emails-attachments").textContent;
     var emailEmission = JSON.stringify(factors.emailFactors['email']);
     var attachmentEmission = JSON.stringify(factors.emailFactors['attachmentEmail']);
-    var emailEmissionsWeekly = (+numEmails * +emailEmission) + (+numAttachments * +attachmentEmission);
-    var emailEmissionsYearly = +emailEmissionsWeekly * 52;
-    
+    var emailYearlyEmissions = (((+numEmails * +emailEmission) + (+numAttachments * +attachmentEmission))) * 52;
+
     // Teams
     var teamsMessages = document.getElementById("data-holder-teams-messages").textContent;
     var teamsHours = document.getElementById("data-holder-teams-hours").textContent;
     var teamsMessageEmission = JSON.stringify(factors.teamsFactors['messages']);
     // Check whether user has camera on/off for calls and get relevant emission factor
-    if (document.getElementById("data-holder-teams-camera").textContent == 'yes'){
+    if (document.getElementById("data-holder-teams-camera").textContent == 'yes' || document.getElementById("data-holder-teams-camera").textContent == 'sometimes'){
         var teamsEmissionsHourly = JSON.stringify(factors.teamsFactors['videoCalls']);
+        if (document.getElementById("data-holder-teams-camera").textContent == 'sometimes'){
+            var teamsEmissionsHourly = 0.081315;
+        }
     } else {
         var teamsEmissionsHourly = JSON.stringify(factors.teamsFactors['audioCalls']);
     }
-    var teamsEmissionsWeekly = (+teamsMessages * +teamsMessageEmission) + (+teamsHours * +teamsEmissionsHourly);
-    var teamsEmissionsYearly = +teamsEmissionsWeekly * 52;
-    
+    var teamsYearlyEmissions = (((+teamsMessages * +teamsMessageEmission) + (+teamsHours * +teamsEmissionsHourly))) * 52;
+
     // Total messaging emissions
-    var totalMessagingEmissions = +emailEmissionsYearly + +teamsEmissionsYearly;
+    var totalMessagingEmissions = +emailYearlyEmissions + +teamsYearlyEmissions;
     document.getElementById("messaging-emissions").textContent = totalMessagingEmissions.toFixed(2) + " kg CO2e";
     document.getElementById("messaging-emissions-monthly").textContent = (totalMessagingEmissions/12).toFixed(2) + " kg CO2e";
 
 
     // TRAVEL
-       
     // Commuting
     var officeFrequency = document.getElementById("data-holder-office-frequency").textContent;
-
 
     if (officeFrequency > 0){
         var commuteType = document.getElementById("data-holder-commute-type").textContent;
@@ -207,9 +209,9 @@ async function calculateLaptopCarbon(event){
 
         var sameReturn = document.getElementById("data-holder-return-commute").textContent;
         var returnType = document.getElementById("data-holder-return-commute-type").textContent;
-        
-        
+
         if (commuteType == 'car'){
+            // Assumption that if user commutes to work in a car, they also return in a car
             sameReturn = 'yes';
             var carSize = document.getElementById("data-holder-car-size").textContent;
             var carFuel = document.getElementById("data-holder-car-fuel").textContent;
@@ -222,17 +224,18 @@ async function calculateLaptopCarbon(event){
             var commuteTypeFactor = JSON.stringify(carSizeFactor[carFuel]);
             var commuteTypeFactor = +commuteTypeFactor / 2;
         } else{
+            // If no car is used, get transport emission factors as usual
             var commuteTypeFactor = JSON.stringify(factors.transportFactors[commuteType]);
         }
 
-
         var commuteWeeklyEmissions = +commuteTypeFactor * +commuteDistance * +officeFrequency;
         var commuteYearlyEmissions = +commuteWeeklyEmissions * 52;
-        
 
         if (sameReturn == 'yes'){
+            // If return commute is the same, yearly emission is doubled
             commuteYearlyEmissions = +commuteYearlyEmissions * 2;
         } else {
+            // If return commute is different, check if it is a car share (same as before) and calculate as usual.
             if (returnType == 'car share'){
                 var carSize = document.getElementById("data-holder-car-size").textContent;
                 var carFuel = document.getElementById("data-holder-car-fuel").textContent;
@@ -242,6 +245,7 @@ async function calculateLaptopCarbon(event){
             } else {
                 var returnCommuteTypeFactor = JSON.stringify(factors.transportFactors[returnType]);
             }
+            // Add together emissions for commute to and from work
             var returnCommuteYearlyEmissions = (+returnCommuteTypeFactor * +commuteDistance * +officeFrequency) * 52;
             commuteYearlyEmissions = +commuteYearlyEmissions + +returnCommuteYearlyEmissions;
         }
@@ -251,6 +255,7 @@ async function calculateLaptopCarbon(event){
 
 
     // Business travel
+    // Business travel calculation is largely the same as commuting calculation, as seen above
     var businessTravelFrequency = document.getElementById("data-holder-b-travel-frequency").textContent;
 
     if (businessTravelFrequency > 0){
@@ -269,12 +274,11 @@ async function calculateLaptopCarbon(event){
     } else {
         var businessTravelEmissionsYearly = 0;
     }
- 
+
     // Total travel emissions
     var totalTravelEmissions = +businessTravelEmissionsYearly + +commuteYearlyEmissions;
     document.getElementById("travel-emissions").textContent = totalTravelEmissions.toFixed(2) + " kg CO2e";
     document.getElementById("travel-emissions-monthly").textContent = (totalTravelEmissions/12).toFixed(2) + " kg CO2e";
-
 
     // DATA STORAGE
     // Printing
@@ -282,24 +286,24 @@ async function calculateLaptopCarbon(event){
     var printingEmissions = JSON.stringify(factors.printingFactors['perPage']);
     var totalPrintingEmissionsWeekly = +printingFrequency * +printingEmissions;
     var totalPrintingEmissionsYearly = +totalPrintingEmissionsWeekly * 52;
-    
+
     // Cloud storage
     var clearEmailFrequency = document.getElementById("data-holder-clear-emails").textContent;
     var clearOneDriveFrequency = document.getElementById("data-holder-clear-onedrive").textContent;
     var emailStorageEmission = JSON.stringify(factors.cloudStorageFactors['emailClearedMonthly']);
     var oneDriveStorageEmission = JSON.stringify(factors.cloudStorageFactors['oneDriveClearedMonthly']);
-    var storageEmissionsYearly = (+clearEmailFrequency * +emailStorageEmission) + 
+    var storageEmissionsYearly = (+clearEmailFrequency * +emailStorageEmission) +
     (+clearOneDriveFrequency * +oneDriveStorageEmission);
-    
+
     // Total data storage
     var totalDataStorageEmissions = +totalPrintingEmissionsYearly + +storageEmissionsYearly;
     document.getElementById("total-data-storage-emissions").textContent = totalDataStorageEmissions.toFixed(2) + " kg CO2e";
     document.getElementById("total-data-storage-emissions-monthly").textContent = (totalDataStorageEmissions/12).toFixed(2) + " kg CO2e";
 
-    
+
     // RESULTS
     // Total emissions
-    var totalEmissions = +totalDeviceEmissions + +emailEmissionsYearly + +teamsEmissionsYearly +
+    var totalEmissions = +totalDeviceEmissions + +emailYearlyEmissions + +teamsYearlyEmissions +
      +businessTravelEmissionsYearly + +totalPrintingEmissionsYearly + +commuteYearlyEmissions + +storageEmissionsYearly;
     document.getElementById("total-emissions").textContent = totalEmissions.toFixed(2) + " kg CO2e";
     document.getElementById("total-emissions-monthly").textContent = (totalEmissions/12).toFixed(2) + " kg CO2e";
@@ -321,26 +325,86 @@ async function calculateLaptopCarbon(event){
     document.getElementById("tea").textContent = teaTotal.toFixed(0) + " cups of tea";
     document.getElementById("tea-monthly").textContent = (teaTotal/12).toFixed(0) + " cups of tea";
 
+    // RATING SYSTEM
+    // Devices rating
+    if (totalDeviceEmissions <= 150){
+        var deviceRating = 1;
+    }
+    if (totalDeviceEmissions > 150 && totalDeviceEmissions <= 250){
+        var deviceRating = 2;
+    }
+    if (totalDeviceEmissions > 250 && totalDeviceEmissions <= 350){
+        var deviceRating = 3;
+    }
+    if (totalDeviceEmissions > 350){
+        var deviceRating = 4;
+    }
 
-    if (totalEmissions < 500){
-        var persona = "eco-champion-img";  
+    // Messaging rating
+    if (totalMessagingEmissions <= 70){
+        var messagingRating = 1;
+    }
+    if (totalMessagingEmissions > 70 && totalMessagingEmissions <= 100){
+        var messagingRating = 2;
+    }
+    if (totalMessagingEmissions > 100 && totalMessagingEmissions <= 140){
+        var messagingRating = 3;
+    }
+    if (totalMessagingEmissions > 140){
+        var messagingRating = 4;
+    }
+
+    // Data storage rating
+    if (totalDataStorageEmissions <= 15){
+        var storageRating = 1;
+    }
+    if (totalDataStorageEmissions > 15 && totalDataStorageEmissions <= 30){
+        var storageRating = 2;
+    }
+    if (totalDataStorageEmissions > 30 && totalDataStorageEmissions <= 50){
+        var storageRating = 3;
+    }
+    if (totalDataStorageEmissions > 50){
+        var storageRating = 4;
+    }
+
+    // Travel rating
+    if (totalTravelEmissions <= 50){
+        var travelRating = 1;
+    }
+    if (totalTravelEmissions > 50 && totalTravelEmissions <= 100){
+        var travelRating = 2;
+    }
+    if (totalTravelEmissions > 100 && totalTravelEmissions <= 200){
+        var travelRating = 3;
+    }
+    if (totalTravelEmissions > 200){
+        var travelRating = 4;
+    }
+
+    // Overall rating
+    var overallRating = (+deviceRating + +messagingRating + +storageRating + +travelRating)/4;
+    document.getElementById('user-score').textContent = "Your eco-rating: " + overallRating;
+
+    if (overallRating <= 1.75){
+        var persona = "eco-champion-img";
         var personaTitle = "Eco Champion";
         var personaDescription = "You’re the best of the best! The crème de la crème! The eco champion! You do so much for the earth, you’re deeply committed to the environment and the preservation of our planet. You make conscious decisions at every turn to reduce your carbon footprint, and we can’t thank you enough for that!";
         var personaImprovements = "Spread your positive habits by taking part in workplace sustainability initiatives. Encourage teammates and colleagues to reduce their carbon footprint by taking public transport to work or switching off any unneeded equipment such as extra monitors.";
     }
-    if (totalEmissions >= 500 && totalEmissions < 1200){
+    if (overallRating > 1.75 && overallRating <= 2.5){
         var persona = "green-advocate-img";
         var personaTitle = "Green Advocate";
         var personaDescription = "Good job! You’ve made some great strides towards reducing your carbon footprint. If everyone could be more like you, then we’d be well on our way to resolving this climate emergency!";
         var personaImprovements = "Try challenging yourself to attempting 1 new sustainable habit every month, such as cycling to work instead of getting the bus for a week, or bringing your own lunch to work instead of buying it from the canteen.";
     }
-    if (totalEmissions >= 1200 && totalEmissions < 2000){
+    if (overallRating > 2.5 && overallRating <= 3.25){
         var persona = "environmentally-curious-img";
         var personaTitle = "Environmentally curious";
         var personaDescription = "We’re glad you’re interested! Making sustainable changes to your lifestyle can seem overwhelming, but it’s much easier than it seems! All you have to do to start is make 1 small change, and then when you’re comfortable with that make another small change, and so on and so on.";
         var personaImprovements = "Try taking public transport to work instead of driving. Try turning off devices such as monitors when you’re not using them. Try saving documents digitally instead of printing off.";
     }
-    if (totalEmissions >= 2000){
+    if (overallRating > 3.25){
         var persona = "carbon-heavyweight-img";
         var personaTitle = "Carbon Heavyweight";
         var personaDescription = "Wow! Your carbon footprint is hefty! While we understand that not everyone can control all aspects of their carbon footprint, it would be great if you could try to make some small changes for the planet.";
@@ -352,13 +416,11 @@ async function calculateLaptopCarbon(event){
     document.getElementById("persona-description").textContent = personaDescription;
     document.getElementById("persona-improvements").textContent = personaImprovements;
 
-
-
     // Driving calculation
     if (totalEmissions > 150){
         var averagePetrolCarbon = 0.26364;
         var drivingEquivalent = totalEmissions/averagePetrolCarbon;
-        document.getElementById("driving").textContent = "Driving the average petrol car " 
+        document.getElementById("driving").textContent = "Driving the average petrol car "
         + drivingEquivalent.toFixed(0) + " miles. Or driving from London to ";
         drivingEquivalent = Math.ceil(drivingEquivalent/100)*100;
 
@@ -394,5 +456,3 @@ async function calculateLaptopCarbon(event){
 
     document.getElementById("coal").textContent = "Burning " + coalAmount.toFixed(0) + "kg of coal"
 }
-
-
