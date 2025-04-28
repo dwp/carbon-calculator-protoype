@@ -71,7 +71,7 @@
       "home": 0
     },
     "cloudStorageFactors": {
-      "emailClearedMonthly": 0.5,
+      "gbGramsPerHour": 1.449518,
       "oneDriveClearedMonthly": 0.8
     },
     "drivingDistances": {
@@ -93,12 +93,14 @@
       "2100": "Ankara, Türkiye"
     },
     "emailCheckAnswers": {
+      "0": "none",
       "10": "0 to 19 per week",
       "35": "20 to 49 per week",
       "75": "50 to 100 per week",
       "125": "more than 100 per week"
     },
     "teamsCheckAnswers": {
+      "0": "none",
       "25": "0 to 49 per week",
       "75": "50 to 99 per week",
       "125": "100 to 149 per week",
@@ -109,6 +111,7 @@
       "17.5": "more than 15 hours per week"
     },
     "clearCheckAnswers": {
+      "0.0333": "daily",
       "0.25": "weekly or less",
       "1": "monthly",
       "3": "quarterly",

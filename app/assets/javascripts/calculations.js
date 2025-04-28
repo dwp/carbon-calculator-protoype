@@ -288,12 +288,35 @@ async function calculateLaptopCarbon(event){
     var totalPrintingEmissionsYearly = +totalPrintingEmissionsWeekly * 52;
 
     // Cloud storage
+    // var clearEmailFrequency = document.getElementById("data-holder-clear-emails").textContent;
+    // var clearOneDriveFrequency = document.getElementById("data-holder-clear-onedrive").textContent;
+    // var emailStorageEmission = JSON.stringify(factors.cloudStorageFactors['emailClearedMonthly']);
+    // var oneDriveStorageEmission = JSON.stringify(factors.cloudStorageFactors['oneDriveClearedMonthly']);
+    // var storageEmissionsYearly = (+clearEmailFrequency * +emailStorageEmission) +
+    // (+clearOneDriveFrequency * +oneDriveStorageEmission);
+
+    // Email storage
     var clearEmailFrequency = document.getElementById("data-holder-clear-emails").textContent;
+    var gbGramsPerHour = JSON.stringify(factors.cloudStorageFactors['gbGramsPerHour']);
+
+    var inboxNum = numEmails * 2;
+    var monthlyEmails = inboxNum * 5 * 4;
+    // Inbox size in KB (assuming average email is 100KB)
+    var monthlyInboxSize = monthlyEmails * 100;
+    // Inbox size in GB
+    var monthlyInboxSizeGB = monthlyInboxSize / 1000000;
+    var averageInboxSize = monthlyInboxSizeGB * clearEmailFrequency;
+    var emailStorageEmissions = ((averageInboxSize * gbGramsPerHour * 24 * 365.25) / 1000) / 2 ;
+
+    // OneDrive storage
     var clearOneDriveFrequency = document.getElementById("data-holder-clear-onedrive").textContent;
-    var emailStorageEmission = JSON.stringify(factors.cloudStorageFactors['emailClearedMonthly']);
-    var oneDriveStorageEmission = JSON.stringify(factors.cloudStorageFactors['oneDriveClearedMonthly']);
-    var storageEmissionsYearly = (+clearEmailFrequency * +emailStorageEmission) +
-    (+clearOneDriveFrequency * +oneDriveStorageEmission);
+    // Assumed OneDrive size - 1GB
+    averageOneDriveSize = 1 * clearOneDriveFrequency;
+    var oneDriveStorageEmissions = ((averageOneDriveSize * gbGramsPerHour * 24 * 365) / 1000) / 2;
+
+    var storageEmissionsYearly = +emailStorageEmissions + +oneDriveStorageEmissions;
+
+
 
     // Total data storage
     var totalDataStorageEmissions = +totalPrintingEmissionsYearly + +storageEmissionsYearly;
@@ -384,7 +407,7 @@ async function calculateLaptopCarbon(event){
 
     // Overall rating
     var overallRating = (+deviceRating + +messagingRating + +storageRating + +travelRating)/4;
-    document.getElementById('user-score').textContent = "Your eco-rating: " + overallRating;
+    //document.getElementById('user-score').textContent = "Your eco-rating: " + overallRating;
 
     if (overallRating <= 1.75){
         var persona = "eco-champion-img";
