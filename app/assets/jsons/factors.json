@@ -72,7 +72,8 @@
     },
     "cloudStorageFactors": {
       "gbGramsPerHour": 1.449518,
-      "oneDriveClearedMonthly": 0.8
+      "oneDriveClearedMonthly": 0.8,
+      "emailClearedMonthly": 0.5
     },
     "drivingDistances": {
       "600": "Geneva, Switzerland",
